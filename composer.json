@@ -1,5 +1,5 @@
 {
-    "name": "lasallecms/lasallecmsapi",
+    "name": "lasallecms/lasallecmsadmin",
     "description": "Administrative package for the LaSalle Content Management System.",
     "homepage": "http://lasallecms.com",
     "keywords": ["admin", "administration", "LaSalleCMS", "South LaSalle", "Bob Bloom", "laravel", "laravel5"],
