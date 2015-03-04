@@ -63,6 +63,8 @@ class LasallecmsadminServiceProvider extends ServiceProvider {
         //$this->setupTranslations();
 
         $this->setupViews();
+
+        $this->setupAssets();
     }
 
     /**
@@ -112,7 +114,7 @@ class LasallecmsadminServiceProvider extends ServiceProvider {
      */
     public function setupRoutes(Router $router)
     {
-        $router->group(['namespace' => 'Lasallecms\lasallecmsadmin\Http\Controllers'], function($router)
+        $router->group(['namespace' => 'Lasallecms\Lasallecmsadmin\Http\Controllers'], function($router)
         {
             require __DIR__.'/Http/routes.php';
         });
@@ -142,6 +144,19 @@ class LasallecmsadminServiceProvider extends ServiceProvider {
 
         $this->publishes([
             __DIR__.'/../views' => base_path('resources/views/vendor/lasallecmsadmin'),
+        ]);
+
+    }
+
+    /**
+     * Define the assets for the application.
+     *
+     * @return void
+     */
+    public function setupAssets()
+    {
+        $this->publishes([
+            __DIR__.'/../public' => public_path('packages/lasallecmsadmin/'),
         ]);
 
     }

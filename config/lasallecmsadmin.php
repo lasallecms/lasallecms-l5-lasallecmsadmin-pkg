@@ -35,13 +35,36 @@ return [
 
 	/*
 	|--------------------------------------------------------------------------
-	| Config1
+	| Site Name
 	|--------------------------------------------------------------------------
 	|
-	| config1
+	| Appears in the admin header
 	|
 	*/
+	'site_name' => 'Retro Radioes',
 
-	'key' => 'value',
+
+    /*
+	|--------------------------------------------------------------------------
+	| Admin Template
+	|--------------------------------------------------------------------------
+	|
+	| What is the name of your admin template? It is the folder name at
+    | "public/admin_template_name/" and "views/admin_template_name/". LaSalleCMS
+    | comes with the admin template "SB-Admin-2"
+	|
+	*/
+    'admin_template_name' => 'sb-admin-2',
+
+
+    /*
+	|--------------------------------------------------------------------------
+	| Public Folder
+	|--------------------------------------------------------------------------
+	|
+	| What is the name of your public folder?
+	|
+	*/
+    'public_folder' => 'public',
 
 ];
