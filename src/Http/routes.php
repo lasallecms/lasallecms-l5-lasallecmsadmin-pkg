@@ -34,3 +34,5 @@ $router->get('admin',[
     'as' => 'admin.home',
     'uses' => 'DashboardController@index'
 ]);
+
+

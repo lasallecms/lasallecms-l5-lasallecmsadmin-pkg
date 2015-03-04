@@ -37,6 +37,10 @@ abstract class Controller extends BaseController {
 
     use DispatchesCommands, ValidatesRequests;
 
+    public function __construct() {
+        $this->middleware(\Lasallecms\Lasallecmsadmin\Http\Middleware\AdminRedirectIfAuthenticated::class);
+    }
+
 }
 
 

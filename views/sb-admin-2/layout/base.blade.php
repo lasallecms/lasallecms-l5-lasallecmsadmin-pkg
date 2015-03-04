@@ -9,28 +9,28 @@
 
 
     @foreach (File::allFiles(public_path().'/sb-admin-2/css/') as $cssfile)
-        <link media="all" type="text/css" rel="stylesheet" href="{{{ Config::get('app.url') }}}/{{{ Config::get('lasallecmsadmin.public_folder') }}}/{{{ Config::get('lasallecmsadmin.admin_template_name') }}}/css/{{ basename($cssfile) }}" >
+        <link media="all" type="text/css" rel="stylesheet" href="{{{ Config::get('app.url') }}}/{{{ Config::get('lasallecms.public_folder') }}}/packages/lasallecmsadmin/{{{ Config::get('lasallecmsadmin.admin_template_name') }}}/css/{{ basename($cssfile) }}" >
     @endforeach
 
 
     <!-- js folder -->
-    @foreach (File::Files(public_path().'/sb-admin-2/js/') as $jsfile)
-        <script src="http://localhost/lasallecmsadmin/public/sb-admin-2/js/{{ basename($jsfile) }}"></script>
+    @foreach (File::Files(public_path().'/packages/lasallecmsadmin/sb-admin-2/js/') as $jsfile)
+        <script src="{{{ Config::get('app.url') }}}/{{{ Config::get('lasallecms.public_folder') }}}/packages/lasallecmsadmin/{{{ Config::get('lasallecmsadmin.admin_template_name') }}}/js/{{ basename($jsfile) }}"></script>
     @endforeach
 
     <!-- js/plugins/dataTables folder -->
-    @foreach (File::Files(public_path().'/sb-admin-2/js/plugins/dataTables/') as $jsfile)
-        <script src="http://localhost/lasallecmsadmin/public/sb-admin-2/js/plugins/dataTables/{{ basename($jsfile) }}"></script>
+    @foreach (File::Files(public_path().'/packages/lasallecmsadmin/sb-admin-2/js/plugins/dataTables/') as $jsfile)
+        <script src="{{{ Config::get('app.url') }}}/{{{ Config::get('lasallecms.public_folder') }}}/packages/lasallecmsadmin/{{{ Config::get('lasallecmsadmin.admin_template_name') }}}/js/plugins/dataTables/{{ basename($jsfile) }}"></script>
     @endforeach
 
     <!-- js/metisMenu folder -->
-    @foreach (File::Files(public_path().'/sb-admin-2/js/plugins/metisMenu/') as $jsfile)
-        <script src="http://localhost/lasallecmsadmin/public/sb-admin-2/js/plugins/metisMenu/{{ basename($jsfile) }}"></script>
+    @foreach (File::Files(public_path().'/packages/lasallecmsadmin/sb-admin-2/js/plugins/metisMenu/') as $jsfile)
+        <script src="{{{ Config::get('app.url') }}}/{{{ Config::get('lasallecms.public_folder') }}}/packages/lasallecmsadmin/{{{ Config::get('lasallecmsadmin.admin_template_name') }}}/js/plugins/metisMenu/{{ basename($jsfile) }}"></script>
     @endforeach
 
     <!-- js/morris folder -->
-    @foreach (File::Files(public_path().'/sb-admin-2/js/plugins/morris/') as $jsfile)
-        <script src="http://localhost/lasallecmsadmin/public/sb-admin-2/js/plugins/morris/{{ basename($jsfile) }}"></script>
+    @foreach (File::Files(public_path().'/packages/lasallecmsadmin/sb-admin-2/js/plugins/morris/') as $jsfile)
+        <script src="{{{ Config::get('app.url') }}}/{{{ Config::get('lasallecms.public_folder') }}}/packages/lasallecmsadmin/{{{ Config::get('lasallecmsadmin.admin_template_name') }}}/sb-admin-2/js/plugins/morris/{{ basename($jsfile) }}"></script>
     @endforeach
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
