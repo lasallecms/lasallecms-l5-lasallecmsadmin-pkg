@@ -73,6 +73,32 @@ class CustomAdminAuthChecks implements Middleware{
             }
         }
 
+        // User must be enabled
+        // This test is mandatory! So, no setting in the config
+        if (!$this->UserEnabledCheck() ) {
+
+            Auth::logout();
+
+            return redirect('admin/login')
+                ->withInput($request->only('email'))
+                ->withErrors([
+                    'email' => 'You are not authorized to login to the admin.',
+                ]);
+        }
+
+        // User must be activated
+        // This test is mandatory! So, no setting in the config
+        if (!$this->UserActivatedCheck() ) {
+
+            Auth::logout();
+            
+            return redirect('admin/login')
+                ->withInput($request->only('email'))
+                ->withErrors([
+                    'email' => 'You are not activated to login to the admin.',
+                ]);
+        }
+
         // Allowed users
         if ($this->customChecksFromUserMgmtPkg->isAllowedUsersCheck()) {
             if (!$this->customChecksFromUserMgmtPkg->allowedUsersCheck($this->customChecksFromUserMgmtPkg->getAllowedUsers(), $this->getAuthEmail() ) ) {
@@ -131,6 +157,40 @@ class CustomAdminAuthChecks implements Middleware{
         }
 
         return $usergroupArray;
+    }
+
+    /*
+     * Is the user enabled?
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return bool
+     */
+    public function UserEnabledCheck() {
+
+        $user = Auth::user()->where('email', '=', Auth::user()->email )->get()->first();
+
+        if ( $user ) {
+            return $user->enabled;
+        } else {
+            return false;
+        }
+    }
+
+    /*
+     * Is the user activated?
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return bool
+     */
+    public function UserActivatedCheck() {
+
+        $user = Auth::user()->where('email', '=', Auth::user()->email )->get()->first();
+
+        if ( $user ) {
+            return $user->activated;
+        } else {
+            return false;
+        }
     }
 
 
