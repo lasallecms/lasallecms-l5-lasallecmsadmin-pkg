@@ -32,8 +32,9 @@
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Contracts\Routing\Middleware;
 
-class AdminRedirectIfAuthenticated {
+class MustBeLoggedInCheck implements Middleware {
 
     /**
      * The Guard implementation.
