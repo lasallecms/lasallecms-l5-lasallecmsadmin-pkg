@@ -2,7 +2,7 @@
 
 /**
  *
- * User Management package for the LaSalle Content Management System, based on the Laravel 5 Framework
+ * Administrative package for the LaSalle Content Management System, based on the Laravel 5 Framework
  * Copyright (C) 2015  The South LaSalle Trading Corporation
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  *
- * @package    User Management package for the LaSalle Content Management System
+ * @package    Administrative package for the LaSalle Content Management System
  * @version    1.0.0
  * @link       http://LaSalleCMS.com
  * @copyright  (c) 2015, The South LaSalle Trading Corporation
@@ -38,7 +38,13 @@ abstract class Controller extends BaseController {
     use DispatchesCommands, ValidatesRequests;
 
     public function __construct() {
-        $this->middleware(\Lasallecms\Lasallecmsadmin\Http\Middleware\AdminRedirectIfAuthenticated::class);
+
+        // User must be logged to access everything in this package
+        $this->middleware(\Lasallecms\Lasallecmsadmin\Http\Middleware\MustBeLoggedInCheck::class);
+
+        // Logged in user must pass these checks too
+        $this->middleware(\Lasallecms\Lasallecmsadmin\Http\Middleware\CustomAdminAuthChecks::class);
+
     }
 
 }

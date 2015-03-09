@@ -29,17 +29,13 @@
  *
  */
 
-use Auth;
 
 class DashboardController extends Controller {
 
     public function index() {
 
-        //Auth::onceUsingId(1);
-
         return view('lasallecmsadmin::'.config('lasallecmsadmin.admin_template_name').'/dashboard/dashboard',[
-                'pagetitle' => 'Dashboard',
-                //'user' => Auth::user()
+                'pagetitle' => 'Dashboard'
             ]);
     }
 }
