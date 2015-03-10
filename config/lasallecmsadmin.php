@@ -39,11 +39,14 @@ return [
 	|--------------------------------------------------------------------------
 	|
 	| What is the name of your admin template? It is the folder name at
-    | "public/admin_template_name/" and "views/admin_template_name/". LaSalleCMS
+    | "public/packages/lasallecmsadmin/admin_template_name/" and "views/admin_template_name/". LaSalleCMS
     | comes with the admin template "SB-Admin-2"
 	|
 	*/
-    'admin_template_name' => 'sb-admin-2',
+    // The "bob1" template is based on the FOSS AdminLTE template. To see the demo page, switch
+    // to 'adminLTE_template'
+    //'admin_template_name' => 'adminLTE_template',
+    'admin_template_name' => 'bob1',
 
 
 ];

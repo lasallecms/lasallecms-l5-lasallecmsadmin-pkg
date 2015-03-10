@@ -91,7 +91,7 @@ class CustomAdminAuthChecks implements Middleware{
         if (!$this->UserActivatedCheck() ) {
 
             Auth::logout();
-            
+
             return redirect('admin/login')
                 ->withInput($request->only('email'))
                 ->withErrors([

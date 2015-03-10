@@ -29,13 +29,22 @@
  *
  */
 
+use Lasallecms\Usermanagement\Models\User;
+
+use Config;
+use Auth;
 
 class DashboardController extends Controller {
 
-    public function index() {
+    public function index(User $user) {
+
+        $users = User::all();
 
         return view('lasallecmsadmin::'.config('lasallecmsadmin.admin_template_name').'/dashboard/dashboard',[
-                'pagetitle' => 'Dashboard'
+                'pagetitle' => 'Dashboard',
+            'users' => $users,
+            'config' => Config::class,
+            'auth' => Auth::class
             ]);
     }
 }
