@@ -76,7 +76,7 @@
                                     {!! Form::label('created at', 'Created At: ') !!}
                                 </td>
                                 <td>
-                                    {{{ $tag->created_at }}}
+                                    {{{ $DatesHelper::convertDatetoFormattedDateString($tag->created_at) }}}
                                 </td>
                             </tr>
 
@@ -85,7 +85,7 @@
                                     {!! Form::label('updated at', 'Updated At: ') !!}
                                 </td>
                                 <td>
-                                    {{{ $tag->updated_at }}}
+                                    {{{ $DatesHelper::convertDatetoFormattedDateString($tag->updated_at) }}}
                                 </td>
                             </tr>
                         @endif

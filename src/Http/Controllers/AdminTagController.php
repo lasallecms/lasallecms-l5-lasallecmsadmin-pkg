@@ -30,6 +30,8 @@
  */
 
 use Lasallecms\Lasallecmsapi\Models\Tag;
+use Lasallecms\Helpers\Dates\DatesHelper;
+
 use Config;
 use Form;
 use Session;
@@ -50,8 +52,6 @@ class AdminTagController extends Controller {
         $tags = Tag::all();
 
         return view('lasallecmsadmin::'.config('lasallecmsadmin.admin_template_name').'/tags/index',[
-            'pagetitle' => 'Tags',
-            'config' => Config::class,
             'Form' => Form::class,
             'tags' => $tags,
         ]);
@@ -108,7 +108,7 @@ class AdminTagController extends Controller {
 
         return view('lasallecmsadmin::'.config('lasallecmsadmin.admin_template_name').'/tags/create',[
             'pagetitle' => 'Tags',
-            'config' => Config::class,
+            'DatesHelper' => DatesHelper::class,
             'Form' => Form::class,
             'tag' => $tag
         ]);
@@ -123,7 +123,11 @@ class AdminTagController extends Controller {
      */
     public function update($id)
     {
-        //
+        $tag = Tag::find($id);
+
+        // Native Laravel flash
+        Session::flash('message', 'Successfully edited the"'.$tag->title.'" tag.');
+        return Redirect::route('admin.tags.index');
     }
 
     /**
