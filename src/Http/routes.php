@@ -36,3 +36,12 @@ $router->get('admin',[
 ]);
 
 
+
+Route::group(array('prefix' => 'admin'), function()
+{
+    //Route::resource('posts', 'AdminPostController');
+    //Route::resource('categories', 'AdminCategoryController');
+    Route::resource('tags', 'AdminTagController');
+    //Route::resource('postupdates', 'AdminPostupdateController');
+});
+

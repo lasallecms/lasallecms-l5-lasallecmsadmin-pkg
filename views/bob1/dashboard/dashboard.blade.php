@@ -23,8 +23,6 @@
 
         @include('lasallecmsadmin::bob1.partials.message')
 
-
-
         <h1>Users! [There are {{{ count($users) }}} users in the db]</h1><br /><br />
 
                 <!-- bootstrap table tutorial http://twitterbootstrap.org/twitter-bootstrap-table-example-tutorial -->

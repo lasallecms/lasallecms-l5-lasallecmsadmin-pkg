@@ -1,6 +1,8 @@
 // --------------------------------------------------------
 //    https://laracasts.com/lessons/javascript-conveniences
 // ----------------------------------------------------------
+// FOR SOME REASON, DOES NOT WORK WHEN THIS FILE IS LINKED; BUT,
+// DOES WORK WHEN VERBATIM IN footer_scripts.blade.php
 
 (function() {
 

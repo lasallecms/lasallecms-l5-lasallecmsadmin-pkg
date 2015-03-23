@@ -15,7 +15,7 @@
 
 </head>
 
-<!--
+{{--
 Layout Options
 
 AdminLTE 2.0 provides a set of options to apply to your main layout. Each on of these classes can be added to the body tag to get the desired goal.
@@ -36,7 +36,7 @@ skin-purple
 skin-green
 skin-red
 skin-black
--->
+--}}
 
 
 <body class="skin-purple fixed sidebar-collapse">
@@ -65,13 +65,13 @@ skin-black
             @include('lasallecmsadmin::bob1.layouts.footer_content')
         @show
 
-
-        {{-- Footer JS --}}
-        @section('footer_scripts')
-                @include('lasallecmsadmin::bob1.layouts.footer_scripts')
-        @show
-
     </div> <!-- /.wrapper -->
+
+
+    {{-- Footer JS --}}
+    @section('footer_scripts')
+        @include('lasallecmsadmin::bob1.layouts.footer_scripts')
+    @show
 
 
 </body>

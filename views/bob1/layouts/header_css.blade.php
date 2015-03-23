@@ -1,8 +1,8 @@
-    <!-- Bootstrap -->
-    <!-- from http://getbootstrap.com/getting-started -->
-
     <!-- Bootstrap 3.3.2 -->
+    <!-- from http://getbootstrap.com/getting-started -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.2/css/bootstrap-theme.min.css">
 
     <!-- Font Awesome Icons -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />

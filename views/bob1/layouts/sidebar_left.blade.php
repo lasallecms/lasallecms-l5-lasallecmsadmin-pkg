@@ -40,7 +40,7 @@
             </li>
 
             <li class="treeview">
-                <a href="#">
+                <a href="{{{ Config::get('app.url') }}}/admin/tags">
                     <i class="fa fa-tags"></i> <span>Tags</span>
                 </a>
             </li>
