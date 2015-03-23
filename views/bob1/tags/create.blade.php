@@ -40,7 +40,7 @@
                     <table class="table table-striped table-bordered table-condensed table-hover">
                         <tr>
                             <td>
-                                {!! Form::label('title', 'Tag Title: ') !!}
+                                {!! Form::label('name', 'Tag\'s Name: ') !!}
                             </td>
                             <td>
                                 @if ( isset($tag) )
@@ -49,9 +49,15 @@
                                       Hacked Illuminate\Html\FormBuilder.php's input() method successfully, but can't seem
                                       to pass it the proper $options field. Oh well.
                                      --}}
-                                    {{{ $tag->title }}}
+                                    {{{ $tag->title }}} &nbsp;&nbsp; <a href="#" data-toggle="popover" data-content="The name is unique, so it is unchange-able."><i class="fa fa-info-circle"></i></a>
                                     <br />
                                     {!! Form::hidden('title', $tag->title) !!}
+
+
+
+
+
+
                                 @else
                                     {!! Form::input('text', 'title', Input::old('title', isset($tag) ? $tag->title : '')) !!}
                                     {{{ $errors->first('title', '<span class="help-block">:message</span>') }}}

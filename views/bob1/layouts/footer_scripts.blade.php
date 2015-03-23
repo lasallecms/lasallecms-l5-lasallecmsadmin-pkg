@@ -32,6 +32,12 @@
         } );
     </script>
 
+    <script>
+        $(function () {
+            $('[data-toggle="popover"]').popover()
+        })
+    </script>
+
 
     <!-- http://datatables.net/manual/options -->
     <script>
