@@ -100,7 +100,10 @@
                                     {!! Form::submit( 'Edit Tag!') !!}
                                 @else
                                     {!! Form::submit( 'Create Tag!') !!}
-                                    @endif
+                                @endif
+
+                                {!! $HTMLHelper::back_button('Cancel') !!}
+
 
 
                             </td>

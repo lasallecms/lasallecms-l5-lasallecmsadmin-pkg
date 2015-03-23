@@ -31,6 +31,7 @@
 
 use Lasallecms\Lasallecmsapi\Models\Tag;
 use Lasallecms\Helpers\Dates\DatesHelper;
+use Lasallecms\Helpers\HTML\HTMLHelper;
 
 use Config;
 use Form;
@@ -110,6 +111,7 @@ class AdminTagController extends Controller {
             'pagetitle' => 'Tags',
             'DatesHelper' => DatesHelper::class,
             'Form' => Form::class,
+            'HTMLHelper' => HTMLHelper::class,
             'tag' => $tag
         ]);
     }
