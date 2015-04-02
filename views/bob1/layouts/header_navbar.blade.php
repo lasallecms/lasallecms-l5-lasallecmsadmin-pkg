@@ -22,7 +22,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="#" class="btn btn-default btn-flat pull-right"><b>Edit</b></a></li>
-                        <li><a href="logout" class="btn btn-default btn-flat pull-right"><b>Logout</b></a></li>
+                        <li><a href="admin/logout" class="btn btn-default btn-flat pull-right"><b>Logout</b></a></li>
                         <!--
                         <li class="divider"></li>
                         -->

@@ -26,6 +26,12 @@
 
             @if (count($tags) > 0 )
 
+            <a class="btn btn-default pull-right" href="{{ route('admin.tags.create') }}" role="button">
+                <span class="glyphicon glyphicon-heart-empty"></span>  Create Tag
+            </a>
+            <br /><br /><br />
+
+
             {{-- bootstrap table tutorial http://twitterbootstrap.org/twitter-bootstrap-table-example-tutorial --}}
 
             {{-- http://datatables.net/manual/options --}}
@@ -36,7 +42,6 @@
                     <th style="text-align: center;">ID</th>
                     <th>Name</th>
                     <th>Description</th>
-                    <th style="text-align: center;">Enabled?</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -53,18 +58,15 @@
                         <td>{{{ $tag->description }}}</td>
 
                         <td align="center">
-                            @if ( $tag->enabled == 1 ) Yes @else No  @endif
-                        </td>
-
-                        <td align="center">
                             <a href="{{{ URL::route('admin.tags.edit', $tag->id) }}}" class="btn btn-success  btn-xs" role="button">
                                 <i class="glyphicon glyphicon-edit"></i>
                             </a>
                         </td>
                         <td align="center">
 
-                            <!--  if there is just one tag, then suppress the delete button -->
-                            @if (count($tags) > 1)
+                            {{-- If there is just one tag, then suppress the delete button --}}
+                            {{-- Actually, not for tags! So changing the >1 to >0 --}}
+                            @if (count($tags) > 0)
 
                                 {!! Form::open(array('url' => 'admin/tags/' . $tag->id)) !!}
                                 {!! Form::model($tag, array('route' => array('admin.tags.destroy', $tag->id), 'method' => 'DELETE')) !!}

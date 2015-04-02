@@ -24,7 +24,6 @@
                 @include('lasallecmsadmin::bob1.partials.message')
 
 
-
                 <div class="col-md-6">
 
                     {{-- this is a combo create or edit form. Display the proper "form action"  --}}
@@ -33,7 +32,7 @@
 
                         {!! Form::hidden('id', $tag->id) !!}
                     @else
-                        {!! Form::open(['route' => 'admin.tags.store']) !!}}
+                        {!! Form::open(['route' => 'admin.tags.store']) !!}
                     @endif
 
                     {{-- the table! --}}
@@ -52,16 +51,11 @@
                                     {{{ $tag->title }}} &nbsp;&nbsp; <a href="#" data-toggle="popover" data-content="The name is unique, so it is unchange-able."><i class="fa fa-info-circle"></i></a>
                                     <br />
                                     {!! Form::hidden('title', $tag->title) !!}
-
-
-
-
-
-
                                 @else
                                     {!! Form::input('text', 'title', Input::old('title', isset($tag) ? $tag->title : '')) !!}
                                     {{{ $errors->first('title', '<span class="help-block">:message</span>') }}}
                                 @endif
+
                             </td>
                         </tr>
 
@@ -70,7 +64,7 @@
                                 {!! Form::label('description', 'Description: ') !!}
                             </td>
                             <td>
-                                {!! Form::input('text', 'description', Input::old('slug', isset($tag) ? $tag->slug : '')) !!}
+                                {!! Form::input('text', 'description', Input::old('description', isset($tag) ? $tag->description : '')) !!}
                                 {{{ $errors->first('tag', '<span class="help-block">:message</span>') }}}
                             </td>
                         </tr>
@@ -82,7 +76,7 @@
                                     {!! Form::label('created at', 'Created At: ') !!}
                                 </td>
                                 <td>
-                                    {{{ $DatesHelper::convertDatetoFormattedDateString($tag->created_at) }}}
+                                    {{{ $DatesHelper::convertDatetoFormattedDateString($tag->created_at) }}} &nbsp;&nbsp; <a href="#" data-toggle="popover" data-content="The Created At date is automatically filled in."><i class="fa fa-info-circle"></i></a>
                                 </td>
                             </tr>
 
@@ -91,7 +85,7 @@
                                     {!! Form::label('updated at', 'Updated At: ') !!}
                                 </td>
                                 <td>
-                                    {{{ $DatesHelper::convertDatetoFormattedDateString($tag->updated_at) }}}
+                                    {{{ $DatesHelper::convertDatetoFormattedDateString($tag->updated_at) }}} &nbsp;&nbsp; <a href="#" data-toggle="popover" data-content="The Updated At date is automatically filled in"><i class="fa fa-info-circle"></i></a>
                                 </td>
                             </tr>
                         @endif
