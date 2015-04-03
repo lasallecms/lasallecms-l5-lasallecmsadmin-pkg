@@ -1,4 +1,4 @@
-<?php namespace Lasallecms\Lasallecmsadmin\Commands;
+<?php namespace Lasallecms\Lasallecmsadmin\Commands\Categories;
 
 /**
  *
@@ -32,25 +32,26 @@
 use Illuminate\Contracts\Bus\SelfHandling;
 
 use Illuminate\Foundation\Bus\DispatchesCommands;
-use Lasallecms\Lasallecmsapi\Tags\UpdateTagFormProcessing;
+use Lasallecms\Lasallecmsapi\Categories\CreateCategoryFormProcessing;
+
+use Lasallecms\Lasallecmsadmin\Commands\Command;
 
 
-class UpdateTagCommand extends Command implements SelfHandling {
+class CreateCategoryCommand extends Command implements SelfHandling {
 
     use DispatchesCommands;
 
-    public $id;
     public $title;
     public $description;
+
 
     /**
      * Create a new command instance.
      *
      * @return void
      */
-    public function __construct($id, $title, $description)
+    public function __construct($title, $description)
     {
-        $this->id = $id;
         $this->title = $title;
         $this->description = $description;
     }
@@ -60,8 +61,8 @@ class UpdateTagCommand extends Command implements SelfHandling {
      *
      * @return void
      */
-    public function handle(UpdateTagFormProcessing $updateTagFormProcessing)
+    public function handle(CreateCategoryFormProcessing $createCategoryFormProcessing)
     {
-        return $updateTagFormProcessing->quarterback($this);
+        return $createCategoryFormProcessing->quarterback($this);
     }
 }

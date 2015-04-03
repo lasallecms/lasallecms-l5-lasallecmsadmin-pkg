@@ -1,4 +1,4 @@
-<?php
+<?php namespace Lasallecms\Lasallecmsadmin\Commands\Tags;
 
 /**
  *
@@ -29,19 +29,41 @@
  *
  */
 
+use Illuminate\Contracts\Bus\SelfHandling;
 
-$router->get('admin',[
-    'as' => 'admin.home',
-    'uses' => 'DashboardController@index'
-]);
+use Illuminate\Foundation\Bus\DispatchesCommands;
+use Lasallecms\Lasallecmsapi\Tags\UpdateTagFormProcessing;
+
+use Lasallecms\Lasallecmsadmin\Commands\Command;
 
 
+class UpdateTagCommand extends Command implements SelfHandling {
 
-Route::group(array('prefix' => 'admin'), function()
-{
-    //Route::resource('posts', 'AdminPostController');
-    Route::resource('categories', 'AdminCategoryController');
-    Route::resource('tags', 'AdminTagController');
-    Route::resource('postupdates', 'AdminPostupdateController');
-});
+    use DispatchesCommands;
 
+    public $id;
+    public $title;
+    public $description;
+
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct($id, $title, $description)
+    {
+        $this->id = $id;
+        $this->title = $title;
+        $this->description = $description;
+    }
+
+    /**
+     * Execute the command.
+     *
+     * @return void
+     */
+    public function handle(UpdateTagFormProcessing $updateTagFormProcessing)
+    {
+        return $updateTagFormProcessing->quarterback($this);
+    }
+}

@@ -31,13 +31,13 @@
 
 use Illuminate\Http\Request;
 
-use Lasallecms\Lasallecmsapi\Contracts\TagRepository;
+use Lasallecms\Lasallecmsapi\Contracts\PostupdateRepository;
 use Lasallecms\Helpers\Dates\DatesHelper;
 use Lasallecms\Helpers\HTML\HTMLHelper;
 
-use Lasallecms\Lasallecmsadmin\Commands\Tags\CreateTagCommand;
-use Lasallecms\Lasallecmsadmin\Commands\Tags\DeleteTagCommand;
-use Lasallecms\Lasallecmsadmin\Commands\Tags\UpdateTagCommand;
+use Lasallecms\Lasallecmsadmin\Commands\Postupdates\CreatePostupdateCommand;
+use Lasallecms\Lasallecmsadmin\Commands\Postupdates\DeletePostupdateCommand;
+use Lasallecms\Lasallecmsadmin\Commands\Postupdates\UpdatePostupdateCommand;
 
 use Carbon\Carbon;
 use Config;
@@ -48,14 +48,14 @@ use Redirect;
 
 
 /*
- * Resource controller for administration of tags
+ * Resource controller for administration of post updates
  */
-class AdminTagController extends Controller {
+class AdminPostupdateController extends Controller {
 
     /*
      * Repository
      *
-     * @var  Lasallecms\Lasallecmsapi\Contracts\TagRepository
+     * @var  Lasallecms\Lasallecmsapi\Contracts\PostupdateRepository
      */
     protected $repository;
 
@@ -64,47 +64,47 @@ class AdminTagController extends Controller {
     /*
      * Create a new repository instance
      *
-     * @param  Lasallecms\Lasallecmsapi\Contracts\TagRepository $tagRepository
+     * @param  Lasallecms\Lasallecmsapi\Contracts\PostupdateRepository $postupdateRepository
      * @return void
      */
-    public function __construct(TagRepository $tagRepository)
+    public function __construct(PostupdateRepository $postupdateRepository)
     {
-        $this->repository = $tagRepository;
+        $this->repository = $postupdateRepository;
     }
 
 
 
 
     /**
-     * Display a listing of tags
-     * GET /tags/index
+     * Display a listing of post updates
+     * GET /postupdates/index
      *
      * @return Response
      */
     public function index() {
 
         // If this user has locked records for this table, then unlock 'em
-        $this->repository->unlockMyRecords('tags');
+        $this->repository->unlockMyRecords('postupdates');
 
 
-        $tags = $this->repository->getAll();
+        $postupdates = $this->repository->getAll();
 
-        return view('lasallecmsadmin::'.config('lasallecmsadmin.admin_template_name').'/tags/index',[
+        return view('lasallecmsadmin::'.config('lasallecmsadmin.admin_template_name').'/postupdates/index',[
             'Form' => Form::class,
-            'tags' => $tags,
+            'postupdates' => $postupdates,
         ]);
     }
 
     /**
-     * Form to create a new tag
-     * GET /tags/create
+     * Form to create a new post update
+     * GET /postupdates/create
      *
      * @return Response
      */
     public function create()
     {
-        return view('lasallecmsadmin::'.config('lasallecmsadmin.admin_template_name').'/tags/create',[
-            'pagetitle'   => 'Tags',
+        return view('lasallecmsadmin::'.config('lasallecmsadmin.admin_template_name').'/postupdates/create',[
+            'pagetitle'   => 'Post Updates',
             'DatesHelper' => DatesHelper::class,
             'Form'        => Form::class,
             'HTMLHelper'  => HTMLHelper::class,
@@ -114,13 +114,13 @@ class AdminTagController extends Controller {
 
     /**
      * Store a newly created resource in storage
-     * POST admin/tags/create
+     * POST admin/postupdates/create
      *
      * @param  Request   $request
      * @return Response
      */
     public function store(Request $request) {
-        $response = $this->dispatchFrom(CreateTagCommand::class, $request);
+        $response = $this->dispatchFrom(CreatePostupdateCommand::class, $request);
 
         Session::flash('status_code', $response['status_code'] );
 
@@ -137,7 +137,7 @@ class AdminTagController extends Controller {
 
         if ($response['status_text'] == "persist_failed")
         {
-            $message = "Persist failed. It does not happen often, but Laravel's save failed. The database operation is called at Lasallecms\Lasallecmsapi\Tags\CreateTagFormProcessing. MySQL probably hiccupped, so probably just try again.";
+            $message = "Persist failed. It does not happen often, but Laravel's save failed. The database operation is called at Lasallecms\Lasallecmsapi\Postupdates\CreatePostupdateFormProcessing. MySQL probably hiccupped, so probably just try again.";
             Session::flash('message', $message);
 
             // Return to the edit form with error messages
@@ -150,30 +150,30 @@ class AdminTagController extends Controller {
 
 
         $title = strtoupper($response['data']['title']);
-        $message = 'You successfully created the tag "'.$title.'"!';
+        $message = 'You successfully created the post update "'.$title.'"!';
         Session::flash('message', $message);
-        return Redirect::route('admin.tags.index');
+        return Redirect::route('admin.postupdates.index');
     }
 
 
     /**
-     * Display the specified tag
-     * GET /tags/{id}
+     * Display the specified post update
+     * GET /postupdates/{id}
      *
      * @param  int  $id
      * @return Response
      */
     public function show($id) {
         // Do not use show(). Redir to index just in case
-        return Redirect::route('admin.tags.index');
+        return Redirect::route('admin.postupdates.index');
     }
 
 
 
 
     /**
-     * Show the form for editing a specific tag
-     * GET /tags/{id}/edit
+     * Show the form for editing a specific post update
+     * GET /postupdates/{id}/edit
      *
      * @param  int  $id
      * @return Response
@@ -183,34 +183,34 @@ class AdminTagController extends Controller {
         // Is this record locked?
         if ($this->repository->isLocked($id))
         {
-            $response = 'This tag is not available for editing, as someone else is currently editing this tag';
+            $response = 'This post update is not available for editing, as someone else is currently editing this post update';
             Session::flash('message', $response);
             Session::flash('status_code', 400 );
-            return Redirect::route('admin.tags.index');
+            return Redirect::route('admin.postupdates.index');
         }
 
         // Lock the record
         $this->repository->populateLockFields($id);
 
-        return view('lasallecmsadmin::'.config('lasallecmsadmin.admin_template_name').'/tags/create',[
-            'pagetitle'   => 'Tags',
+        return view('lasallecmsadmin::'.config('lasallecmsadmin.admin_template_name').'/postupdates/create',[
+            'pagetitle'   => 'Post Updates',
             'DatesHelper' => DatesHelper::class,
             'Form'        => Form::class,
             'HTMLHelper'  => HTMLHelper::class,
-            'tag'         => $this->repository->getFind($id),
+            'postupdate'         => $this->repository->getFind($id),
         ]);
     }
 
     /**
-     * Update the specific tag in the db
-     * PUT /tags/{id}
+     * Update the specific post update in the db
+     * PUT /postupdates/{id}
      *
      * @param  Request   $request
      * @return Response
      */
     public function update(Request $request)
     {
-        $response = $this->dispatchFrom(UpdateTagCommand::class, $request);
+        $response = $this->dispatchFrom(UpdatePostupdateCommand::class, $request);
 
         Session::flash('status_code', $response['status_code'] );
 
@@ -227,7 +227,7 @@ class AdminTagController extends Controller {
 
         if ($response['status_text'] == "persist_failed")
         {
-            $message = "Persist failed. It does not happen often, but Laravel's save failed. The database operation is called at Lasallecms\Lasallecmsapi\Tags\UpdateTagFormProcessing. MySQL probably hiccupped, so probably just try again.";
+            $message = "Persist failed. It does not happen often, but Laravel's save failed. The database operation is called at Lasallecms\Lasallecmsapi\Postupdates\UpdatePostupdateFormProcessing. MySQL probably hiccupped, so probably just try again.";
             Session::flash('message', $message);
 
             // Return to the edit form with error messages
@@ -237,17 +237,17 @@ class AdminTagController extends Controller {
 
 
         $title = strtoupper($response['data']['title']);
-        $message = 'Your "'.$title.'" tag updated successfully!';
+        $message = 'Your "'.$title.'" post update updated successfully!';
         Session::flash('message', $message);
-        return Redirect::route('admin.tags.index');
+        return Redirect::route('admin.postupdates.index');
     }
 
     /**
-     * Remove the specific tag from the db
-     * DELETE /tags/{id}
+     * Remove the specific post update from the db
+     * DELETE /postupdates/{id}
      *
      * This method is not routed through a REQUEST, unfortunately. So,
-     * using a tag collection as the array access-ible object. Remember,
+     * using a post update collection as the array access-ible object. Remember,
      * Laravel's command bus needs an array access-ible object!
      * Also, note using $this->dispatch(), not $this->dispatchFrom().
      *
@@ -259,22 +259,22 @@ class AdminTagController extends Controller {
         // Is this record locked?
         if ($this->repository->isLocked($id))
         {
-            $response = 'This tag is not available for deletion, as someone else is currently editing this tag';
+            $response = 'This post update is not available for deletion, as someone else is currently editing this post update';
             Session::flash('message', $response);
             Session::flash('status_code', 400 );
-            return Redirect::route('admin.tags.index');
+            return Redirect::route('admin.postupdates.index');
         }
 
-        $tag = $this->repository->getFind($id);
+        $postupdate = $this->repository->getFind($id);
 
-        $response = $this->dispatch(new DeleteTagCommand($tag));
+        $response = $this->dispatch(new DeletePostupdateCommand($postupdate));
 
         Session::flash('status_code', $response['status_code'] );
 
 
         if ($response['status_text'] == "foreign_key_check_failed")
         {
-            $message = "Cannot delete this tag because one or more posts are currently using this tag, ";
+            $message = "Cannot delete this post update because one or more posts are currently using this post update, ";
             Session::flash('message', $message);
 
             // Return to the edit form with error messages
@@ -285,7 +285,7 @@ class AdminTagController extends Controller {
 
         if ($response['status_text'] == "persist_failed")
         {
-            $message = "Persist failed. It does not happen often, but Laravel's deletion failed. The database operation is called at Lasallecms\Lasallecmsapi\Tags\DeleteTagFormProcessing. MySQL probably hiccupped, so probably just try again.";
+            $message = "Persist failed. It does not happen often, but Laravel's deletion failed. The database operation is called at Lasallecms\Lasallecmsapi\Postupdates\DeletePostupdateFormProcessing. MySQL probably hiccupped, so probably just try again.";
             Session::flash('message', $message);
 
             // Return to the edit form with error messages
@@ -296,9 +296,9 @@ class AdminTagController extends Controller {
 
 
         $title = strtoupper($response['data']['id']->title);
-        $message = 'You successfully deleted the tag "'.$title.'"!';
+        $message = 'You successfully deleted the post update "'.$title.'"!';
         Session::flash('message', $message);
-        return Redirect::route('admin.tags.index');
+        return Redirect::route('admin.postupdates.index');
 
     }
 }

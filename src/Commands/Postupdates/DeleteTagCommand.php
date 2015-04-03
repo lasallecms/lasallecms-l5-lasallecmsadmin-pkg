@@ -1,4 +1,4 @@
-<?php
+<?php namespace Lasallecms\Lasallecmsadmin\Commands\Postupdates;
 
 /**
  *
@@ -29,19 +29,38 @@
  *
  */
 
+use Illuminate\Contracts\Bus\SelfHandling;
 
-$router->get('admin',[
-    'as' => 'admin.home',
-    'uses' => 'DashboardController@index'
-]);
+use Illuminate\Foundation\Bus\DispatchesCommands;
+use Lasallecms\Lasallecmsapi\Postupdates\DeletePostupdateFormProcessing;
+
+use Lasallecms\Lasallecmsadmin\Commands\Command;
 
 
+class DeletePostupdateCommand extends Command implements SelfHandling {
 
-Route::group(array('prefix' => 'admin'), function()
-{
-    //Route::resource('posts', 'AdminPostController');
-    Route::resource('categories', 'AdminCategoryController');
-    Route::resource('tags', 'AdminTagController');
-    Route::resource('postupdates', 'AdminPostupdateController');
-});
+    use DispatchesCommands;
 
+    public $id;
+
+
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * Execute the command.
+     *
+     * @return void
+     */
+    public function handle(DeletePostupdateFormProcessing $deletePostupdateFormProcessing)
+    {
+        return $deletePostupdateFormProcessing->quarterback($this);
+    }
+}

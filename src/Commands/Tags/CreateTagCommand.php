@@ -1,4 +1,4 @@
-<?php
+<?php namespace Lasallecms\Lasallecmsadmin\Commands\Tags;
 
 /**
  *
@@ -29,19 +29,40 @@
  *
  */
 
+use Illuminate\Contracts\Bus\SelfHandling;
 
-$router->get('admin',[
-    'as' => 'admin.home',
-    'uses' => 'DashboardController@index'
-]);
+use Illuminate\Foundation\Bus\DispatchesCommands;
+use Lasallecms\Lasallecmsapi\Tags\CreateTagFormProcessing;
+
+use Lasallecms\Lasallecmsadmin\Commands\Command;
 
 
+class CreateTagCommand extends Command implements SelfHandling {
 
-Route::group(array('prefix' => 'admin'), function()
-{
-    //Route::resource('posts', 'AdminPostController');
-    Route::resource('categories', 'AdminCategoryController');
-    Route::resource('tags', 'AdminTagController');
-    Route::resource('postupdates', 'AdminPostupdateController');
-});
+    use DispatchesCommands;
 
+    public $title;
+    public $description;
+
+
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct($title, $description)
+    {
+        $this->title = $title;
+        $this->description = $description;
+    }
+
+    /**
+     * Execute the command.
+     *
+     * @return void
+     */
+    public function handle(CreateTagFormProcessing $createTagFormProcessing)
+    {
+        return $createTagFormProcessing->quarterback($this);
+    }
+}

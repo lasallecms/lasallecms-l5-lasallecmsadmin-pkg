@@ -15,7 +15,7 @@
             <!-- icons at http://fortawesome.github.io/Font-Awesome/icons/#web-application -->
 
             <li class="treeview">
-                <a href="{{{ Config::get('app.url') }}}/admin">
+                <a href="{{ route('admin.home') }}">
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span> </i>
                 </a>
 
@@ -28,19 +28,19 @@
             </li>
 
             <li class="treeview">
-                <a href="#">
+                <a href="{{ route('admin.postupdates.index') }}">
                     <i class="fa fa-briefcase"></i> <span>Post Updates</span>
                 </a>
             </li>
 
             <li class="treeview">
-                <a href="#">
+                <a href="{{ route('admin.categories.index') }}">
                     <i class="fa fa-circle"></i> <span>Categories</span>
                 </a>
             </li>
 
             <li class="treeview">
-                <a href="{{{ Config::get('app.url') }}}/admin/tags">
+                <a href="{{ route('admin.tags.index') }}">
                     <i class="fa fa-tags"></i> <span>Tags</span>
                 </a>
             </li>
@@ -56,7 +56,7 @@
             </li>
 
             <li class="treeview">
-                <a href="admin/logout">
+                <a href="{{ route('admin.logout') }}">
                     <i class="fa fa-sign-out"></i> <span>Logout</span>
                 </a>
             </li>
