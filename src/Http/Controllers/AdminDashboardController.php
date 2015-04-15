@@ -29,22 +29,15 @@
  *
  */
 
-use Lasallecms\Usermanagement\Models\User;
+use Illuminate\Support\Facades\Redirect;
 
-use Config;
-use Auth;
 
 class DashboardController extends Controller {
 
-    public function index(User $user) {
+    public function index()
+    {
 
-        $users = User::all();
+        return Redirect::route('admin.tags.index');
 
-        return view('lasallecmsadmin::'.config('lasallecmsadmin.admin_template_name').'/dashboard/dashboard',[
-                'pagetitle' => 'Dashboard',
-            'users' => $users,
-            'config' => Config::class,
-            'auth' => Auth::class
-            ]);
     }
 }
