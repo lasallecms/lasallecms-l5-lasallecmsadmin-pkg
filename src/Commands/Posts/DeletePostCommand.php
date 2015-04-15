@@ -1,4 +1,4 @@
-<?php namespace Lasallecms\Lasallecmsadmin\Commands\Tags;
+<?php namespace Lasallecms\Lasallecmsadmin\Commands\Posts;
 
 /**
  *
@@ -32,12 +32,12 @@
 use Illuminate\Contracts\Bus\SelfHandling;
 
 use Illuminate\Foundation\Bus\DispatchesCommands;
-use Lasallecms\Lasallecmsapi\Tags\DeleteTagFormProcessing;
+use Lasallecms\Lasallecmsapi\Posts\DeletePostFormProcessing;
 
 use Lasallecms\Lasallecmsadmin\Commands\Command;
 
 
-class DeleteTagCommand extends Command implements SelfHandling {
+class DeletePostCommand extends Command implements SelfHandling {
 
     use DispatchesCommands;
 
@@ -59,8 +59,8 @@ class DeleteTagCommand extends Command implements SelfHandling {
      *
      * @return void
      */
-    public function handle(DeleteTagFormProcessing $deleteTagFormProcessing)
+    public function handle(DeletePostFormProcessing $deletePostFormProcessing)
     {
-        return $deleteTagFormProcessing->quarterback($this);
+        return $deletePostFormProcessing->quarterback($this);
     }
 }

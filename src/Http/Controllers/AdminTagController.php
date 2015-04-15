@@ -40,11 +40,11 @@ use Lasallecms\Lasallecmsadmin\Commands\Tags\DeleteTagCommand;
 use Lasallecms\Lasallecmsadmin\Commands\Tags\UpdateTagCommand;
 
 use Carbon\Carbon;
-use Config;
-use Form;
-use Input;
-use Session;
-use Redirect;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Form;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 
 
 /*
@@ -267,25 +267,14 @@ class AdminTagController extends Controller {
 
         $tag = $this->repository->getFind($id);
 
-        $response = $this->dispatch(new DeleteTagCommand($tag));
+        $response = $this->dispatch(new DeletePostCommand($tag));
 
         Session::flash('status_code', $response['status_code'] );
 
 
-        if ($response['status_text'] == "foreign_key_check_failed")
-        {
-            $message = "Cannot delete this tag because one or more posts are currently using this tag, ";
-            Session::flash('message', $message);
-
-            // Return to the edit form with error messages
-            return Redirect::back()
-                ->withInput($response['data']);
-        }
-
-
         if ($response['status_text'] == "persist_failed")
         {
-            $message = "Persist failed. It does not happen often, but Laravel's deletion failed. The database operation is called at Lasallecms\Lasallecmsapi\Tags\DeleteTagFormProcessing. MySQL probably hiccupped, so probably just try again.";
+            $message = "Persist failed. It does not happen often, but Laravel's deletion failed. The database operation is called at Lasallecms\Lasallecmsapi\Posts\DeletePostFormProcessing. MySQL probably hiccupped, so probably just try again.";
             Session::flash('message', $message);
 
             // Return to the edit form with error messages
@@ -296,9 +285,9 @@ class AdminTagController extends Controller {
 
 
         $title = strtoupper($response['data']['id']->title);
-        $message = 'You successfully deleted the tag "'.$title.'"!';
+        $message = 'You successfully deleted the post "'.$title.'"!';
         Session::flash('message', $message);
-        return Redirect::route('admin.tags.index');
+        return Redirect::route('admin.posts.index');
 
     }
 }

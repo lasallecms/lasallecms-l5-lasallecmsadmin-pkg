@@ -65,7 +65,21 @@
                             </td>
                             <td>
                                 {!! Form::input('text', 'description', Input::old('description', isset($category) ? $category->description : '')) !!}
-                                {{{ $errors->first('category', '<span class="help-block">:message</span>') }}}
+                                {{{ $errors->first('description', '<span class="help-block">:message</span>') }}}
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                                {!! Form::label('parent_id', 'Parent Category: ') !!}
+                            </td>
+                            <td>
+                                @if ( isset($category) )
+                                    {!! $HTMLHelper::categoryParentSingleSelectEdit($categories, $category->parent_id, $category->id) !!}
+                                @else
+                                    {!! $HTMLHelper::categoryParentSingleSelectCreate($categories) !!}
+                                @endif
                             </td>
                         </tr>
 

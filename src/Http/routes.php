@@ -32,16 +32,17 @@
 
 $router->get('admin',[
     'as' => 'admin.home',
-    'uses' => 'DashboardController@index'
+    'uses' => 'AdminDashboardController@index'
 ]);
 
 
 
 Route::group(array('prefix' => 'admin'), function()
 {
-    //Route::resource('posts', 'AdminPostController');
+    Route::resource('posts', 'AdminPostController');
     Route::resource('categories', 'AdminCategoryController');
     Route::resource('tags', 'AdminTagController');
     Route::resource('postupdates', 'AdminPostupdateController');
+    Route::resource('users', 'AdminUserController');
 });
 

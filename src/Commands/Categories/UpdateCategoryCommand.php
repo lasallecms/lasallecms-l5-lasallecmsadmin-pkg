@@ -44,17 +44,19 @@ class UpdateCategoryCommand extends Command implements SelfHandling {
     public $id;
     public $title;
     public $description;
+    public $parent_id;
 
     /**
      * Create a new command instance.
      *
      * @return void
      */
-    public function __construct($id, $title, $description)
+    public function __construct($id, $title, $description, $parent_id)
     {
-        $this->id = $id;
-        $this->title = $title;
+        $this->id          = $id;
+        $this->title       = $title;
         $this->description = $description;
+        $this->parent_id   = $parent_id;
     }
 
     /**

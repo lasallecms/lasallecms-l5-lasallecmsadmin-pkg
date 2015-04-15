@@ -15,35 +15,44 @@
             <!-- icons at http://fortawesome.github.io/Font-Awesome/icons/#web-application -->
 
             <li class="treeview">
-                <a href="{{ route('admin.home') }}">
+                <a href="{{{ route('admin.home') }}}">
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span> </i>
                 </a>
-
             </li>
 
+            <li class="treeview"><hr></li>
+
             <li class="treeview">
-                <a href="#">
+                <a href="{{{ route('admin.posts.index') }}}"">
                     <i class="fa fa-book"></i> <span>Posts</span>
                 </a>
             </li>
 
             <li class="treeview">
-                <a href="{{ route('admin.postupdates.index') }}">
+                <a href="{{{ route('admin.postupdates.index') }}}">
                     <i class="fa fa-briefcase"></i> <span>Post Updates</span>
                 </a>
             </li>
 
             <li class="treeview">
-                <a href="{{ route('admin.categories.index') }}">
-                    <i class="fa fa-circle"></i> <span>Categories</span>
+                <a href="{{{ route('admin.categories.index') }}}">
+                    <i class="fa fa-folder-open"></i> <span>Categories</span>
                 </a>
             </li>
 
             <li class="treeview">
-                <a href="{{ route('admin.tags.index') }}">
+                <a href="{{{ route('admin.tags.index') }}}">
                     <i class="fa fa-tags"></i> <span>Tags</span>
                 </a>
             </li>
+
+            <li class="treeview">
+                <a href="{{{ route('admin.users.index') }}}">
+                    <i class="fa fa-users"></i> <span>Users</span>
+                </a>
+            </li>
+
+            <li class="treeview"><hr></li>
 
             <li class="treeview">
                 <a href="#">
@@ -55,11 +64,15 @@
                 </ul>
             </li>
 
+            <li class="treeview"><hr></li>
+
             <li class="treeview">
-                <a href="{{ route('admin.logout') }}">
+                <a href="{{{ route('admin.logout') }}}">
                     <i class="fa fa-sign-out"></i> <span>Logout</span>
                 </a>
             </li>
+
+            <li class="treeview"><hr></li>
 
         </ul>
     </section>

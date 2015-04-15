@@ -1,4 +1,4 @@
-<?php namespace Lasallecms\Lasallecmsadmin\Commands\Tags;
+<?php namespace Lasallecms\Lasallecmsadmin\Commands\Posts;
 
 /**
  *
@@ -32,17 +32,26 @@
 use Illuminate\Contracts\Bus\SelfHandling;
 
 use Illuminate\Foundation\Bus\DispatchesCommands;
-use Lasallecms\Lasallecmsapi\Tags\CreateTagFormProcessing;
+use Lasallecms\Lasallecmsapi\Posts\CreatePostFormProcessing;
 
 use Lasallecms\Lasallecmsadmin\Commands\Command;
 
 
-class CreateTagCommand extends Command implements SelfHandling {
+class CreatePostCommand extends Command implements SelfHandling {
 
     use DispatchesCommands;
 
     public $title;
-    public $description;
+    public $slug;
+    public $canonical_url;
+    public $content;
+    public $excerpt;
+    public $meta_description;
+    public $featured_image;
+    public $enabled;
+    public $publish_on;
+    public $categories;
+    public $tags;
 
 
     /**
@@ -50,10 +59,19 @@ class CreateTagCommand extends Command implements SelfHandling {
      *
      * @return void
      */
-    public function __construct($title, $description)
+    public function __construct($title, $slug, $canonical_url, $content, $excerpt, $meta_description, $featured_image, $enabled=0, $publish_on, $categories, $tags)
     {
-        $this->title = $title;
-        $this->description = $description;
+        $this->title            = $title;
+        $this->slug             = $slug;
+        $this->canonical_url    = $canonical_url;
+        $this->content          = $content;
+        $this->excerpt          = $excerpt;
+        $this->meta_description = $meta_description;
+        $this->featured_image   = $featured_image;
+        $this->enabled          = $enabled;
+        $this->publish_on       = $publish_on;
+        $this->categories       = $categories;
+        $this->tags             = $tags;
     }
 
     /**
@@ -61,8 +79,8 @@ class CreateTagCommand extends Command implements SelfHandling {
      *
      * @return void
      */
-    public function handle(CreateTagFormProcessing $createTagFormProcessing)
+    public function handle(CreatePostFormProcessing $createPostFormProcessing)
     {
-        return $createTagFormProcessing->quarterback($this);
+        return $createPostFormProcessing->quarterback($this);
     }
 }

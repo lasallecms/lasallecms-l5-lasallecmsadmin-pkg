@@ -42,6 +42,7 @@
                     <th style="text-align: center;">ID</th>
                     <th>Name</th>
                     <th>Description</th>
+                    <th style="text-align: center;">Parent Category</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -56,6 +57,8 @@
                         <td>{{{ $category->title }}}</td>
 
                         <td>{{{ $category->description }}}</td>
+
+                        <td align="center">{{{ $HTMLHelper::displayParentCategoryTitle($category->parent_id, $categoryRepository) }}}</td>
 
                         <td align="center">
                             <a href="{{{ URL::route('admin.categories.edit', $category->id) }}}" class="btn btn-success  btn-xs" role="button">

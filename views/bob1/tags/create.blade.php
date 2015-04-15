@@ -65,7 +65,7 @@
                             </td>
                             <td>
                                 {!! Form::input('text', 'description', Input::old('description', isset($tag) ? $tag->description : '')) !!}
-                                {{{ $errors->first('tag', '<span class="help-block">:message</span>') }}}
+                                {{{ $errors->first('description', '<span class="help-block">:message</span>') }}}
                             </td>
                         </tr>
 

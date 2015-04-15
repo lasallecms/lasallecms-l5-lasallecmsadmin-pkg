@@ -1,7 +1,7 @@
 <!-- =============================================== -->
 
 <header class="main-header">
-    <a href="{{{ Config::get('app.url') }}}/admin" class="logo"><b>{{{ Config::get('lasallecms.site_name') }}}</b></a>
+    <a href="{{{ route('admin.home') }}}" class="logo"><b>{{{ Config::get('lasallecms.site_name') }}}</b></a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top" role="navigation">
         <!-- Sidebar toggle button-->
@@ -21,8 +21,8 @@
                         <span class="hidden-xs">{{{ Auth::user()->name }}}</span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#" class="btn btn-default btn-flat pull-right"><b>Edit</b></a></li>
-                        <li><a href="{{ route('admin.logout') }}" class="btn btn-default btn-flat pull-right"><b>Logout</b></a></li>
+                        <li><a href="{{{ URL::route('admin.users.edit', Auth::user()->id) }}}" class="btn btn-default btn-flat pull-right"><b>Edit</b></a></li>
+                        <li><a href="{{{ route('admin.logout') }}}" class="btn btn-default btn-flat pull-right"><b>Logout</b></a></li>
                         <!--
                         <li class="divider"></li>
                         -->

@@ -40,11 +40,11 @@ use Lasallecms\Lasallecmsadmin\Commands\Categories\DeleteCategoryCommand;
 use Lasallecms\Lasallecmsadmin\Commands\Categories\UpdateCategoryCommand;
 
 use Carbon\Carbon;
-use Config;
-use Form;
-use Input;
-use Session;
-use Redirect;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Form;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 
 
 /*
@@ -92,6 +92,8 @@ class AdminCategoryController extends Controller {
         return view('lasallecmsadmin::'.config('lasallecmsadmin.admin_template_name').'/categories/index',[
             'Form' => Form::class,
             'categories' => $categories,
+            'categoryRepository' => $this->repository,
+            'HTMLHelper'  => HTMLHelper::class,
         ]);
     }
 
@@ -103,11 +105,14 @@ class AdminCategoryController extends Controller {
      */
     public function create()
     {
+        $categories = $this->repository->getAll();
+
         return view('lasallecmsadmin::'.config('lasallecmsadmin.admin_template_name').'/categories/create',[
             'pagetitle'   => 'Categories',
             'DatesHelper' => DatesHelper::class,
             'Form'        => Form::class,
             'HTMLHelper'  => HTMLHelper::class,
+            'categories'  => $categories,
         ]);
     }
 
@@ -144,10 +149,6 @@ class AdminCategoryController extends Controller {
             return Redirect::back()
                 ->withInput($response['data']);
         }
-
-
-
-
 
         $title = strtoupper($response['data']['title']);
         $message = 'You successfully created the category "'.$title.'"!';
@@ -192,12 +193,15 @@ class AdminCategoryController extends Controller {
         // Lock the record
         $this->repository->populateLockFields($id);
 
+        $categories = $this->repository->getAll();
+
         return view('lasallecmsadmin::'.config('lasallecmsadmin.admin_template_name').'/categories/create',[
             'pagetitle'   => 'Categories',
             'DatesHelper' => DatesHelper::class,
             'Form'        => Form::class,
             'HTMLHelper'  => HTMLHelper::class,
             'category'    => $this->repository->getFind($id),
+            'categories'  => $categories,
         ]);
     }
 

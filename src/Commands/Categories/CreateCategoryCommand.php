@@ -43,6 +43,7 @@ class CreateCategoryCommand extends Command implements SelfHandling {
 
     public $title;
     public $description;
+    public $parent_id;
 
 
     /**
@@ -50,10 +51,11 @@ class CreateCategoryCommand extends Command implements SelfHandling {
      *
      * @return void
      */
-    public function __construct($title, $description)
+    public function __construct($title, $description, $parent_id)
     {
-        $this->title = $title;
+        $this->title       = $title;
         $this->description = $description;
+        $this->parent_id   = $parent_id;
     }
 
     /**

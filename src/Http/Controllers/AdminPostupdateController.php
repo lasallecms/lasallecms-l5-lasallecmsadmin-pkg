@@ -40,11 +40,11 @@ use Lasallecms\Lasallecmsadmin\Commands\Postupdates\DeletePostupdateCommand;
 use Lasallecms\Lasallecmsadmin\Commands\Postupdates\UpdatePostupdateCommand;
 
 use Carbon\Carbon;
-use Config;
-use Form;
-use Input;
-use Session;
-use Redirect;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Form;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 
 
 /*

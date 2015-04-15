@@ -32,12 +32,12 @@
 use Illuminate\Support\Facades\Redirect;
 
 
-class DashboardController extends Controller {
+class AdminDashboardController extends Controller {
 
     public function index()
     {
 
-        return Redirect::route('admin.tags.index');
+        return Redirect::route('admin.posts.index');
 
     }
 }
