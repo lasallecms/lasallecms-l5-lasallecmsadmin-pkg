@@ -121,10 +121,7 @@
                                 {!! Form::label('publish_on', 'Publish On: ') !!}
                             </td>
                             <td>
-
                                 {!! Form::input('date', 'publish_on', Input::old('publish_on', isset($post) ? $post->publish_on : $DatesHelper::todaysDateNoTime()  )) !!}
-
-
                             </td>
                         </tr>
 

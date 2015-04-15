@@ -43,8 +43,9 @@
                         <th>Excerpt</th>
                         <th>Categories</th>
                         <th>Publish On</th>
-                        <th></th>
-                        <th></th>
+                        <th style="text-align: center;">Edit Post</th>
+                        <th style="text-align: center;">Delete Post</th>
+                        <th style="text-align: center;">Add a New Update</th>
                     </tr>
 
                     </thead>
@@ -84,6 +85,10 @@
 
                                     {!! Form::close() !!}
                                 @endif
+                            </td>
+
+                            <td align="center">
+                                <a href="postupdates/create?post_id={{ $post->id  }}"><i class="fa fa-pencil fa-lg"></i></a>
                             </td>
 
                         </tr>

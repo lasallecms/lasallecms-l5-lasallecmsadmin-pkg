@@ -90,8 +90,11 @@ class AdminPostupdateController extends Controller {
         $postupdates = $this->repository->getAll();
 
         return view('lasallecmsadmin::'.config('lasallecmsadmin.admin_template_name').'/postupdates/index',[
-            'Form' => Form::class,
+            'pagetitle' => 'Post Updates',
+            'DatesHelper' => DatesHelper::class,
+            'HTMLHelper'  => HTMLHelper::class,
             'postupdates' => $postupdates,
+            'postRepository' => $this->repository,
         ]);
     }
 
@@ -103,11 +106,26 @@ class AdminPostupdateController extends Controller {
      */
     public function create()
     {
+        // Look, right now, the way it works, is you need to supply the ID of post this update pertains.
+        // No POST ID, no create!
+        $post_id = Input::get('post_id');
+
+        if ( (int) $post_id < 1 )
+        {
+            // flash message with redirect
+            Session::flash('status_code', 400 );
+            $message = 'Please initiate the creation of a new update for your post by clicking the icon ';
+            $message .= 'in the row of the post you want to update.';
+            Session::flash('message', $message);
+            return Redirect::route('admin.posts.index');
+        }
+
         return view('lasallecmsadmin::'.config('lasallecmsadmin.admin_template_name').'/postupdates/create',[
             'pagetitle'   => 'Post Updates',
             'DatesHelper' => DatesHelper::class,
             'Form'        => Form::class,
             'HTMLHelper'  => HTMLHelper::class,
+            'post_id'     => $post_id,
         ]);
     }
 
@@ -145,10 +163,6 @@ class AdminPostupdateController extends Controller {
                 ->withInput($response['data']);
         }
 
-
-
-
-
         $title = strtoupper($response['data']['title']);
         $message = 'You successfully created the post update "'.$title.'"!';
         Session::flash('message', $message);
@@ -167,8 +181,6 @@ class AdminPostupdateController extends Controller {
         // Do not use show(). Redir to index just in case
         return Redirect::route('admin.postupdates.index');
     }
-
-
 
 
     /**
@@ -197,7 +209,7 @@ class AdminPostupdateController extends Controller {
             'DatesHelper' => DatesHelper::class,
             'Form'        => Form::class,
             'HTMLHelper'  => HTMLHelper::class,
-            'postupdate'         => $this->repository->getFind($id),
+            'postupdate'  => $this->repository->getFind($id),
         ]);
     }
 

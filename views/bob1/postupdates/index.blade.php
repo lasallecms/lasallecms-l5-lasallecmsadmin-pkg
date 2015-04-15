@@ -26,9 +26,6 @@
 
             @if (count($postupdates) > 0 )
 
-                <a class="btn btn-default pull-right" href="{{ route('admin.postupdates.create') }}" role="button">
-                    <span class="glyphicon glyphicon-heart-empty"></span>  Create a Post Update
-                </a>
                 <br /><br /><br />
 
 
@@ -40,13 +37,13 @@
                     <thead>
                     <tr class="info">
                         <th style="text-align: center;">ID</th>
-                        <td align="center">Title</td>
-                        <td align="center">Excerpt</td>
-                        <td align="center">Published</td>
-                        <td align="center">For Post</td>
-                        <td align="center">Modified</td>
-                        <td align="center"></td>
-                        <td align="center"></td>
+                        <th style="text-align: center;">Enabled</td>
+                        <th style="text-align: center;">Title</td>
+                        <th style="text-align: center;">Excerpt</td>
+                        <th style="text-align: center;">For Post</td>
+                        <th style="text-align: center;">Publish On</td>
+                        <th style="text-align: center;"></td>
+                        <th style="text-align: center;"></td>
                     </tr>
 
                     </thead>
@@ -56,18 +53,18 @@
                         <tr>
                             <td align="center">{{{ $postupdate->id }}}</td>
 
+                            <td align="center">{!! $HTMLHelper::convertToCheckOrXBootstrapButtons($postupdate->enabled) !!}</td>
+
                             <td>{{{ $postupdate->title }}}</td>
 
                             <td>{{{ $postupdate->excerpt }}}</td>
 
-                            <td align="center">{!! $HTMLHelper::convertToCheckOrXBootstrapButtons($postupdate->enabled) !!}<td>
-
                             <td align="center">{{{ \Lasallecms\Lasallecmsapi\Models\Post::find($postupdate->post_id)->title }}}</td>
 
-                            <td align="center">{{{ $DatesHelper::convertDatetoFormattedDateString($tag->updated_at) }}}</td>
+                            <td align="center">{{{ $DatesHelper::convertDateONLYtoFormattedDateString($postupdate->publish_on) }}}</td>
 
                             <td align="center">
-                                <a href="{{{ URL::route('admin.postupdates.edit', $tag->id) }}}" class="btn btn-success  btn-xs" role="button">
+                                <a href="{{{ URL::route('admin.postupdates.edit', $postupdate->id) }}}" class="btn btn-success  btn-xs" role="button">
                                     <i class="glyphicon glyphicon-edit"></i>
                                 </a>
                             </td>
@@ -78,7 +75,7 @@
                                 @if (count($postupdates) > 0)
 
                                     {!! Form::open(array('url' => 'admin/postupdates/' . $postupdate->id)) !!}
-                                    {!! Form::model($postupdate, array('route' => array('admin.postupdates.destroy', $tag->id), 'method' => 'DELETE')) !!}
+                                    {!! Form::model($postupdate, array('route' => array('admin.postupdates.destroy', $postupdate->id), 'method' => 'DELETE')) !!}
 
                                     <button type="submit" class="btn btn-danger btn-xs" data-confirm="Do you really want to DELETE the {!! strtoupper($postupdate->title) !!} Post Update?">
                                         <i class="glyphicon glyphicon-remove"></i>
@@ -94,13 +91,23 @@
                 </table>
 
             @else
-                There are no post updates. Go ahead, create your first post update!
+                <div class="span3 well">
+                    <h4>
+                        There are no post updates.
+                        <br /><br />
+                        <ul>
+                            <li>goto the posts listing</li>
+                            <li>select a post</li>
+                            <li>click its "Add a New Update</li>
+                        </ul>
+                    </h4>
 
-                <br /><br />
+                    <br />
 
-                <a class="btn btn-default" href="{{ route('admin.postupdates.create') }}" role="button">
-                    <span class="glyphicon glyphicon-heart-empty"></span>  Create a Post Update
-                </a>
+                    <a class="btn btn-success" href="{{ route('admin.posts.index') }}" role="button">
+                        <span class="glyphicon glyphicon-heart-empty"></span>  Goto the posts listing...
+                    </a>
+                </div>
             @endif
 
 
