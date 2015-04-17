@@ -86,6 +86,8 @@
                             </td>
                             <td>
                                 {!! Form::input('text', 'meta_description', Input::old('meta_description', isset($post) ? $post->meta_description : '')) !!}&nbsp;&nbsp; <a href="#" data-toggle="popover" data-content="This is the blurb that displays in Google search results. Excerpt is used when left blank."><i class="fa fa-info-circle"></i></a>
+
+                                <span class="help-block">Preview at <a href="https://websiteadvantage.com.au/Google-SERP-Emulator" target="_blank">https://websiteadvantage.com.au/Google-SERP-Emulator</a>.</span>
                             </td>
                         </tr>
 

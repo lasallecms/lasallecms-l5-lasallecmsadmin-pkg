@@ -107,6 +107,14 @@
             @endif
 
 
+
+            SEO help:
+            <ul>
+                <li><a href="https://adwords.google.com/KeywordPlanner" target="_blank">https://adwords.google.com/KeywordPlanner</a></li>
+                <li><a href="https://websiteadvantage.com.au/Google-SERP-Emulator" target="_blank">https://websiteadvantage.com.au/Google-SERP-Emulator</a></li>
+
+            </ul>
+
         </div> <!-- container -->
 
         </div> <!-- content -->

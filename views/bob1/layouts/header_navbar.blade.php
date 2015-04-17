@@ -1,16 +1,21 @@
 <!-- =============================================== -->
 
 <header class="main-header">
+
     <a href="{{{ route('admin.home') }}}" class="logo"><b>{{{ Config::get('lasallecms.site_name') }}}</b></a>
+
     <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top" role="navigation">
+    <nav class="navbar navbar-static-top" role="navigation"  style="border-right:10px solid #555299">
         <!-- Sidebar toggle button-->
-        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"  style="border-right:1px solid #555299">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
+            &nbsp;Menu
         </a>
+
+
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
 
