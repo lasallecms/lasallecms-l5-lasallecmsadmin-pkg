@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Redirect;
 /*
  * Resource controller for administration of post updates
  */
-class AdminPostupdateController extends Controller {
+class AdminPostupdateController extends AdminController {
 
     /*
      * Repository
@@ -69,6 +69,9 @@ class AdminPostupdateController extends Controller {
      */
     public function __construct(PostupdateRepository $postupdateRepository)
     {
+        // execute AdminController's construct method first in order to run the middleware
+        parent::__construct() ;
+
         $this->repository = $postupdateRepository;
     }
 

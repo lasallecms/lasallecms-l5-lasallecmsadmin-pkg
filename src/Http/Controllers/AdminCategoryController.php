@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Redirect;
 /*
  * Resource controller for administration of categories
  */
-class AdminCategoryController extends Controller {
+class AdminCategoryController extends AdminController {
 
     /*
      * Repository
@@ -69,6 +69,9 @@ class AdminCategoryController extends Controller {
      */
     public function __construct(CategoryRepository $categoryRepository)
     {
+        // execute AdminController's construct method first in order to run the middleware
+        parent::__construct() ;
+
         $this->repository = $categoryRepository;
     }
 

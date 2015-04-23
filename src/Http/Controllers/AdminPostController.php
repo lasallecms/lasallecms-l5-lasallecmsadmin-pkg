@@ -48,11 +48,10 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 
-
 /*
  * Resource controller for administration of posts
  */
-class AdminPostController extends Controller {
+class AdminPostController extends AdminController {
 
     /*
      * Repository
@@ -88,11 +87,13 @@ class AdminPostController extends Controller {
         TagRepository $tagRepository
     )
     {
+        // execute AdminController's construct method first in order to run the middleware
+        parent::__construct() ;
+
         $this->repository = $postRepository;
         $this->categoryRepository = $categoryRepository;
         $this->tagRepository = $tagRepository;
     }
-
 
 
 
@@ -103,7 +104,6 @@ class AdminPostController extends Controller {
      * @return Response
      */
     public function index() {
-
         // If this user has locked records for this table, then unlock 'em
         $this->repository->unlockMyRecords('posts');
 

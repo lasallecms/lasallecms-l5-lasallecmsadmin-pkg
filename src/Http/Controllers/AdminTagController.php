@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Redirect;
 /*
  * Resource controller for administration of tags
  */
-class AdminTagController extends Controller {
+class AdminTagController extends AdminController {
 
     /*
      * Repository
@@ -69,6 +69,9 @@ class AdminTagController extends Controller {
      */
     public function __construct(TagRepository $tagRepository)
     {
+        // execute AdminController's construct method first in order to run the middleware
+        parent::__construct() ;
+
         $this->repository = $tagRepository;
     }
 

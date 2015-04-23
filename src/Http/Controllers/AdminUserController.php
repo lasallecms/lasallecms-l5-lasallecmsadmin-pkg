@@ -52,7 +52,7 @@ use Illuminate\Support\Facades\Redirect;
 /*
  * Resource controller for administration of users
  */
-class AdminUserController extends Controller {
+class AdminUserController extends AdminController {
 
     /*
      * Repository
@@ -71,6 +71,9 @@ class AdminUserController extends Controller {
      */
     public function __construct(UserRepository $userRepository)
     {
+        // execute AdminController's construct method first in order to run the middleware
+        parent::__construct() ;
+
         $this->repository = $userRepository;
     }
 
@@ -105,7 +108,8 @@ class AdminUserController extends Controller {
             'pagetitle' => 'Users',
             'users' => $users,
             'config' => Config::class,
-            'auth' => Auth::class
+            'auth' => Auth::class,
+            'HTMLHelper'  => HTMLHelper::class,
         ]);
 
 

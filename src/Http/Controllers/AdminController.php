@@ -33,17 +33,17 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 
-abstract class Controller extends BaseController {
+abstract class AdminController extends BaseController {
 
     use DispatchesCommands, ValidatesRequests;
 
     public function __construct() {
 
         // User must be logged to access everything in this package
-        $this->middleware(\Lasallecms\Lasallecmsadmin\Http\Middleware\MustBeLoggedInCheck::class);
+        $this->middleware(\Lasallecms\Helpers\Middleware\MustBeLoggedInCheck::class);
 
         // Logged in user must pass these checks too
-        $this->middleware(\Lasallecms\Lasallecmsadmin\Http\Middleware\CustomAdminAuthChecks::class);
+        $this->middleware(\Lasallecms\Helpers\Middleware\CustomAdminAuthChecks::class);
 
     }
 
