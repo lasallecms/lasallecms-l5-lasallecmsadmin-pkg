@@ -57,9 +57,13 @@
 
                         <td>{{{ $user->email }}}</td>
 
-                        <td align="center">{{{ $user->activated }}}</td>
+                        <td align="center">
+                            {!! $HTMLHelper::convertToCheckOrXBootstrapButtons($user->activated) !!}
+                            </td>
 
-                        <td align="center">{{{ $user->enabled }}}</td>
+                        <td align="center">
+                            {!! $HTMLHelper::convertToCheckOrXBootstrapButtons($user->enabled) !!}
+                        </td>
 
                         <td align="center">
                             <a href="{{{ URL::route('admin.users.edit', $user->id) }}}" class="btn btn-success  btn-xs" role="button">
