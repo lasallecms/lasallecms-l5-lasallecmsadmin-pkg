@@ -31,7 +31,6 @@
     <link href="{{{ Config::get('app.url') }}}/{{{ Config::get('lasallecms.public_folder') }}}/packages/lasallecmsadmin/bob1/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
 
 
-
     <!-- Custom styles for this template http://getbootstrap.com/examples/navbar-fixed-top/-->
     @foreach (File::allFiles(public_path().'/packages/lasallecmsadmin/bob1/css/') as $cssfile)
         <link media="all" type="text/css" rel="stylesheet" href="{{{ Config::get('app.url') }}}/{{{ Config::get('lasallecms.public_folder') }}}/packages/lasallecmsadmin/bob1/css/{{ basename($cssfile) }}" >

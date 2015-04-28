@@ -54,6 +54,23 @@
 
             <li class="treeview"><hr></li>
 
+
+            @if ( class_exists(\Lasallecrm\Lasallecrmadmin\Version::class) )
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-empire"></i> <span>Customer Management</span>
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{{ route('admin.luaddresses.index') }}}"><i class="fa fa-columns"></i> Lookup - Address</a></li>
+                    </ul>
+                </li>
+
+                <li class="treeview"><hr></li>
+            @endif
+
+
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-wrench"></i> <span>Utilities</span>
