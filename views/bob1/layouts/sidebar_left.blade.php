@@ -64,6 +64,10 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="{{{ route('admin.luaddresses.index') }}}"><i class="fa fa-columns"></i> Lookup - Address</a></li>
+                        <li><a href="{{{ route('admin.luemails.index') }}}"><i class="fa fa-columns"></i> Lookup - Emails</a></li>
+                        <li><a href="{{{ route('admin.lusocials.index') }}}"><i class="fa fa-columns"></i> Lookup - Socials</a></li>
+                        <li><a href="{{{ route('admin.lutelephones.index') }}}"><i class="fa fa-columns"></i> Lookup - Telephones</a></li>
+                        <li><a href="{{{ route('admin.luwebsites.index') }}}"><i class="fa fa-columns"></i> Lookup - Websites</a></li>
                     </ul>
                 </li>
 
