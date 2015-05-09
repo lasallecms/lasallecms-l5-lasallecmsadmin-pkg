@@ -1,4 +1,5 @@
-<?php namespace Lasallecms\Lasallecmsadmin\Http\Controllers;
+<?php
+namespace Lasallecms\Lasallecmsadmin\Http\Controllers;
 
 /**
  *
@@ -29,11 +30,11 @@
  *
  */
 
-use Illuminate\Http\Request;
 
-use Lasallecms\Lasallecmsapi\Contracts\CategoryRepository;
-use Lasallecms\Lasallecmsapi\Contracts\PostRepository;
-use Lasallecms\Lasallecmsapi\Contracts\TagRepository;
+// LaSalle Software
+use Lasallecms\Lasallecmsapi\Repositories\CategoryRepository;
+use Lasallecms\Lasallecmsapi\Repositories\PostRepository;
+use Lasallecms\Lasallecmsapi\Repositories\TagRepository;
 use Lasallecms\Helpers\Dates\DatesHelper;
 use Lasallecms\Helpers\HTML\HTMLHelper;
 
@@ -41,12 +42,19 @@ use Lasallecms\Lasallecmsadmin\Commands\Posts\CreatePostCommand;
 use Lasallecms\Lasallecmsadmin\Commands\Posts\DeletePostCommand;
 use Lasallecms\Lasallecmsadmin\Commands\Posts\UpdatePostCommand;
 
-use Carbon\Carbon;
+
+// Laravel facades
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Form;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
+
+// Laravel classes
+use Illuminate\Http\Request;
+
+// Third party classes
+use Carbon\Carbon;
 
 /*
  * Resource controller for administration of posts

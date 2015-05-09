@@ -34,11 +34,10 @@ namespace Lasallecms\Lasallecmsadmin\Http\Controllers;
 use Lasallecms\Formhandling\Lookuptables\AdminLookupTableBaseController;
 use Lasallecms\Lasallecmsapi\Repositories\BaseRepository;
 
-
 /*
- * Resource controller for administration of tags
+ * Resource controller for administration of user groups (groups table)
  */
-class AdminTagController extends AdminLookupTableBaseController
+class AdminUsergroupController extends AdminLookupTableBaseController
 {
     ///////////////////////////////////////////////////////////////////
     ////////////////     USER DEFINED PROPERTIES      /////////////////
@@ -53,32 +52,32 @@ class AdminTagController extends AdminLookupTableBaseController
     /*
      * Lookup table type, in the plural
      */
-    protected $table_type_plural   = "Tags";
+    protected $table_type_plural   = "Groups";
 
     /*
      * Lookup table type, in the singular
      */
-    protected $table_type_singular  = "Tag";
+    protected $table_type_singular  = "Group";
 
     /*
      * Lookup table name
      */
-    protected $table_name           = "tags";
+    protected $table_name           = "groups";
 
     /*
      * This lookup table's model class namespace
      */
-    protected $model_namespace      = "Lasallecms\Lasallecmsapi\Models";
+    protected $model_namespace      = "Lasallecms\Usermanagement\Models";
 
     /*
      * This lookup table's model class
      */
-    protected $model_class          = "Tag";
+    protected $model_class          = "Group";
 
     /*
      * The base URL of this lookup table's resource routes
      */
-    protected $resource_route_name   = "tags";
+    protected $resource_route_name   = "usergroups";
 
 
     ///////////////////////////////////////////////////////////////////

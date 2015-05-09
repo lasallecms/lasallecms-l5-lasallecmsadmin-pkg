@@ -44,5 +44,6 @@ Route::group(array('prefix' => 'admin'), function()
     Route::resource('tags', 'AdminTagController');
     Route::resource('postupdates', 'AdminPostupdateController');
     Route::resource('users', 'AdminUserController');
+    Route::resource('usergroups', 'AdminUsergroupController');
 });
 
