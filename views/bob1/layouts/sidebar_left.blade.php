@@ -46,12 +46,6 @@
                 </a>
             </li>
 
-            <li class="treeview">
-                <a href="{{{ route('admin.users.index') }}}">
-                    <i class="fa fa-users"></i> <span>Users</span>
-                </a>
-            </li>
-
             <li class="treeview"><hr></li>
 
 
@@ -82,6 +76,19 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="#l"><i class="fa fa-cloud-upload"></i> Backup</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview"><hr></li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-users"></i> <span>Users</span>
+                    <i class="fa fa-angle-right pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{{ route('admin.users.index') }}}"><i class="fa fa-users"></i> Users</a></li>
+                    <li><a href="{{{ route('admin.usergroups.index') }}}"><i class="fa fa-group"></i> Lookup - User Groups</a></li>
                 </ul>
             </li>
 
