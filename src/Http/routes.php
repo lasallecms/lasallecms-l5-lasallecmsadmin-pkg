@@ -29,7 +29,6 @@
  *
  */
 
-
 $router->get('admin',[
     'as' => 'admin.home',
     'uses' => 'AdminDashboardController@index'

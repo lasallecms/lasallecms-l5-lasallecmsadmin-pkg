@@ -34,6 +34,11 @@ namespace Lasallecms\Lasallecmsadmin\Http\Controllers;
 use Lasallecms\Formhandling\Lookuptables\AdminLookupTableBaseController;
 use Lasallecms\Lasallecmsapi\Repositories\BaseRepository;
 
+// Laravel Facades
+use Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
+
 /*
  * Resource controller for administration of user groups (groups table)
  */
