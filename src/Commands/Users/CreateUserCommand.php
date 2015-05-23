@@ -1,4 +1,5 @@
-<?php namespace Lasallecms\Lasallecmsadmin\Commands\Users;
+<?php
+namespace Lasallecms\Lasallecmsadmin\Commands\Users;
 
 /**
  *
@@ -29,16 +30,27 @@
  *
  */
 
-use Illuminate\Contracts\Bus\SelfHandling;
 
+
+///////////////////////////////////////////////////////////////////
+//// USER MANAGEMENT AND AUTHENTICATION IS SO BESPOKE THAT     ////
+////      IT IS NOT PART OF LASALLE's FORM AUTOMATION          ////
+///////////////////////////////////////////////////////////////////
+
+
+
+
+// Laravel Software
+use Lasallecms\Lasallecmsadmin\Commands\Command;
+
+// Laravel classes
+use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use Lasallecms\Lasallecmsapi\Users\CreateUserFormProcessing;
 
-use Lasallecms\Lasallecmsadmin\Commands\Command;
 
-
-class CreateUserCommand extends Command implements SelfHandling {
-
+class CreateUserCommand extends Command implements SelfHandling
+{
     use DispatchesCommands;
 
     public $name;
@@ -54,7 +66,7 @@ class CreateUserCommand extends Command implements SelfHandling {
      *
      * @return void
      */
-    public function __construct($name, $email, $password, $password_confirmation, $activated, $enabled)
+    public function __construct($name, $email, $password, $password_confirmation, $activated=0, $enabled=0)
     {
         $this->name                  = $name;
         $this->email                 = $email;

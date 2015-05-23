@@ -9,24 +9,21 @@
 
         <div class="container">
 
-            <br /><br />
             <div class="row">
-                <h1>
-                <span class="label label-info">
-                    List of Users
-                </span>
-                </h1>
                 <br /><br />
+                {!! $HTMLHelper::adminPageTitle('LaSalleCMS', 'Users', '') !!}
             </div>
 
 
-            @include('lasallecmsadmin::bob1.partials.message')
+            <div class="row">
 
+                @include('lasallecmsadmin::bob1.partials.message')
 
-            <a class="btn btn-default pull-right" href="{{ route('admin.users.create') }}" role="button">
-                <span class="glyphicon glyphicon-heart-empty"></span>  Create a User
-            </a>
-            <br /><br /><br />
+                {!! $HTMLHelper::adminCreateButton('users', 'User', 'right') !!}
+
+                <div class="col-md-1"></div>
+
+                <div class="col-md-11">
 
 
 
@@ -40,10 +37,10 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Activated</th>
-                    <th>Enabled</th>
-                    <th></th>
-                    <th></th>
+                    <th style="text-align: center;">Activated</th>
+                    <th style="text-align: center;">Enabled</th>
+                    <th style="text-align: center;">Edit</th>
+                    <th style="text-align: center;">Delete</th>
                 </tr>
 
                 </thead>
@@ -99,11 +96,13 @@
 
 
 
-            </div> <!-- container -->
+        </div> <!-- col-md-11 -->
 
+        </div> <!-- row -->
 
+        </div> <!-- container -->
 
-    </section><!-- /.content -->
+    </section>
 @stop
 
 

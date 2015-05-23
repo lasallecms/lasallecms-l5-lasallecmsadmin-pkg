@@ -1,4 +1,5 @@
-<?php namespace Lasallecms\Lasallecmsadmin\Commands\Users;
+<?php
+namespace Lasallecms\Lasallecmsadmin\Commands\Users;
 
 /**
  *
@@ -29,32 +30,50 @@
  *
  */
 
-use Illuminate\Contracts\Bus\SelfHandling;
 
+
+///////////////////////////////////////////////////////////////////
+//// USER MANAGEMENT AND AUTHENTICATION IS SO BESPOKE THAT     ////
+////      IT IS NOT PART OF LASALLE's FORM AUTOMATION          ////
+///////////////////////////////////////////////////////////////////
+
+
+
+// Laravel Software
+use Lasallecms\Lasallecmsadmin\Commands\Command;
+
+// Laravel classes
+use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use Lasallecms\Lasallecmsapi\Users\UpdateUserFormProcessing;
 
-use Lasallecms\Lasallecmsadmin\Commands\Command;
 
-
-class UpdateUserCommand extends Command implements SelfHandling {
-
+class UpdateUserCommand extends Command implements SelfHandling
+{
     use DispatchesCommands;
 
     public $id;
-    public $title;
-    public $description;
+    public $name;
+    public $email;
+    public $password;
+    public $password_confirmation;
+    public $activated;
+    public $enabled;
 
     /**
      * Create a new command instance.
      *
      * @return void
      */
-    public function __construct($id, $title, $description)
+    public function __construct($id, $name, $email, $password, $password_confirmation, $activated=0, $enabled=0)
     {
-        $this->id = $id;
-        $this->title = $title;
-        $this->description = $description;
+        $this->id                    = $id;
+        $this->name                  = $name;
+        $this->email                 = $email;
+        $this->password              = $password;
+        $this->password_confirmation = $password_confirmation;
+        $this->activated             = $activated;
+        $this->enabled               = $enabled;
     }
 
     /**

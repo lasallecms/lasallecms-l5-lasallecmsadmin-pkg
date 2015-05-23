@@ -1,4 +1,5 @@
-<?php namespace Lasallecms\Lasallecmsadmin\Http\Controllers;
+<?php
+namespace Lasallecms\Lasallecmsadmin\Http\Controllers;
 
 /**
  *
@@ -29,10 +30,15 @@
  *
  */
 
+// LaSalle Software
+use Lasallecms\Formhandling\AdminFormhandling\AdminFormBaseController;
+//use Lasallecms\Lasallecmsapi\Repositories\BaseRepository;
+
+// Laravel facades
 use Illuminate\Support\Facades\Redirect;
 
-
-class AdminDashboardController extends AdminController {
+class AdminDashboardController extends AdminFormBaseController
+{
 
     public function index()
     {

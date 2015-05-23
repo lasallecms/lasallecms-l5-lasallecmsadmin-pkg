@@ -1,21 +1,26 @@
 @extends('lasallecmsadmin::bob1.layouts.default')
 
 @section('content')
+
     <!-- Main content -->
     <section class="content">
 
         <div class="container">
 
+
+
             {{-- form's title --}}
             <div class="row">
-                <br /><br />
-                <h1>
-                        <span class="label label-info">
-                            {{{ (isset($category)) ? 'Edit the "'.$category->title.'"' : 'Create' }}} Category
-                        </span>
-                </h1>
-                <br /><br />
+                {!! $HTMLHelper::adminPageTitle('LaSalleCMS', 'Categories', '') !!}
+
+                @if ( isset($record) )
+                    {!! $HTMLHelper::adminPageSubTitle($record, 'Category') !!}
+                @else
+                    {!! $HTMLHelper::adminPageSubTitle(null, 'Category') !!}
+                @endif
             </div> <!-- row -->
+
+            <br /><br />
 
 
 
@@ -23,6 +28,7 @@
 
                 @include('lasallecmsadmin::bob1.partials.message')
 
+                <div class="col-md-3"></div>
 
                 <div class="col-md-6">
 
@@ -48,11 +54,13 @@
                                       Hacked Illuminate\Html\FormBuilder.php's input() method successfully, but can't seem
                                       to pass it the proper $options field. Oh well.
                                      --}}
-                                    {{{ $category->title }}} &nbsp;&nbsp; <a href="#" data-toggle="popover" data-content="The name is unique, so it is unchange-able."><i class="fa fa-info-circle"></i></a>
+                                    {{{ $category->title }}}
                                     <br />
                                     {!! Form::hidden('title', $category->title) !!}
                                 @else
                                     {!! Form::input('text', 'title', Input::old('title', isset($category) ? $category->title : '')) !!}
+
+                                    &nbsp;&nbsp; <a tabindex="0" data-toggle="popover" data-trigger="focus" data-content="Name must be unique."><i class="fa fa-info-circle"></i> </a>
                                     {{{ $errors->first('title', '<span class="help-block">:message</span>') }}}
                                 @endif
 
@@ -64,7 +72,10 @@
                                 {!! Form::label('description', 'Description: ') !!}
                             </td>
                             <td>
-                                {!! Form::input('text', 'description', Input::old('description', isset($category) ? $category->description : '')) !!}
+                                <textarea name="description" id="description">{!! Input::old('description', isset($category) ? $category->description : '')  !!}</textarea>
+
+                                &nbsp;&nbsp; <a tabindex="0" data-toggle="popover" data-trigger="focus" data-content="Description is optional. 255 character maximum."><i class="fa fa-info-circle"></i> </a>
+
                                 {{{ $errors->first('description', '<span class="help-block">:message</span>') }}}
                             </td>
                         </tr>
@@ -90,7 +101,9 @@
                                     {!! Form::label('created at', 'Created At: ') !!}
                                 </td>
                                 <td>
-                                    {{{ $DatesHelper::convertDatetoFormattedDateString($category->created_at) }}} &nbsp;&nbsp; <a href="#" data-toggle="popover" data-content="The Created At date is automatically filled in."><i class="fa fa-info-circle"></i></a>
+                                    {{{ $DatesHelper::convertDatetoFormattedDateString($category->created_at) }}}
+
+                                    &nbsp;&nbsp; <a tabindex="0" data-toggle="popover" data-trigger="focus" data-content="The Created At date is automatically filled in."><i class="fa fa-info-circle"></i> </a>
                                 </td>
                             </tr>
 
@@ -99,7 +112,9 @@
                                     {!! Form::label('updated at', 'Updated At: ') !!}
                                 </td>
                                 <td>
-                                    {{{ $DatesHelper::convertDatetoFormattedDateString($category->updated_at) }}} &nbsp;&nbsp; <a href="#" data-toggle="popover" data-content="The Updated At date is automatically filled in"><i class="fa fa-info-circle"></i></a>
+                                    {{{ $DatesHelper::convertDatetoFormattedDateString($category->updated_at) }}}
+
+                                    &nbsp;&nbsp; <a tabindex="0" data-toggle="popover" data-trigger="focus" data-content="The Updated At date is automatically filled in."><i class="fa fa-info-circle"></i> </a>
                                 </td>
                             </tr>
                         @endif
@@ -110,6 +125,20 @@
 
                             </td>
                             <td>
+
+                                {{-- Hidden fields --}}
+                                <input name="field_list" type="hidden" value="{{{ json_encode($field_list) }}}">
+                                <input name="namespace_formprocessor" type="hidden" value="{{{ $namespace_formprocessor  }}}">
+
+                                @if ( isset($category) )
+                                    <input name="classname_formprocessor_update" type="hidden" value="{{{ $classname_formprocessor_update }}}">
+                                @else
+                                     <input name="classname_formprocessor_create" type="hidden" value="{{{ $classname_formprocessor_create }}}">
+                                @endif
+
+                                <input name="crud_action" type="hidden" value="create">
+
+
                                 @if ( isset($category) )
                                     {!! Form::submit( 'Edit Category!') !!}
                                 @else
@@ -129,6 +158,8 @@
 
 
                 </div> <!-- col-md-6 -->
+
+                <div class="col-md-3"></div>
 
             </div> <!-- row -->
 

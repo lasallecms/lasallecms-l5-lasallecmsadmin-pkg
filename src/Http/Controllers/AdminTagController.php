@@ -48,37 +48,47 @@ class AdminTagController extends AdminLookupTableBaseController
     /*
      * @var Name of this package
      */
-    protected $package_title        = "LaSalleCMS";
+    public $package_title        = "LaSalleCMS";
 
     /*
      * Lookup table type, in the plural
      */
-    protected $table_type_plural   = "Tags";
+    public $table_type_plural   = "Tags";
 
     /*
      * Lookup table type, in the singular
      */
-    protected $table_type_singular  = "Tag";
+    public $table_type_singular  = "Tag";
 
     /*
      * Lookup table name
      */
-    protected $table_name           = "tags";
+    public $table_name           = "tags";
 
     /*
      * This lookup table's model class namespace
      */
-    protected $model_namespace      = "Lasallecms\Lasallecmsapi\Models";
+    public $model_namespace      = "Lasallecms\Lasallecmsapi\Models";
 
     /*
      * This lookup table's model class
      */
-    protected $model_class          = "Tag";
+    public $model_class          = "Tag";
 
     /*
      * The base URL of this lookup table's resource routes
      */
-    protected $resource_route_name   = "tags";
+    public $resource_route_name   = "tags";
+
+    /*
+     * Suppress the delete button when just one record to list, in the listings (index) page
+     *
+     * true  = suppress the delete button when just one record to list
+     * false = display the delete button when just one record to list
+     *
+     * @var bool
+     */
+    public $suppress_delete_button_when_one_record = false;
 
 
     ///////////////////////////////////////////////////////////////////

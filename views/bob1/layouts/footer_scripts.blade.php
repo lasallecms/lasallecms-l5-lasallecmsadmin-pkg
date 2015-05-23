@@ -32,6 +32,7 @@
         } );
     </script>
 
+    <!-- http://getbootstrap.com/javascript/#popovers -->
     <script>
         $(function () {
             $('[data-toggle="popover"]').popover()

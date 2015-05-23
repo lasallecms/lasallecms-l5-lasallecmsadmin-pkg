@@ -84,6 +84,16 @@ class AdminUsergroupController extends AdminLookupTableBaseController
      */
     protected $resource_route_name   = "usergroups";
 
+    /*
+     * Suppress the delete button when just one record to list, in the listings (index) page
+     *
+     * true  = suppress the delete button when just one record to list
+     * false = display the delete button when just one record to list
+     *
+     * @var bool
+     */
+    public $suppress_delete_button_when_one_record = false;
+
 
     ///////////////////////////////////////////////////////////////////
     ////////////////     DO NOT MODIFY BELOW!         /////////////////

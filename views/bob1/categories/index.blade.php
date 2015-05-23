@@ -11,25 +11,23 @@
         <div class="container">
 
             <br /><br />
+            {!! $HTMLHelper::adminPageTitle('LaSalleCMS', 'Categories', '') !!}
+
+
+
+
             <div class="row">
-                <h1>
-                <span class="label label-info">
-                    List of Categories
-                </span>
-                </h1>
-                <br /><br />
-            </div>
 
+                @include('lasallecmsadmin::bob1.partials.message')
 
-            @include('lasallecmsadmin::bob1.partials.message')
+                <div class="col-md-1"></div>
+
+                <div class="col-md-11">
 
 
             @if (count($categories) > 0 )
 
-            <a class="btn btn-default pull-right" href="{{ route('admin.categories.create') }}" role="button">
-                <span class="glyphicon glyphicon-heart-empty"></span>  Create Category
-            </a>
-            <br /><br /><br />
+            {!! $HTMLHelper::adminCreateButton('categories', 'Category', 'right') !!}
 
 
             {{-- bootstrap table tutorial http://twitterbootstrap.org/twitter-bootstrap-table-example-tutorial --}}
@@ -98,10 +96,11 @@
             @endif
 
 
-        </div> <!-- container -->
+                </div> <!-- col-md-11 -->
 
-    </div> <!-- content -->
-    <!-- End: Main content -->
+            </div> <!-- row -->
+
+        </div> <!-- container -->
 
     </section>
 @stop

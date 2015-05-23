@@ -9,20 +9,23 @@
             {{-- form's title --}}
             <div class="row">
                 <br /><br />
-                    <h1>
-                        <span class="label label-info">
-                            {{{ (isset($user)) ? 'Edit '.$user->name : 'Create a New User' }}}
-                        </span>
-                    </h1>
-                    <br /><br />
+                {!! $HTMLHelper::adminPageTitle('LaSalleCMS', 'Users', '') !!}
+
+                @if ( isset($user) )
+                    {!! $HTMLHelper::adminPageSubTitle($user, 'User') !!}
+                @else
+                    {!! $HTMLHelper::adminPageSubTitle(null, 'User') !!}
+                @endif
             </div> <!-- row -->
 
+            <br /><br />
 
 
             <div class="row">
 
                 @include('lasallecmsadmin::bob1.partials.message')
 
+                <div class="col-md-3"></div>
 
                 <div class="col-md-6">
 
@@ -143,6 +146,7 @@
 
 
                 </div> <!-- col-md-6 -->
+                <div class="col-md-3"></div>
 
             </div> <!-- row -->
 

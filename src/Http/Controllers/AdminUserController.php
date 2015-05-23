@@ -1,4 +1,5 @@
-<?php namespace Lasallecms\Lasallecmsadmin\Http\Controllers;
+<?php
+namespace Lasallecms\Lasallecmsadmin\Http\Controllers;
 
 /**
  *
@@ -29,31 +30,45 @@
  *
  */
 
-use Illuminate\Http\Request;
 
-use Lasallecms\Lasallecmsapi\Contracts\UserRepository;
-use Lasallecms\Helpers\Dates\DatesHelper;
-use Lasallecms\Helpers\HTML\HTMLHelper;
+///////////////////////////////////////////////////////////////////
+//// USER MANAGEMENT AND AUTHENTICATION IS SO BESPOKE THAT     ////
+////      IT IS NOT PART OF LASALLE's FORM AUTOMATION          ////
+///////////////////////////////////////////////////////////////////
+
+
+
+// LaSalle Software
+use Lasallecms\Formhandling\AdminFormhandling\AdminFormBaseController;
+use Lasallecms\Lasallecmsapi\Repositories\UserRepository;
 
 use Lasallecms\Lasallecmsadmin\Commands\Users\CreateUserCommand;
 use Lasallecms\Lasallecmsadmin\Commands\Users\DeleteUserCommand;
 use Lasallecms\Lasallecmsadmin\Commands\Users\UpdateUserCommand;
 
+use Lasallecms\Helpers\Dates\DatesHelper;
+use Lasallecms\Helpers\HTML\HTMLHelper;
 
+// Laravel facades
 use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Form;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 
+// Laravel classes
+use Illuminate\Http\Request;
+
+// Third party classes
+use Carbon\Carbon;
+
 
 /*
  * Resource controller for administration of users
  */
-class AdminUserController extends AdminController {
-
+class AdminUserController extends AdminFormBaseController
+{
     /*
      * Repository
      *
@@ -69,12 +84,12 @@ class AdminUserController extends AdminController {
      * @param  Lasallecms\Lasallecmsapi\Contracts\UserRepository $UserRepository
      * @return void
      */
-    public function __construct(UserRepository $userRepository)
+    public function __construct(UserRepository $repository)
     {
         // execute AdminController's construct method first in order to run the middleware
         parent::__construct() ;
 
-        $this->repository = $userRepository;
+        $this->repository = $repository;
     }
 
 
@@ -86,8 +101,8 @@ class AdminUserController extends AdminController {
      *
      * @return Response
      */
-    public function index() {
-
+    public function index()
+    {
         // If this user has locked records for this table, then unlock 'em
         $this->repository->unlockMyRecords('users');
 
@@ -111,9 +126,8 @@ class AdminUserController extends AdminController {
             'auth' => Auth::class,
             'HTMLHelper'  => HTMLHelper::class,
         ]);
-
-
     }
+
 
     /**
      * Form to create a new user
@@ -139,7 +153,8 @@ class AdminUserController extends AdminController {
      * @param  Request   $request
      * @return Response
      */
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $response = $this->dispatchFrom(CreateUserCommand::class, $request);
 
         Session::flash('status_code', $response['status_code'] );
@@ -179,12 +194,11 @@ class AdminUserController extends AdminController {
      * @param  int  $id
      * @return Response
      */
-    public function show($id) {
+    public function show($id)
+    {
         // Do not use show(). Redir to index just in case
         return Redirect::route('admin.users.index');
     }
-
-
 
 
     /**
@@ -205,6 +219,12 @@ class AdminUserController extends AdminController {
             return Redirect::route('admin.users.index');
         }
 
+
+        // My custom helpful HELPER method "adminPageSubTitle()" displays the "title" field of a record.
+        // There is no such "title" field in the users table. So, let's pretend, to make my helpful helper method happy!
+        $user = $this->repository->getFind($id);
+        $user->title = $user->name;
+
         // Lock the record
         $this->repository->populateLockFields($id);
 
@@ -213,9 +233,10 @@ class AdminUserController extends AdminController {
             'DatesHelper' => DatesHelper::class,
             'Form'        => Form::class,
             'HTMLHelper'  => HTMLHelper::class,
-            'user'         => $this->repository->getFind($id),
+            'user'         => $user,
         ]);
     }
+
 
     /**
      * Update the specific user in the db
@@ -252,11 +273,12 @@ class AdminUserController extends AdminController {
         }
 
 
-        $title = strtoupper($response['data']['title']);
-        $message = 'Your "'.$title.'" user updated successfully!';
+        $name = strtoupper($response['data']['name']);
+        $message = 'Your "'.$name.'" user updated successfully!';
         Session::flash('message', $message);
         return Redirect::route('admin.users.index');
     }
+
 
     /**
      * Remove the specific user from the db
@@ -270,8 +292,8 @@ class AdminUserController extends AdminController {
      * @param  int      $id
      * @return Response
      */
-    public function destroy($id) {
-
+    public function destroy($id)
+    {
         // Is this record locked?
         if ($this->repository->isLocked($id))
         {
@@ -287,15 +309,13 @@ class AdminUserController extends AdminController {
 
         Session::flash('status_code', $response['status_code'] );
 
-
-        if ($response['status_text'] == "foreign_key_check_failed")
+        if (strpos("This user cannot be deleted", $response['status_text']))
         {
-            $message = "Cannot delete this user because one or more posts are currently using this user, ";
+            $message = $response['status_text'];
             Session::flash('message', $message);
 
-            // Return to the edit form with error messages
-            return Redirect::back()
-                ->withInput($response['data']);
+            // Return to the index listing with error messages
+            return Redirect::route('admin.users.index');
         }
 
 
@@ -304,17 +324,13 @@ class AdminUserController extends AdminController {
             $message = "Persist failed. It does not happen often, but Laravel's deletion failed. The database operation is called at Lasallecms\Lasallecmsapi\Users\DeleteUserFormProcessing. MySQL probably hiccupped, so probably just try again.";
             Session::flash('message', $message);
 
-            // Return to the edit form with error messages
-            return Redirect::back()
-                ->withInput($response['data']);
+            // Return to the index listing with error messages
+            return Redirect::route('admin.users.index');
         }
 
-
-
-        $title = strtoupper($response['data']['id']->title);
-        $message = 'You successfully deleted the user "'.$title.'"!';
+        $name = strtoupper($user->name);
+        $message = 'You successfully deleted the user "'.$name.'"!';
         Session::flash('message', $message);
         return Redirect::route('admin.users.index');
-
     }
 }

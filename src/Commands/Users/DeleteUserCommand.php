@@ -1,4 +1,5 @@
-<?php namespace Lasallecms\Lasallecmsadmin\Commands\Users;
+<?php
+namespace Lasallecms\Lasallecmsadmin\Commands\Users;
 
 /**
  *
@@ -29,16 +30,27 @@
  *
  */
 
-use Illuminate\Contracts\Bus\SelfHandling;
 
+
+///////////////////////////////////////////////////////////////////
+//// USER MANAGEMENT AND AUTHENTICATION IS SO BESPOKE THAT     ////
+////      IT IS NOT PART OF LASALLE's FORM AUTOMATION          ////
+///////////////////////////////////////////////////////////////////
+
+
+
+// Laravel Software
+use Lasallecms\Lasallecmsadmin\Commands\Command;
+
+// Laravel classes
+use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use Lasallecms\Lasallecmsapi\Users\DeleteUserFormProcessing;
 
-use Lasallecms\Lasallecmsadmin\Commands\Command;
 
 
-class DeleteUserCommand extends Command implements SelfHandling {
-
+class DeleteUserCommand extends Command implements SelfHandling
+{
     use DispatchesCommands;
 
     public $id;

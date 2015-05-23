@@ -1,4 +1,5 @@
-<?php namespace Lasallecms\Lasallecmsadmin\Http\Controllers;
+<?php
+namespace Lasallecms\Lasallecmsadmin\Http\Controllers;
 
 /**
  *
@@ -29,291 +30,49 @@
  *
  */
 
-use Illuminate\Http\Request;
 
-use Lasallecms\Lasallecmsapi\Contracts\PostupdateRepository;
-use Lasallecms\Helpers\Dates\DatesHelper;
-use Lasallecms\Helpers\HTML\HTMLHelper;
+// LaSalle Software
+use Lasallecms\Formhandling\AdminFormhandling\AdminFormBaseController;
+use Lasallecms\Lasallecmsapi\Repositories\BaseRepository;
 
-use Lasallecms\Lasallecmsadmin\Commands\Postupdates\CreatePostupdateCommand;
-use Lasallecms\Lasallecmsadmin\Commands\Postupdates\DeletePostupdateCommand;
-use Lasallecms\Lasallecmsadmin\Commands\Postupdates\UpdatePostupdateCommand;
 
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Form;
+
+///////////////////////////////////////////////////////////////////
+///////     MODIFY THE MODEL NAMESPACE & CLASS "as Model"     /////
+///////          THIS IS THE ONLY THING YOU HAVE TO           /////
+///////              SPECIFY IN THIS CONTROLLER               /////
+///////////////////////////////////////////////////////////////////
+use Lasallecms\Lasallecmsapi\Models\Postupdate as Model;
+
+
+// Laravel facades
 use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 
 /*
  * Resource controller for administration of post updates
  */
-class AdminPostupdateController extends AdminController {
-
+class AdminPostupdateController extends AdminFormBaseController
+{
     /*
-     * Repository
-     *
-     * @var  Lasallecms\Lasallecmsapi\Contracts\PostupdateRepository
-     */
-    protected $repository;
-
-
-
-    /*
-     * Create a new repository instance
-     *
-     * @param  Lasallecms\Lasallecmsapi\Contracts\PostupdateRepository $postupdateRepository
+     * @param  Model, as specified above
+     * @param  Lasallecms\Lasallecmsapi\Repositories\BaseRepository
      * @return void
      */
-    public function __construct(PostupdateRepository $postupdateRepository)
+    public function __construct(Model $model, BaseRepository $repository)
     {
         // execute AdminController's construct method first in order to run the middleware
-        parent::__construct() ;
+        parent::__construct();
 
-        $this->repository = $postupdateRepository;
-    }
+        // Inject the model
+        $this->model = $model;
 
+        // Inject repository
+        $this->repository = $repository;
 
-
-
-    /**
-     * Display a listing of post updates
-     * GET /postupdates/index
-     *
-     * @return Response
-     */
-    public function index() {
-
-        // If this user has locked records for this table, then unlock 'em
-        $this->repository->unlockMyRecords('postupdates');
-
-
-        $postupdates = $this->repository->getAll();
-
-        return view('lasallecmsadmin::'.config('lasallecmsadmin.admin_template_name').'/postupdates/index',[
-            'pagetitle' => 'Post Updates',
-            'DatesHelper' => DatesHelper::class,
-            'HTMLHelper'  => HTMLHelper::class,
-            'postupdates' => $postupdates,
-            'postRepository' => $this->repository,
-        ]);
-    }
-
-    /**
-     * Form to create a new post update
-     * GET /postupdates/create
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        // Look, right now, the way it works, is you need to supply the ID of post this update pertains.
-        // No POST ID, no create!
-        $post_id = Input::get('post_id');
-
-        if ( (int) $post_id < 1 )
-        {
-            // flash message with redirect
-            Session::flash('status_code', 400 );
-            $message = 'Please initiate the creation of a new update for your post by clicking the icon ';
-            $message .= 'in the row of the post you want to update.';
-            Session::flash('message', $message);
-            return Redirect::route('admin.posts.index');
-        }
-
-        return view('lasallecmsadmin::'.config('lasallecmsadmin.admin_template_name').'/postupdates/create',[
-            'pagetitle'   => 'Post Updates',
-            'DatesHelper' => DatesHelper::class,
-            'Form'        => Form::class,
-            'HTMLHelper'  => HTMLHelper::class,
-            'post_id'     => $post_id,
-        ]);
-    }
-
-
-    /**
-     * Store a newly created resource in storage
-     * POST admin/postupdates/create
-     *
-     * @param  Request   $request
-     * @return Response
-     */
-    public function store(Request $request) {
-        $response = $this->dispatchFrom(CreatePostupdateCommand::class, $request);
-
-        Session::flash('status_code', $response['status_code'] );
-
-        if ($response['status_text'] == "validation_failed")
-        {
-            Session::flash('message', $response['errorMessages']->first());
-
-            // Return to the edit form with error messages
-            return Redirect::back()
-                ->withInput($response['data'])
-                ->withErrors($response['errorMessages']);
-        }
-
-
-        if ($response['status_text'] == "persist_failed")
-        {
-            $message = "Persist failed. It does not happen often, but Laravel's save failed. The database operation is called at Lasallecms\Lasallecmsapi\Postupdates\CreatePostupdateFormProcessing. MySQL probably hiccupped, so probably just try again.";
-            Session::flash('message', $message);
-
-            // Return to the edit form with error messages
-            return Redirect::back()
-                ->withInput($response['data']);
-        }
-
-        $title = strtoupper($response['data']['title']);
-        $message = 'You successfully created the post update "'.$title.'"!';
-        Session::flash('message', $message);
-        return Redirect::route('admin.postupdates.index');
-    }
-
-
-    /**
-     * Display the specified post update
-     * GET /postupdates/{id}
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id) {
-        // Do not use show(). Redir to index just in case
-        return Redirect::route('admin.postupdates.index');
-    }
-
-
-    /**
-     * Show the form for editing a specific post update
-     * GET /postupdates/{id}/edit
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        // Is this record locked?
-        if ($this->repository->isLocked($id))
-        {
-            $response = 'This post update is not available for editing, as someone else is currently editing this post update';
-            Session::flash('message', $response);
-            Session::flash('status_code', 400 );
-            return Redirect::route('admin.postupdates.index');
-        }
-
-        // Lock the record
-        $this->repository->populateLockFields($id);
-
-        return view('lasallecmsadmin::'.config('lasallecmsadmin.admin_template_name').'/postupdates/create',[
-            'pagetitle'   => 'Post Updates',
-            'DatesHelper' => DatesHelper::class,
-            'Form'        => Form::class,
-            'HTMLHelper'  => HTMLHelper::class,
-            'postupdate'  => $this->repository->getFind($id),
-        ]);
-    }
-
-    /**
-     * Update the specific post update in the db
-     * PUT /postupdates/{id}
-     *
-     * @param  Request   $request
-     * @return Response
-     */
-    public function update(Request $request)
-    {
-        $response = $this->dispatchFrom(UpdatePostupdateCommand::class, $request);
-
-        Session::flash('status_code', $response['status_code'] );
-
-        if ($response['status_text'] == "validation_failed")
-        {
-            Session::flash('message', $response['errorMessages']->first());
-
-            // Return to the edit form with error messages
-            return Redirect::back()
-                ->withInput($response['data'])
-                ->withErrors($response['errorMessages']);
-        }
-
-
-        if ($response['status_text'] == "persist_failed")
-        {
-            $message = "Persist failed. It does not happen often, but Laravel's save failed. The database operation is called at Lasallecms\Lasallecmsapi\Postupdates\UpdatePostupdateFormProcessing. MySQL probably hiccupped, so probably just try again.";
-            Session::flash('message', $message);
-
-            // Return to the edit form with error messages
-            return Redirect::back()
-                ->withInput($response['data']);
-        }
-
-
-        $title = strtoupper($response['data']['title']);
-        $message = 'Your "'.$title.'" post update updated successfully!';
-        Session::flash('message', $message);
-        return Redirect::route('admin.postupdates.index');
-    }
-
-    /**
-     * Remove the specific post update from the db
-     * DELETE /postupdates/{id}
-     *
-     * This method is not routed through a REQUEST, unfortunately. So,
-     * using a post update collection as the array access-ible object. Remember,
-     * Laravel's command bus needs an array access-ible object!
-     * Also, note using $this->dispatch(), not $this->dispatchFrom().
-     *
-     * @param  int      $id
-     * @return Response
-     */
-    public function destroy($id) {
-
-        // Is this record locked?
-        if ($this->repository->isLocked($id))
-        {
-            $response = 'This post update is not available for deletion, as someone else is currently editing this post update';
-            Session::flash('message', $response);
-            Session::flash('status_code', 400 );
-            return Redirect::route('admin.postupdates.index');
-        }
-
-        $postupdate = $this->repository->getFind($id);
-
-        $response = $this->dispatch(new DeletePostupdateCommand($postupdate));
-
-        Session::flash('status_code', $response['status_code'] );
-
-
-        if ($response['status_text'] == "foreign_key_check_failed")
-        {
-            $message = "Cannot delete this post update because one or more posts are currently using this post update, ";
-            Session::flash('message', $message);
-
-            // Return to the edit form with error messages
-            return Redirect::back()
-                ->withInput($response['data']);
-        }
-
-
-        if ($response['status_text'] == "persist_failed")
-        {
-            $message = "Persist failed. It does not happen often, but Laravel's deletion failed. The database operation is called at Lasallecms\Lasallecmsapi\Postupdates\DeletePostupdateFormProcessing. MySQL probably hiccupped, so probably just try again.";
-            Session::flash('message', $message);
-
-            // Return to the edit form with error messages
-            return Redirect::back()
-                ->withInput($response['data']);
-        }
-
-
-
-        $title = strtoupper($response['data']['id']->title);
-        $message = 'You successfully deleted the post update "'.$title.'"!';
-        Session::flash('message', $message);
-        return Redirect::route('admin.postupdates.index');
-
+        // Inject the relevant model into the repository
+        $this->repository->injectModelIntoRepository($this->model->model_namespace."\\".$this->model->model_class);
     }
 }
