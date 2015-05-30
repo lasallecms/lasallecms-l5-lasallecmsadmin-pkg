@@ -53,15 +53,24 @@
 
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-empire"></i> <span>Customer Management</span>
+                        <i class="fa fa-user"></i> <span>Customer Management</span>
                         <i class="fa fa-angle-right pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="{{{ route('admin.luaddresses.index') }}}"><i class="fa fa-columns"></i> Lookup - Address</a></li>
-                        <li><a href="{{{ route('admin.luemails.index') }}}"><i class="fa fa-columns"></i> Lookup - Emails</a></li>
-                        <li><a href="{{{ route('admin.lusocials.index') }}}"><i class="fa fa-columns"></i> Lookup - Socials</a></li>
-                        <li><a href="{{{ route('admin.lutelephones.index') }}}"><i class="fa fa-columns"></i> Lookup - Telephones</a></li>
-                        <li><a href="{{{ route('admin.luwebsites.index') }}}"><i class="fa fa-columns"></i> Lookup - Websites</a></li>
+
+                        <li><a href="{{{ route('admin.crmaddresses.index') }}}"><i class="fa fa-user"></i> Addresses</a></li>
+                        <li><a href="{{{ route('admin.crmcompanies.index') }}}"><i class="fa fa-user"></i> Companies/Orgs</a></li>
+                        <li><a href="{{{ route('admin.crmemails.index') }}}"><i class="fa fa-user"></i> Emails</a></li>
+                        <li><a href="{{{ route('admin.crmpeoples.index') }}}"><i class="fa fa-user"></i> People</a></li>
+                        <li><a href="{{{ route('admin.crmsocials.index') }}}"><i class="fa fa-user"></i> Social Sites</a></li>
+                        <li><a href="{{{ route('admin.crmtelephones.index') }}}"><i class="fa fa-user"></i> Telephone</a></li>
+                        <li><a href="{{{ route('admin.crmwebsites.index') }}}"><i class="fa fa-user"></i> Websites</a></li>
+
+                        <li><a href="{{{ route('admin.luaddresses.index') }}}"><i class="fa fa-columns"></i> Address Types Lookup Table</a></li>
+                        <li><a href="{{{ route('admin.luemails.index') }}}"><i class="fa fa-columns"></i> Email Types Lookup Table</a></li>
+                        <li><a href="{{{ route('admin.lusocials.index') }}}"><i class="fa fa-columns"></i> Social Types Lookup Table</a></li>
+                        <li><a href="{{{ route('admin.lutelephones.index') }}}"><i class="fa fa-columns"></i> Telephone Types Lookup Table</a></li>
+                        <li><a href="{{{ route('admin.luwebsites.index') }}}"><i class="fa fa-columns"></i> Website Types Lookup Table</a></li>
                     </ul>
                 </li>
 
@@ -88,7 +97,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{{ route('admin.users.index') }}}"><i class="fa fa-users"></i> Users</a></li>
-                    <li><a href="{{{ route('admin.usergroups.index') }}}"><i class="fa fa-group"></i> Lookup - User Groups</a></li>
+                    <li><a href="{{{ route('admin.usergroups.index') }}}"><i class="fa fa-group"></i> User Groups Lookup Table</a></li>
                 </ul>
             </li>
 
