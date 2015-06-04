@@ -41,8 +41,9 @@
                     <th>Name</th>
                     <th>Description</th>
                     <th style="text-align: center;">Parent Category</th>
-                    <th></th>
-                    <th></th>
+                    <th style="text-align: center;">Enabled</th>
+                    <th style="text-align: center;">Edit<br />Category</th>
+                    <th style="text-align: center;">Delete<br />Category</th>
                 </tr>
 
                 </thead>
@@ -56,7 +57,9 @@
 
                         <td>{{{ $category->description }}}</td>
 
-                        <td align="center">{{{ $HTMLHelper::displayParentCategoryTitle($category->parent_id, $categoryRepository) }}}</td>
+                        <td align="center">{!! $HTMLHelper::displayParentCategoryTitle($category->parent_id, $categoryRepository) !!}</td>
+
+                        <td align="center">{!! $HTMLHelper::convertToCheckOrXBootstrapButtons($category->enabled) !!}</td>
 
                         <td align="center">
                             <a href="{{{ URL::route('admin.categories.edit', $category->id) }}}" class="btn btn-success  btn-xs" role="button">

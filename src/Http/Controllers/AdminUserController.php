@@ -54,6 +54,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Form;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 
@@ -118,13 +119,26 @@ class AdminUserController extends AdminFormBaseController
 
         $users = $this->repository->getAll();
 
+
+        // Does the LaSalleCRM PEOPLES table exist? Index layout needs to know!
+        if (Schema::hasTable('peoples'))
+        {
+            $peoplesTableExists = true;
+        } else {
+            $peoplesTableExists = false;
+        }
+
+
+
         return view('lasallecmsadmin::'.config('lasallecmsadmin.admin_template_name').'/users/index',[
-            'Form' => Form::class,
-            'pagetitle' => 'Users',
-            'users' => $users,
-            'config' => Config::class,
-            'auth' => Auth::class,
-            'HTMLHelper'  => HTMLHelper::class,
+            'repository'         => $this->repository,
+            'peoplesTableExists' => $peoplesTableExists,
+            'Form'               => Form::class,
+            'pagetitle'          => 'Users',
+            'users'              => $users,
+            'config'             => Config::class,
+            'auth'               => Auth::class,
+            'HTMLHelper'         => HTMLHelper::class,
         ]);
     }
 

@@ -13,8 +13,8 @@
             <div class="row">
                 {!! $HTMLHelper::adminPageTitle('LaSalleCMS', 'Categories', '') !!}
 
-                @if ( isset($record) )
-                    {!! $HTMLHelper::adminPageSubTitle($record, 'Category') !!}
+                @if ( isset($category) )
+                    {!! $HTMLHelper::adminPageSubTitle($category, 'Category') !!}
                 @else
                     {!! $HTMLHelper::adminPageSubTitle(null, 'Category') !!}
                 @endif
@@ -90,6 +90,19 @@
                                     {!! $HTMLHelper::categoryParentSingleSelectEdit($categories, $category->parent_id, $category->id) !!}
                                 @else
                                     {!! $HTMLHelper::categoryParentSingleSelectCreate($categories) !!}
+                                @endif
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                {!! Form::label('enabled', 'Enabled: ') !!}
+                            </td>
+                            <td>
+                                @if ( isset($category) )
+                                    {!! Form::checkbox('enabled', '1', Input::old('enabled',  $category->enabled)) !!}
+                                @else
+                                    {!! Form::checkbox('enabled', '1', Input::old('enabled')) !!}
                                 @endif
                             </td>
                         </tr>

@@ -39,8 +39,13 @@
                     <th>Email</th>
                     <th style="text-align: center;">Activated</th>
                     <th style="text-align: center;">Enabled</th>
-                    <th style="text-align: center;">Edit</th>
-                    <th style="text-align: center;">Delete</th>
+
+                    @if ($peoplesTableExists)
+                        <th style="text-align: center;">LaSalleCRM</th>
+                    @endif
+
+                    <th style="text-align: center;">Edit<br />User</th>
+                    <th style="text-align: center;">Delete<br />User</th>
                 </tr>
 
                 </thead>
@@ -61,6 +66,13 @@
                         <td align="center">
                             {!! $HTMLHelper::convertToCheckOrXBootstrapButtons($user->enabled) !!}
                         </td>
+
+                        @if ($peoplesTableExists)
+                            <td align="center">
+                                {!! $repository->getPeopleIdForIndexListing($user->id) !!}
+                            </td>
+                        @endif
+
 
                         <td align="center">
                             <a href="{{{ URL::route('admin.users.edit', $user->id) }}}" class="btn btn-success  btn-xs" role="button">
@@ -93,12 +105,31 @@
                 </tbody>
             </table>
 
-
-
-
         </div> <!-- col-md-11 -->
 
         </div> <!-- row -->
+
+
+        @if (!$peoplesTableExists)
+            <div class="row">
+
+                <br /><br />
+
+                <div class="col-md-4"></div>
+
+                <div class="col-md-4">
+                    <div class="alert alert-warning" role="alert">
+                        <h4 style="text-align: center">FYI: LaSalleCRM is not installed</h4>
+                    </div>
+                </div>
+
+                <div class="col-md-4"></div>
+
+            </div> <!-- row -->
+        @endif
+
+
+
 
         </div> <!-- container -->
 
