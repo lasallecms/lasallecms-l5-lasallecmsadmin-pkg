@@ -151,7 +151,15 @@ class AdminUserController extends AdminFormBaseController
      */
     public function create()
     {
+        $field = [
+            'name'                => 'groups',
+            'related_table_name'  => 'groups',
+            'related_model_class' => 'Group',
+        ];
+
         return view('lasallecmsadmin::'.config('lasallecmsadmin.admin_template_name').'/users/create',[
+            'repository'  => $this->repository,
+            'field'       => $field,
             'pagetitle'   => 'Users',
             'DatesHelper' => DatesHelper::class,
             'Form'        => Form::class,
@@ -242,7 +250,15 @@ class AdminUserController extends AdminFormBaseController
         // Lock the record
         $this->repository->populateLockFields($id);
 
+        $field = [
+            'name'                => 'groups',
+            'related_table_name'  => 'groups',
+            'related_model_class' => 'Group',
+        ];
+
         return view('lasallecmsadmin::'.config('lasallecmsadmin.admin_template_name').'/users/create',[
+            'repository'  => $this->repository,
+            'field'       => $field,
             'pagetitle'   => 'Users',
             'DatesHelper' => DatesHelper::class,
             'Form'        => Form::class,

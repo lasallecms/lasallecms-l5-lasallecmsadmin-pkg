@@ -59,13 +59,14 @@ class UpdateUserCommand extends Command implements SelfHandling
     public $password_confirmation;
     public $activated;
     public $enabled;
+    public $groups;
 
     /**
      * Create a new command instance.
      *
      * @return void
      */
-    public function __construct($id, $name, $email, $password, $password_confirmation, $activated=0, $enabled=0)
+    public function __construct($id, $name, $email, $password, $password_confirmation, $activated=0, $enabled=0, $groups)
     {
         $this->id                    = $id;
         $this->name                  = $name;
@@ -74,6 +75,7 @@ class UpdateUserCommand extends Command implements SelfHandling
         $this->password_confirmation = $password_confirmation;
         $this->activated             = $activated;
         $this->enabled               = $enabled;
+        $this->groups                = $groups;
     }
 
     /**

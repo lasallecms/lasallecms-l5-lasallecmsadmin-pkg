@@ -43,9 +43,7 @@ return [
     | comes with the admin template "SB-Admin-2"
 	|
 	*/
-    // The "bob1" template is based on the FOSS AdminLTE template. To see the demo page, switch
-    // to 'adminLTE_template'
-    //'admin_template_name' => 'adminLTE_template',
+    // The "bob1" template is based on the FOSS AdminLTE template.
     'admin_template_name' => 'bob1',
 
 

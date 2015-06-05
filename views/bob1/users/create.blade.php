@@ -101,13 +101,29 @@
                         </tr>
 
 
+                        <tr>
+                            <td>
+                                {!! Form::label($field['name'], $HTMLHelper::adminFormFieldLabel($field) .': ') !!}
+                            </td>
+                            <td>
+                                @if ( isset($user) )
+                                    {!! $repository->multipleSelectFromRelatedTableUpdate($field['related_table_name'], $field['related_model_class'], $user->id) !!}
+                                @else
+                                    {!! $repository->multipleSelectFromRelatedTableCreate($field, 'create') !!}
+                                @endif
+                            </td>
+                        </tr>
+
+
+
+
                         @if ( isset($user) )
                             <tr>
                                 <td>
                                     {!! Form::label('created at', 'Created At: ') !!}
                                 </td>
                                 <td>
-                                    {{{ $DatesHelper::convertDatetoFormattedDateString($user->created_at) }}} &nbsp;&nbsp; <a href="#" data-toggle="popover" data-content="The Created At date is automatically filled in."><i class="fa fa-info-circle"></i></a>
+                                    {!! $DatesHelper::convertDatetoFormattedDateString($user->created_at) !!} &nbsp;&nbsp; <a href="#" data-toggle="popover" data-content="The Created At date is automatically filled in."><i class="fa fa-info-circle"></i></a>
                                 </td>
                             </tr>
 
@@ -116,7 +132,7 @@
                                     {!! Form::label('updated at', 'Updated At: ') !!}
                                 </td>
                                 <td>
-                                    {{{ $DatesHelper::convertDatetoFormattedDateString($user->updated_at) }}} &nbsp;&nbsp; <a href="#" data-toggle="popover" data-content="The Updated At date is automatically filled in"><i class="fa fa-info-circle"></i></a>
+                                    {!! $DatesHelper::convertDatetoFormattedDateString($user->updated_at) !!} &nbsp;&nbsp; <a href="#" data-toggle="popover" data-content="The Updated At date is automatically filled in"><i class="fa fa-info-circle"></i></a>
                                 </td>
                             </tr>
                         @endif

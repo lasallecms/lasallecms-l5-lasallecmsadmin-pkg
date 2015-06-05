@@ -68,24 +68,6 @@
             @endif
 
 
-            @if ( class_exists(\Lasallecrm\Listmanagement\Version::class) )
-
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-list"></i> <span>List Management</span>
-                        <i class="fa fa-angle-right pull-right"></i>
-                    </a>
-                    <ul class="treeview-menu">
-
-                        <li><a href="{{{ route('admin.listmgmtlists.index') }}}"><i class="fa fa-list"></i> Lists</a></li>
-                        <li><a href="{{{ route('admin.listmgmtlistemails.index') }}}"><i class="fa fa-list"></i> Email Lists</a></li>
-                    </ul>
-                </li>
-
-                <li class="treeview"><hr></li>
-            @endif
-
-
             @if ( class_exists(\Lasallecrm\Todo\Version::class) )
 
                 <li class="treeview">
@@ -101,6 +83,24 @@
 
                         <li><a href="{{{ route('admin.lutodopriorities.index') }}}"><i class="fa fa-columns"></i> Priority Types Lookup Table</a></li>
                         <li><a href="{{{ route('admin.lutodostatuses.index') }}}"><i class="fa fa-columns"></i> Status Types Lookup Table</a></li>
+                    </ul>
+                </li>
+
+                <li class="treeview"><hr></li>
+            @endif
+
+
+            @if ( class_exists(\Lasallecrm\Listmanagement\Version::class) )
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-list"></i> <span>List Management</span>
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+
+                        <li><a href="{{{ route('admin.listmgmtlists.index') }}}"><i class="fa fa-list"></i> Lists</a></li>
+                        <li><a href="{{{ route('admin.listmgmtlistemails.index') }}}"><i class="fa fa-list"></i> Email Lists</a></li>
                     </ul>
                 </li>
 
