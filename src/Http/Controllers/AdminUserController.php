@@ -42,9 +42,9 @@ namespace Lasallecms\Lasallecmsadmin\Http\Controllers;
 use Lasallecms\Formhandling\AdminFormhandling\AdminFormBaseController;
 use Lasallecms\Lasallecmsapi\Repositories\UserRepository;
 
-use Lasallecms\Lasallecmsadmin\Commands\Users\CreateUserCommand;
-use Lasallecms\Lasallecmsadmin\Commands\Users\DeleteUserCommand;
-use Lasallecms\Lasallecmsadmin\Commands\Users\UpdateUserCommand;
+use Lasallecms\Lasallecmsadmin\Jobs\Users\CreateUserCommand;
+use Lasallecms\Lasallecmsadmin\Jobs\Users\DeleteUserCommand;
+use Lasallecms\Lasallecmsadmin\Jobs\Users\UpdateUserCommand;
 
 use Lasallecms\Helpers\Dates\DatesHelper;
 use Lasallecms\Helpers\HTML\HTMLHelper;

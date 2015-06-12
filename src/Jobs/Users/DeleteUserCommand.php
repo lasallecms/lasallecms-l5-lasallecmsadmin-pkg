@@ -1,5 +1,5 @@
 <?php
-namespace Lasallecms\Lasallecmsadmin\Commands\Users;
+namespace Lasallecms\Lasallecmsadmin\Jobs\Users;
 
 /**
  *
@@ -39,27 +39,21 @@ namespace Lasallecms\Lasallecmsadmin\Commands\Users;
 
 
 
-
 // Laravel Software
 use Lasallecms\Lasallecmsadmin\Commands\Command;
 
 // Laravel classes
 use Illuminate\Contracts\Bus\SelfHandling;
-use Illuminate\Foundation\Bus\DispatchesCommands;
-use Lasallecms\Lasallecmsapi\Users\CreateUserFormProcessing;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Lasallecms\Lasallecmsapi\Users\DeleteUserFormProcessing;
 
 
-class CreateUserCommand extends Command implements SelfHandling
+
+class DeleteUserCommand extends Command implements SelfHandling
 {
-    use DispatchesCommands;
+    use DispatchesJobs;
 
-    public $name;
-    public $email;
-    public $password;
-    public $password_confirmation;
-    public $activated;
-    public $enabled;
-    public $groups;
+    public $id;
 
 
     /**
@@ -67,15 +61,9 @@ class CreateUserCommand extends Command implements SelfHandling
      *
      * @return void
      */
-    public function __construct($name, $email, $password, $password_confirmation, $activated=0, $enabled=0, $groups)
+    public function __construct($id)
     {
-        $this->name                  = $name;
-        $this->email                 = $email;
-        $this->password              = $password;
-        $this->password_confirmation = $password_confirmation;
-        $this->activated             = $activated;
-        $this->enabled               = $enabled;
-        $this->groups                = $groups;
+        $this->id = $id;
     }
 
     /**
@@ -83,8 +71,8 @@ class CreateUserCommand extends Command implements SelfHandling
      *
      * @return void
      */
-    public function handle(CreateUserFormProcessing $createUserFormProcessing)
+    public function handle(DeleteUserFormProcessing $deleteUserFormProcessing)
     {
-        return $createUserFormProcessing->quarterback($this);
+        return $deleteUserFormProcessing->quarterback($this);
     }
 }

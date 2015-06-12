@@ -1,4 +1,5 @@
-<?php namespace Lasallecms\Lasallecmsadmin\Commands\Postupdates;
+<?php
+namespace Lasallecms\Lasallecmsadmin\Jobs\Users;
 
 /**
  *
@@ -29,29 +30,52 @@
  *
  */
 
-use Illuminate\Contracts\Bus\SelfHandling;
 
-use Illuminate\Foundation\Bus\DispatchesCommands;
-use Lasallecms\Lasallecmsapi\Postupdates\DeletePostupdateFormProcessing;
 
+///////////////////////////////////////////////////////////////////
+//// USER MANAGEMENT AND AUTHENTICATION IS SO BESPOKE THAT     ////
+////      IT IS NOT PART OF LASALLE's FORM AUTOMATION          ////
+///////////////////////////////////////////////////////////////////
+
+
+
+// Laravel Software
 use Lasallecms\Lasallecmsadmin\Commands\Command;
 
+// Laravel classes
+use Illuminate\Contracts\Bus\SelfHandling;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Lasallecms\Lasallecmsapi\Users\UpdateUserFormProcessing;
 
-class DeletePostupdateCommand extends Command implements SelfHandling {
 
-    use DispatchesCommands;
+class UpdateUserCommand extends Command implements SelfHandling
+{
+    use DispatchesJobs;
 
     public $id;
-
+    public $name;
+    public $email;
+    public $password;
+    public $password_confirmation;
+    public $activated;
+    public $enabled;
+    public $groups;
 
     /**
      * Create a new command instance.
      *
      * @return void
      */
-    public function __construct($id)
+    public function __construct($id, $name, $email, $password, $password_confirmation, $activated=0, $enabled=0, $groups)
     {
-        $this->id = $id;
+        $this->id                    = $id;
+        $this->name                  = $name;
+        $this->email                 = $email;
+        $this->password              = $password;
+        $this->password_confirmation = $password_confirmation;
+        $this->activated             = $activated;
+        $this->enabled               = $enabled;
+        $this->groups                = $groups;
     }
 
     /**
@@ -59,8 +83,8 @@ class DeletePostupdateCommand extends Command implements SelfHandling {
      *
      * @return void
      */
-    public function handle(DeletePostupdateFormProcessing $deletePostupdateFormProcessing)
+    public function handle(UpdateUserFormProcessing $updateUserFormProcessing)
     {
-        return $deletePostupdateFormProcessing->quarterback($this);
+        return $updateUserFormProcessing->quarterback($this);
     }
 }
