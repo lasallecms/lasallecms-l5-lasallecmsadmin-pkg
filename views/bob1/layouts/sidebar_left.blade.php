@@ -108,6 +108,24 @@
             @endif
 
 
+            @if ( class_exists(\Lasallecms\Knowledgebase\Version::class) )
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-list"></i> <span>Knowledge Base</span>
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+
+                        <li><a href="{{{ route('admin.kbitems.index') }}}"><i class="fa fa-list"></i> KB Items</a></li>
+                        <li><a href="{{{ route('admin.lukbcategories.index') }}}"><i class="fa fa-list"></i> KB Categories Lookup Table</a></li>
+                    </ul>
+                </li>
+
+                <li class="treeview"><hr></li>
+            @endif
+
+
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-user"></i> <span>Users</span>
