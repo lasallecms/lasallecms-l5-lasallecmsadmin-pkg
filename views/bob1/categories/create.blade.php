@@ -69,14 +69,41 @@
 
                         <tr>
                             <td>
+                                {!! Form::label('content', 'Content: ') !!}
+                            </td>
+                            <td>
+                                <textarea name="content" id="content">
+                                    {!! Input::old('content', isset($category) ? $category->content : '')  !!}
+                                </textarea>
+
+                                <script type="text/javascript" src="{{{ Config::get('app.url') }}}/{{{ Config::get('lasallecms.public_folder') }}}/packages/lasallecmsadmin/bob1/ckeditor/ckeditor.js"></script>
+
+                                {!! "<script>CKEDITOR.replace('content');</script>" !!}
+
+
+                                &nbsp;&nbsp; <a tabindex="0" data-toggle="popover" data-trigger="focus" data-content="Displays on the site. Optional."><i class="fa fa-info-circle"></i> </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
                                 {!! Form::label('description', 'Description: ') !!}
                             </td>
                             <td>
                                 <textarea name="description" id="description">{!! Input::old('description', isset($category) ? $category->description : '')  !!}</textarea>
 
-                                &nbsp;&nbsp; <a tabindex="0" data-toggle="popover" data-trigger="focus" data-content="Description is optional. 255 character maximum."><i class="fa fa-info-circle"></i> </a>
+                                &nbsp;&nbsp; <a tabindex="0" data-toggle="popover" data-trigger="focus" data-content="Description for this form. Does not display on the site. Optional."><i class="fa fa-info-circle"></i> </a>
 
                                 {{{ $errors->first('description', '<span class="help-block">:message</span>') }}}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                {!! Form::label('featured_image', 'Featured Image: ') !!}
+                            </td>
+                            <td>
+                                {!! Form::input('text', 'featured_image', Input::old('featured_image', isset($category) ? $category->featured_image : '')) !!}
                             </td>
                         </tr>
 
