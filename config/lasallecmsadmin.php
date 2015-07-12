@@ -38,10 +38,12 @@ return [
 	| Admin Template
 	|--------------------------------------------------------------------------
 	|
-	| What is the name of your admin template? It is the folder name at
-    | "public/packages/lasallecmsadmin/admin_template_name/" and "views/admin_template_name/". LaSalleCMS
-    | comes with the admin template "SB-Admin-2"
-	|
+	| What is the name of your admin template?
+    |
+    | Your lasallecmsadmin views are located at:
+    |
+    | resources/views/vendor/lasallecmsadmin/admin_template_name/
+    |
 	*/
     // The "bob1" template is based on the FOSS AdminLTE template.
     'admin_template_name' => 'bob1',
