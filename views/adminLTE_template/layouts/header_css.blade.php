@@ -20,20 +20,20 @@
     <!--
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.5/css/jquery.dataTables.css">
     -->
-    <link href="{{{ Config::get('app.url') }}}/{{{ Config::get('lasallecms.public_folder') }}}/packages/lasallecmsadmin/bob1/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="{{{ Config::get('app.url') }}}/packages/lasallecmsadmin/bob1/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
 
 
     <!-- Theme style -->
-    <link href="{{{ Config::get('app.url') }}}/{{{ Config::get('lasallecms.public_folder') }}}/packages/lasallecmsadmin/bob1/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{{ Config::get('app.url') }}}/packages/lasallecmsadmin/bob1/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
-    <link href="{{{ Config::get('app.url') }}}/{{{ Config::get('lasallecms.public_folder') }}}/packages/lasallecmsadmin/bob1/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{{ Config::get('app.url') }}}/packages/lasallecmsadmin/bob1/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
 
 
 
     <!-- Custom styles for this template http://getbootstrap.com/examples/navbar-fixed-top/-->
     @foreach (File::allFiles(public_path().'/packages/lasallecmsadmin/bob1/css/') as $cssfile)
-        <link media="all" type="text/css" rel="stylesheet" href="{{{ Config::get('app.url') }}}/{{{ Config::get('lasallecms.public_folder') }}}/packages/lasallecmsadmin/bob1/css/{{ basename($cssfile) }}" >
+        <link media="all" type="text/css" rel="stylesheet" href="{{{ Config::get('app.url') }}}/packages/lasallecmsadmin/bob1/css/{{ basename($cssfile) }}" >
     @endforeach
 
 

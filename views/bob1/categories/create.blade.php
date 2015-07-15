@@ -76,7 +76,7 @@
                                     {!! Input::old('content', isset($category) ? $category->content : '')  !!}
                                 </textarea>
 
-                                <script type="text/javascript" src="{{{ Config::get('app.url') }}}/{{{ Config::get('lasallecms.public_folder') }}}/packages/lasallecmsadmin/bob1/ckeditor/ckeditor.js"></script>
+                                <script type="text/javascript" src="{{{ Config::get('app.url') }}}/packages/lasallecmsadmin/bob1/ckeditor/ckeditor.js"></script>
 
                                 {!! "<script>CKEDITOR.replace('content');</script>" !!}
 

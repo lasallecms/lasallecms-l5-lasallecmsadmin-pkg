@@ -5,22 +5,22 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <!-- SlimScroll -->
-<script src="{{{ Config::get('app.url') }}}/{{{ Config::get('lasallecms.public_folder') }}}/packages/lasallecmsadmin/bob1/plugins/slimScroll/jquery.slimScroll.min.js" type="text/javascript"></script>
+<script src="{{{ Config::get('app.url') }}}/packages/lasallecmsadmin/bob1/plugins/slimScroll/jquery.slimScroll.min.js" type="text/javascript"></script>
 
 <!-- FastClick -->
-<script src='"{{{ Config::get('app.url') }}}/{{{ Config::get('lasallecms.public_folder') }}}/packages/lasallecmsadmin/bob1/plugins/fastclick/fastclick.min.js'></script>
+<script src='"{{{ Config::get('app.url') }}}/packages/lasallecmsadmin/bob1/plugins/fastclick/fastclick.min.js'></script>
 
 <!-- AdminLTE App -->
-<script src="{{{ Config::get('app.url') }}}/{{{ Config::get('lasallecms.public_folder') }}}/packages/lasallecmsadmin/bob1/dist/js/app.min.js" type="text/javascript"></script>
+<script src="{{{ Config::get('app.url') }}}/packages/lasallecmsadmin/bob1/dist/js/app.min.js" type="text/javascript"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="{{{ Config::get('app.url') }}}/{{{ Config::get('lasallecms.public_folder') }}}/packages/lasallecmsadmin/bob1/dist/js/demo.js" type="text/javascript"></script>
+<script src="{{{ Config::get('app.url') }}}/packages/lasallecmsadmin/bob1/dist/js/demo.js" type="text/javascript"></script>
 
 
 
 <!-- DataTables (http://datatables.net/manual/installation) -->
-    <link media="all" type="text/css" rel="stylesheet" href="{{{ Config::get('app.url') }}}/{{{ Config::get('lasallecms.public_folder') }}}/packages/lasallecmsadmin/bob1/plugins/datatables/dataTables.bootstrap.js }}" >
+    <link media="all" type="text/css" rel="stylesheet" href="{{{ Config::get('app.url') }}}/packages/lasallecmsadmin/bob1/plugins/datatables/dataTables.bootstrap.js }}" >
 
-<link media="all" type="text/css" rel="stylesheet" href="{{{ Config::get('app.url') }}}/{{{ Config::get('lasallecms.public_folder') }}}/packages/lasallecmsadmin/bob1/plugins/datatables/jquery.dataTables.js }}" >
+<link media="all" type="text/css" rel="stylesheet" href="{{{ Config::get('app.url') }}}/packages/lasallecmsadmin/bob1/plugins/datatables/jquery.dataTables.js }}" >
 
 
 *************************
@@ -31,7 +31,7 @@
 
 <!-- custom-ajax.js for forms https://laracasts.com/lessons/javascript-conveniences -->
 @foreach (File::allFiles(public_path().'/packages/lasallecmsadmin/bob1/js/') as $jsfile)
-    <link media="all" type="text/css" rel="stylesheet" href="{{{ Config::get('app.url') }}}/{{{ Config::get('lasallecms.public_folder') }}}/packages/lasallecmsadmin/bob1/js/{{ basename($jsfile) }}" >
+    <link media="all" type="text/css" rel="stylesheet" href="{{{ Config::get('app.url') }}}/packages/lasallecmsadmin/bob1/js/{{ basename($jsfile) }}" >
 @endforeach
 
 
