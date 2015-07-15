@@ -7,13 +7,13 @@
 
 
     <!-- SlimScroll -->
-    <script src="{{{ Config::get('app.url') }}}/{{{ Config::get('lasallecms.public_folder') }}}/packages/lasallecmsadmin/bob1/plugins/slimScroll/jquery.slimScroll.min.js" type="text/javascript"></script>
+    <script src="{{{ Config::get('app.url') }}}/packages/lasallecmsadmin/bob1/plugins/slimScroll/jquery.slimScroll.min.js" type="text/javascript"></script>
 
     <!-- FastClick -->
-    <script src='"{{{ Config::get('app.url') }}}/{{{ Config::get('lasallecms.public_folder') }}}/packages/lasallecmsadmin/bob1/plugins/fastclick/fastclick.min.js'></script>
+    <script src='"{{{ Config::get('app.url') }}}/packages/lasallecmsadmin/bob1/plugins/fastclick/fastclick.min.js'></script>
 
     <!-- AdminLTE App -->
-    <script src="{{{ Config::get('app.url') }}}/{{{ Config::get('lasallecms.public_folder') }}}/packages/lasallecmsadmin/bob1/dist/js/app.min.js" type="text/javascript"></script>
+    <script src="{{{ Config::get('app.url') }}}/packages/lasallecmsadmin/bob1/dist/js/app.min.js" type="text/javascript"></script>
 
 
     <!-- DataTables (http://datatables.net/manual/installation) -->

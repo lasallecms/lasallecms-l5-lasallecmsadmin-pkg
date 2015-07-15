@@ -41,37 +41,37 @@ skin-black
 
 <body class="skin-purple fixed sidebar-collapse">
 
-    <!-- site wrapper (yeah, shouldn't have an inline style, oh my!) -->
-    <div class="wrapper" style="background-color: #ffffff;">
+<!-- site wrapper (yeah, shouldn't have an inline style, oh my!) -->
+<div class="wrapper" style="background-color: #ffffff;">
 
-        {{-- top nav --}}
-        @section('topnav')
-            @include('lasallecmsadmin::bob1.layouts.header_navbar')
-        @show
-
-
-        {{-- left sidebar --}}
-        @section('leftsidebar')
-            @include('lasallecmsadmin::bob1.layouts.sidebar_left')
-        @show
-
-        {{-- Content --}}
-        @yield('content')
-
-
-
-        {{-- Footer Content --}}
-        @section('footer')
-            @include('lasallecmsadmin::bob1.layouts.footer_content')
-        @show
-
-    </div> <!-- /.wrapper -->
-
-
-    {{-- Footer JS --}}
-    @section('footer_scripts')
-        @include('lasallecmsadmin::bob1.layouts.footer_scripts')
+    {{-- top nav --}}
+    @section('topnav')
+        @include('lasallecmsadmin::bob1.layouts.header_navbar')
     @show
+
+
+    {{-- left sidebar --}}
+    @section('leftsidebar')
+        @include('lasallecmsadmin::bob1.layouts.sidebar_left')
+    @show
+
+    {{-- Content --}}
+    @yield('content')
+
+
+
+    {{-- Footer Content --}}
+    @section('footer')
+        @include('lasallecmsadmin::bob1.layouts.footer_content')
+    @show
+
+</div> <!-- /.wrapper -->
+
+
+{{-- Footer JS --}}
+@section('footer_scripts')
+    @include('lasallecmsadmin::bob1.layouts.footer_scripts')
+@show
 
 
 </body>

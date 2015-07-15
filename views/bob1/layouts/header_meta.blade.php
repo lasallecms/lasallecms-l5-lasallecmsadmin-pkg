@@ -29,7 +29,7 @@
 	 - transparency is OK
 	 - see wikipedia for info on browser support: http://mky.be/favicon/
 -->
-<link rel="icon" type="image/png" href="{{{ Config::get('app.url') }}}/{{{ Config::get('lasallecms.public_folder') }}}/packages/lasallecmsadmin/ico/canadian_flag_32.png">
+<link rel="icon" type="image/png" href="{{{ Config::get('app.url') }}}/packages/lasallecmsadmin/ico/canadian_flag_32.png">
 
 
 
