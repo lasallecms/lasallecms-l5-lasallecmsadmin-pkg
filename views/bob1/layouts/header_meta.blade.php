@@ -8,9 +8,9 @@
     <!-- title tag -->
     <!-- http://www.netlingo.com/tips/html-code-cheat-sheet.php -->
     @if ( isset($pagetitle) )
-        <title>{{{ $pagetitle }}} &verbar; {{{ Config::get('lasallecms.site_name') }}} Admin</title>
+        <title>{{{ $pagetitle }}} &verbar; {{{ Config::get('lasallecmsfrontend.site_name') }}} Admin</title>
     @else
-        <title>{{{ Config::get('lasallecms.site_name') }}}</title>
+        <title>{{{ Config::get('lasallecmsfrontend.site_name') }}}</title>
     @endif
 
 
@@ -25,7 +25,7 @@
 
 
 <!-- This is the traditional favicon.
-	 - size: 16x16 or 32x32
+	 - size: 16x16 or 32x32frontend
 	 - transparency is OK
 	 - see wikipedia for info on browser support: http://mky.be/favicon/
 -->
