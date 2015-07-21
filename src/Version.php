@@ -1,5 +1,7 @@
 <?php
 
+namespace Lasallecms\Lasallecmsadmin;
+
 /**
  *
  * Administrative package for the LaSalle Content Management System, based on the Laravel 5 Framework
@@ -28,24 +30,42 @@
  *
  */
 
+class Version
+{
+    /**
+     * This package's version number.
+     *
+     * @var string
+     */
+    const VERSION = '1.0';
 
 
-return [
-
-    /*
-	|--------------------------------------------------------------------------
-	| Admin Template
-	|--------------------------------------------------------------------------
-	|
-	| What is the name of your admin template?
-    |
-    | Your lasallecmsadmin views are located at:
-    |
-    | resources/views/vendor/lasallecmsadmin/admin_template_name/
-    |
-	*/
-    // The "bob1" template is based on the FOSS AdminLTE template.
-    'admin_template_name' => 'bob1',
+    /**
+     * This package's name.
+     *
+     * @var string
+     */
+    const PACKAGE = 'Administrative package for the LaSalle Content Management System';
 
 
-];
+    /**
+     * Get the version number of this package.
+     *
+     * @return string
+     */
+    public function version()
+    {
+        return static::VERSION;
+    }
+
+
+    /**
+     * Get the name of this package.
+     *
+     * @return string
+     */
+    public function packageName()
+    {
+        return static::PACKAGE;
+    }
+}
