@@ -31,7 +31,7 @@
                         <!--
                         <li class="divider"></li>
                         -->
-                        <li><a href="http://lasallecms.com" target="_blank" class="btn btn-default btn-flat pull-right"><b>LaSalleCMS.com</b></a></li>
+                        <li><a href="//lasallecms.com" target="_blank" class="btn btn-default btn-flat pull-right"><b>LaSalleCMS.com</b></a></li>
 
                     </ul>
                 </li>
