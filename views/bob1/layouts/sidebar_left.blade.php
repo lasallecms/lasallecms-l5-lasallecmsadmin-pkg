@@ -131,15 +131,15 @@
 
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-list"></i> <span>LaSalleCast</span>
+                        <i class="fa fa-microphone"></i> <span>LaSalleCast</span>
                         <i class="fa fa-angle-right pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
 
-                        <li><a href="{{{ route('admin.episodes.index') }}}"><i class="fa fa-list"></i> Episodes</a></li>
-                        <li><a href="{{{ route('admin.transcriptions.index') }}}"><i class="fa fa-list"></i> Transcriptions</a></li>
-                        <li><a href="{{{ route('admin.luepisodestatus.index') }}}"><i class="fa fa-list"></i> Episode Status Lookup Table</a></li>
-                        <li><a href="{{{ route('admin.lutranscriptionstatus.index') }}}"><i class="fa fa-list"></i> Transcription Status Lookup</a></li>
+                        <li><a href="{{{ route('admin.episodes.index') }}}"><i class="fa fa-microphone"></i> Episodes</a></li>
+                        <li><a href="{{{ route('admin.transcriptions.index') }}}"><i class="fa fa-microphone"></i> Transcriptions</a></li>
+                        <li><a href="{{{ route('admin.luepisodestatus.index') }}}"><i class="fa fa-microphone"></i> Episode Status Lookup Table</a></li>
+                        <li><a href="{{{ route('admin.lutranscriptionstatus.index') }}}"><i class="fa fa-microphone"></i> Transcription Status Lookup</a></li>
                     </ul>
                 </li>
 
