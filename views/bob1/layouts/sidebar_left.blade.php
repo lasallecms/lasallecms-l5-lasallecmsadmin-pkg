@@ -136,10 +136,13 @@
                     </a>
                     <ul class="treeview-menu">
 
+                        <li><a href="{{{ route('admin.shows.index') }}}"><i class="fa fa-microphone"></i> Shows</a></li>
                         <li><a href="{{{ route('admin.episodes.index') }}}"><i class="fa fa-microphone"></i> Episodes</a></li>
                         <li><a href="{{{ route('admin.transcriptions.index') }}}"><i class="fa fa-microphone"></i> Transcriptions</a></li>
                         <li><a href="{{{ route('admin.luepisodestatus.index') }}}"><i class="fa fa-microphone"></i> Episode Status Lookup Table</a></li>
                         <li><a href="{{{ route('admin.lutranscriptionstatus.index') }}}"><i class="fa fa-microphone"></i> Transcription Status Lookup</a></li>
+                        <li><a href="{{{ route('admin.luitunescategory.index') }}}"><i class="fa fa-microphone"></i> iTunes Category Lookup</a></li>
+                        <li><a href="{{{ route('admin.luitunesexplicit.index') }}}"><i class="fa fa-microphone"></i> iTunes Explicit Lookup</a></li>
                     </ul>
                 </li>
 
