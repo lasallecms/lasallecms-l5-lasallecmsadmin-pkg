@@ -2,15 +2,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
     <!-- Latest compiled and minified JavaScript -->
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
 
 
     <!-- SlimScroll -->
-    <script src="{{{ Config::get('app.url') }}}/packages/lasallecmsadmin/bob1/plugins/slimScroll/jquery.slimScroll.min.js" type="text/javascript"></script>
+    <script src="{{{ Config::get('app.url') }}}/packages/lasallecmsadmin/bob1/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
 
     <!-- FastClick -->
-    <script src='"{{{ Config::get('app.url') }}}/packages/lasallecmsadmin/bob1/plugins/fastclick/fastclick.min.js'></script>
+    <script src="{{{ Config::get('app.url') }}}/packages/lasallecmsadmin/bob1/plugins/fastclick/fastclick.min.js"></script>
 
     <!-- AdminLTE App -->
     <script src="{{{ Config::get('app.url') }}}/packages/lasallecmsadmin/bob1/dist/js/app.min.js" type="text/javascript"></script>
