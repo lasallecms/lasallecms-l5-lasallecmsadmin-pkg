@@ -33,19 +33,34 @@
 return [
 
     /*
-	|--------------------------------------------------------------------------
-	| Admin Template
-	|--------------------------------------------------------------------------
-	|
-	| What is the name of your admin template?
+    |--------------------------------------------------------------------------
+    | Admin Template
+    |--------------------------------------------------------------------------
+    |
+    | What is the name of your admin template?
     |
     | Your lasallecmsadmin views are located at:
     |
     | resources/views/vendor/lasallecmsadmin/admin_template_name/
     |
-	*/
+    */
     // The "bob1" template is based on the FOSS AdminLTE template.
     'admin_template_name' => 'bob1',
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Use dashboard route
+    |--------------------------------------------------------------------------
+    |
+    | Use the built-in dashboard route, or use your own in your app's route file.
+    |
+    | true  = use the built-in dashboard route
+    |
+    | false = use your own dashboard route in your app's route file
+    |
+    */
+    'admin_route_dashboard' => 'true',
 
 
 ];
