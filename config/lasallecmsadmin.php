@@ -50,17 +50,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Use dashboard route
+    | Custom dashboard route
     |--------------------------------------------------------------------------
     |
-    | Use the built-in dashboard route, or use your own in your app's route file.
+    | Use the built-in dashboard route, or use your own route for the initial 
+    | (dashboard) view when you first log into the admin.
     |
-    | true  = use the built-in dashboard route
+    | Use the route name. 
     |
-    | false = use your own dashboard route in your app's route file
+    | This config setting appears in the AdminDashboardController.
     |
     */
-    'admin_route_dashboard' => 'true',
+    'admin_route_dashboard' => 'admin.posts.index',
 
 
 ];

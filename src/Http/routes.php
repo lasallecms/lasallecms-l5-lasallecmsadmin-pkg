@@ -30,12 +30,11 @@
  */
 
 
-if (config('lasallecmsadmin.admin_route_dashboard')) {
-	$router->get('admin',[
-	    'as' => 'admin.home',
-	    'uses' => 'AdminDashboardController@index'
-	]);
-}
+
+$router->get('admin',[
+    'as' => 'admin.home',
+    'uses' => 'AdminDashboardController@index'
+]);
 
 
 Route::group(array('prefix' => 'admin'), function()

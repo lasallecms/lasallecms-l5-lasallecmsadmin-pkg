@@ -42,6 +42,6 @@ class AdminDashboardController extends AdminFormBaseController
 
     public function index()
     {
-        return Redirect::route('admin.posts.index');
+        return Redirect::route(config('lasallecmsadmin.admin_route_dashboard'));
     }
 }
