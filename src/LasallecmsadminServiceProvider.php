@@ -141,9 +141,11 @@ class LasallecmsadminServiceProvider extends ServiceProvider {
     {
         $this->loadViewsFrom(__DIR__.'/../views', 'lasallecmsadmin');
 
+/*
         $this->publishes([
             __DIR__.'/../views' => base_path('resources/views/vendor/lasallecmsadmin'),
         ]);
+*/
 
     }
 
