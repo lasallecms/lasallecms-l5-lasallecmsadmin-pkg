@@ -64,4 +64,17 @@ return [
     'admin_route_dashboard' => 'admin.posts.index',
 
 
+    /*
+    |--------------------------------------------------------------------------
+    | Custom image in the navbar's left corner
+    |--------------------------------------------------------------------------
+    |
+    | Do you want to use a custom image in the admin navbar's left corner? 
+    | If so, please specify the path and filename within the public folder.
+    |
+    */
+    'admin_custom_image_navbar_true_false'    => 'false',
+    'admin_custom_image_navbar_path_filename' => '',
+
+
 ];
