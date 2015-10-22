@@ -3,13 +3,9 @@
 <header class="main-header">
 
 @if (Config::get('lasallecmsadmin.admin_custom_image_navbar_true_false'))
-
-    
-
     <a href="{{{ route('admin.home') }}}" class="logo">
         <img src="{{{ Config::get('app.url') }}}/{{{ Config::get('lasallecmsadmin.admin_custom_image_navbar_path_filename') }}}" width="230" height="50"/>
     </a>
-
 @else
     <a href="{{{ route('admin.home') }}}" class="logo"><b>{{{ Config::get('lasallecmsfrontend.site_name') }}}</b></a>
 @endif

@@ -73,7 +73,7 @@ return [
     | If so, please specify the path and filename within the public folder.
     |
     */
-    'admin_custom_image_navbar_true_false'    => 'false',
+    'admin_custom_image_navbar_true_false'    => false,
     'admin_custom_image_navbar_path_filename' => '',
 
 
