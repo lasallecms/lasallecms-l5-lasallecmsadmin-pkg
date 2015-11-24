@@ -61,26 +61,32 @@
 
                         <td align="center">{!! $HTMLHelper::convertToCheckOrXBootstrapButtons($category->enabled) !!}</td>
 
+
+                        {{-- EDIT BUTTON --}}
                         <td align="center">
                             <a href="{{{ URL::route('admin.categories.edit', $category->id) }}}" class="btn btn-success  btn-xs" role="button">
                                 <i class="glyphicon glyphicon-edit"></i>
                             </a>
                         </td>
+
+
+                        {{-- DELETE BUTTON --}}
                         <td align="center">
 
                             {{-- If there is just one category, then suppress the delete button --}}
                             {{-- Actually, not for categories! So changing the >1 to >0 --}}
                             @if (count($categories) > 0)
 
-                                {!! Form::open(array('url' => 'admin/categories/' . $category->id)) !!}
-                                {!! Form::model($category, array('route' => array('admin.categories.destroy', $category->id), 'method' => 'DELETE')) !!}
+                                <form method="POST" action="{{{ Config::get('app.url') }}}/index.php/admin/categories/confirmDeletion/{{ $category->id }}" accept-charset="UTF-8">
+                                {{{ csrf_field() }}}
 
-                                <button type="submit" class="btn btn-danger btn-xs" data-confirm="Do you really want to DELETE the {!! strtoupper($category->title) !!} category?">
+                                <button type="submit" class="btn btn-danger btn-xs">
                                     <i class="glyphicon glyphicon-remove"></i>
                                 </button>
 
-                                {!! Form::close() !!}
+                                </form>
                             @endif
+
                         </td>
 
                     </tr>
