@@ -1,5 +1,4 @@
-    <!-- jQuery 2.1.3 (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
@@ -16,9 +15,9 @@
     <script src="{{{ Config::get('app.url') }}}/packages/lasallecmsadmin/bob1/dist/js/app.min.js" type="text/javascript"></script>
 
 
+
     <!-- DataTables (http://datatables.net/manual/installation) -->
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.js"></script>
-
 
     <!-- prettyprint -->
     <!-- http://google-code-prettify.googlecode.com/svn/trunk/README.html -->

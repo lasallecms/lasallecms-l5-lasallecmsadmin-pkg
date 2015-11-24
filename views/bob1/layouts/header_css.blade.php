@@ -12,7 +12,13 @@
 <!-- Ionicons -->
 <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
 
+<!-- jQuery 2.1.3 (necessary for Bootstrap's JavaScript plugins) -->
+<!-- must load first! -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
+<!-- bootstrap multiselect css and js (https://github.com/davidstutz/bootstrap-multiselect) -->
+<link href="{{{ Config::get('app.url') }}}/packages/lasallecmsadmin/bob1/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" charset="utf8" src="{{{ Config::get('app.url') }}}/packages/lasallecmsadmin/bob1/js/bootstrap-multiselect.js"></script>
 
 <!-- DataTables CSS (http://datatables.net/manual/installation) -->
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.5/css/jquery.dataTables.css">
@@ -32,10 +38,9 @@
 <!-- Custom styles for this template http://getbootstrap.com/examples/navbar-fixed-top/-->
 @foreach (File::allFiles(public_path().'/packages/lasallecmsadmin/bob1/css/') as $cssfile)
     <link media="all" type="text/css" rel="stylesheet" href="{{{ Config::get('app.url') }}}/packages/lasallecmsadmin/bob1/css/{{ basename($cssfile) }}" >
-    @endforeach
+@endforeach
 
-
-            <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
