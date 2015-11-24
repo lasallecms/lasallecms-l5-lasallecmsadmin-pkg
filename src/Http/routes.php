@@ -40,10 +40,21 @@ $router->get('admin',[
 Route::group(array('prefix' => 'admin'), function()
 {
     Route::resource('posts', 'AdminPostController');
+    Route::post('posts/confirmDeletion/{id}', 'AdminPostController@confirmDeletion');
+
     Route::resource('categories', 'AdminCategoryController');
+    Route::post('categories/confirmDeletion/{id}', 'AdminCategoryController@confirmDeletion');
+
     Route::resource('tags', 'AdminTagController');
+    Route::post('tags/confirmDeletion/{id}', 'AdminTagController@confirmDeletion');
+
     Route::resource('postupdates', 'AdminPostupdateController');
+    Route::post('postupdates/confirmDeletion/{id}', 'AdminPostupdateController@confirmDeletion');
+
     Route::resource('users', 'AdminUserController');
+    Route::post('users/confirmDeletion/{id}', 'AdminUserController@confirmDeletion');
+
     Route::resource('usergroups', 'AdminUsergroupController');
+    Route::post('usergroups/confirmDeletion/{id}', 'AdminUsergroupController@confirmDeletion');
 });
 
