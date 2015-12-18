@@ -77,4 +77,15 @@ return [
     'admin_custom_image_navbar_path_filename' => '',
 
 
+    /*
+    |--------------------------------------------------------------------------
+    | Length (size) of admin form automation's input text box
+    |--------------------------------------------------------------------------
+    |
+    | What size do you want the form automation's input text box?
+    |
+    */
+    'admin_size_input_text_box' => 45,
+
+
 ];
