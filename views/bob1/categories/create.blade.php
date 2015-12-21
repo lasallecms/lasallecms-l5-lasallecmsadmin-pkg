@@ -34,11 +34,15 @@
 
                     {{-- this is a combo create or edit form. Display the proper "form action"  --}}
                     @if ( isset($category) )
-                        {!! Form::model($category, array('route' => array('admin.categories.update', $category->id), 'method' => 'PUT')) !!}
+                        {!! Form::model($category, [
+                            'route'  => ['admin.categories.update', $category->id],
+                            'method' => 'PUT',
+                            'files'  => true,
+                        ]) !!}
 
                         {!! Form::hidden('id', $category->id) !!}
                     @else
-                        {!! Form::open(['route' => 'admin.categories.store']) !!}
+                        {!! Form::open(['route' => 'admin.categories.store', 'files'  => true,]) !!}
                     @endif
 
                     {{-- the table! --}}
@@ -98,14 +102,12 @@
                             </td>
                         </tr>
 
-                        <tr>
-                            <td>
-                                {!! Form::label('featured_image', 'Featured Image: ') !!}
-                            </td>
-                            <td>
-                                {!! Form::input('text', 'featured_image', Input::old('featured_image', isset($category) ? $category->featured_image : '')) !!}
-                            </td>
-                        </tr>
+
+                        @if ( isset($category) )
+                            @include('formhandling::adminformhandling.bob1.featured_image_edit')
+                        @else
+                            @include('formhandling::adminformhandling.bob1.featured_image_create')
+                        @endif
 
 
                         <tr>

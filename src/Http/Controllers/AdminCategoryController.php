@@ -139,7 +139,8 @@ class AdminCategoryController extends AdminFormBaseController
             'DatesHelper'                    => DatesHelper::class,
             'Form'                           => Form::class,
             'HTMLHelper'                     => HTMLHelper::class,
-            'categories'                      => $categories,
+            'categories'                     => $categories,
+            'admin_size_input_text_box'      => Config::get('lasallecmsadmin.admin_size_input_text_box'),
         ]);
     }
 
@@ -218,7 +219,10 @@ class AdminCategoryController extends AdminFormBaseController
             'Form'                           => Form::class,
             'HTMLHelper'                     => HTMLHelper::class,
             'category'                       => $this->repository->getFind($id),
+            // record exists solely so the edit form works with the formhandler's featured image blade view
+            'record'                         => $this->repository->getFind($id),
             'categories'                     => $categories,
+            'admin_size_input_text_box'      => Config::get('lasallecmsadmin.admin_size_input_text_box'),
         ]);
     }
 }
