@@ -40,6 +40,24 @@
 
                     {{-- the table! --}}
                     <table class="table table-striped table-bordered table-condensed table-hover">
+
+                        <tr>
+                            <td>
+
+                            </td>
+                            <td>
+                                @if ( isset($user) )
+                                    {!! Form::submit( 'Edit User!') !!}
+                                @else
+                                    {!! Form::submit( 'Create User!') !!}
+                                @endif
+
+                                {!! $HTMLHelper::back_button('Cancel') !!}
+                            </td>
+                        </tr>
+                        <tr><td colspan="2"><hr></td></tr>
+
+
                         <tr>
                             <td>
                                 {!! Form::label('name', 'User\'s Name: ') !!}
@@ -101,6 +119,43 @@
                         </tr>
 
 
+
+                        <tr><td colspan="2">&nbsp;</td></tr>
+                        <tr class="info"><td colspan="2"><strong>Two Factor Authorization:</strong></td></tr>
+
+                        <td>
+                            {!! Form::label('two_factor_auth_enabled', 'Enabled for 2FA: ') !!}
+                        </td>
+                        <td>
+                            {!! Form::checkbox('two_factor_auth_enabled', '1', Input::old('two_factor_auth_enabled')) !!}
+                            {{{ $errors->first('two_factor_auth_enabled', '<span class="help-block">:message</span>') }}}
+                        </td>
+
+                        <tr>
+                            <td>
+                                {!! Form::label('phone_country_code', 'Phone Country Code: ') !!}
+                            </td>
+                            <td>
+                                {!! Form::input('text', 'phone_country_code', Input::old('phone_country_code', isset($user) ? $user->phone_country_code : '')) !!}&nbsp;&nbsp; <a href="#" data-toggle="popover" data-content="Canada = 1, USA = 1"><i class="fa fa-info-circle"></i></a>
+                                {{{ $errors->first('phone_country_code', '<span class="help-block">:message</span>') }}}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                {!! Form::label('phone_number', 'Phone Number: ') !!}
+                            </td>
+                            <td>
+                                {!! Form::input('text', 'phone_number', Input::old('phone_number', isset($user) ? $user->phone_number : '')) !!}&nbsp;&nbsp; <a href="#" data-toggle="popover" data-content="No spaces, no dashes, no country code. eg: 647-123-4567"><i class="fa fa-info-circle"></i></a>
+                                {{{ $errors->first('phone_number', '<span class="help-block">:message</span>') }}}
+                            </td>
+                        </tr>
+
+                        <tr><td colspan="2">&nbsp;</td></tr>
+                        <tr><td colspan="2"><hr></td></tr>
+
+
+
                         <tr>
                             <td>
                                 {!! Form::label($field['name'], $HTMLHelper::adminFormFieldLabel($field) .': ') !!}
@@ -138,6 +193,7 @@
                         @endif
 
 
+                        <tr><td colspan="2"><hr></td></tr>
                         <tr>
                             <td>
 
@@ -150,9 +206,6 @@
                                 @endif
 
                                 {!! $HTMLHelper::back_button('Cancel') !!}
-
-
-
                             </td>
                         </tr>
 
@@ -171,3 +224,4 @@
 
     </section>
 @stop
+

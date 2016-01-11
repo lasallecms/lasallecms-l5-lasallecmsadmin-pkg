@@ -1,4 +1,5 @@
 <?php
+
 namespace Lasallecms\Lasallecmsadmin\Jobs\Users;
 
 /**
@@ -60,6 +61,12 @@ class CreateUserCommand extends Command implements SelfHandling
     public $activated;
     public $enabled;
     public $groups;
+    public $two_factor_auth_enabled;
+    public $phone_country_code;
+    public $phone_number;
+    public $sms_token;
+    public $sms_token_created_at;
+
 
 
     /**
@@ -67,8 +74,7 @@ class CreateUserCommand extends Command implements SelfHandling
      *
      * @return void
      */
-    public function __construct($name, $email, $password, $password_confirmation, $activated=0, $enabled=0, $groups)
-    {
+    public function __construct($name, $email, $password, $password_confirmation, $activated=0, $enabled=0, $groups, $two_factor_auth_enabled=0, $phone_country_code, $phone_number) {
         $this->name                  = $name;
         $this->email                 = $email;
         $this->password              = $password;
@@ -76,15 +82,20 @@ class CreateUserCommand extends Command implements SelfHandling
         $this->activated             = $activated;
         $this->enabled               = $enabled;
         $this->groups                = $groups;
+        $this->two_factor_auth_enabled  = $two_factor_auth_enabled;
+        $this->phone_country_code    = $phone_country_code;
+        $this->phone_number          = $phone_number;
+        $this->sms_token             = null;
+        $this->sms_token_created_at  = null;
     }
+
 
     /**
      * Execute the command.
      *
      * @return void
      */
-    public function handle(CreateUserFormProcessing $createUserFormProcessing)
-    {
+    public function handle(CreateUserFormProcessing $createUserFormProcessing) {
         return $createUserFormProcessing->quarterback($this);
     }
 }
