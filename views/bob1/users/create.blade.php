@@ -118,6 +118,38 @@
                             </td>
                         </tr>
 
+                        <tr>
+                            <td>
+                                {!! Form::label($field['name'], $HTMLHelper::adminFormFieldLabel($field) .': ') !!}
+                            </td>
+                            <td>
+                                @if ( isset($user) )
+                                    {!! $repository->multipleSelectFromRelatedTableUpdate($field['related_table_name'], $field['related_model_class'], $user->id) !!}
+                                @else
+                                    {!! $repository->multipleSelectFromRelatedTableCreate($field, 'create') !!}
+                                @endif
+                            </td>
+                        </tr>
+
+                        @if ( isset($user) )
+                            <tr>
+                                <td>
+                                    {!! Form::label('created at', 'Created At: ') !!}
+                                </td>
+                                <td>
+                                    {!! $DatesHelper::convertDatetoFormattedDateString($user->created_at) !!} &nbsp;&nbsp; <a href="#" data-toggle="popover" data-content="The Created At date is automatically filled in."><i class="fa fa-info-circle"></i></a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    {!! Form::label('updated at', 'Updated At: ') !!}
+                                </td>
+                                <td>
+                                    {!! $DatesHelper::convertDatetoFormattedDateString($user->updated_at) !!} &nbsp;&nbsp; <a href="#" data-toggle="popover" data-content="The Updated At date is automatically filled in"><i class="fa fa-info-circle"></i></a>
+                                </td>
+                            </tr>
+                        @endif
 
 
                         <tr><td colspan="2">&nbsp;</td></tr>
@@ -156,41 +188,34 @@
 
 
 
-                        <tr>
+                        @if ( isset($user) )
+                            <tr class="info"><td colspan="2"><strong>Last Login</strong></td></tr>
+
                             <td>
-                                {!! Form::label($field['name'], $HTMLHelper::adminFormFieldLabel($field) .': ') !!}
+                                Last Login Date:
                             </td>
                             <td>
-                                @if ( isset($user) )
-                                    {!! $repository->multipleSelectFromRelatedTableUpdate($field['related_table_name'], $field['related_model_class'], $user->id) !!}
+                                @if (isset($user->last_login))
+                                    {!! $DatesHelper::convertDatetoFormattedDateString($user->last_login) !!}, at {!! date("h:i a",strtotime($user->last_login)) !!}
                                 @else
-                                    {!! $repository->multipleSelectFromRelatedTableCreate($field, 'create') !!}
+                                    {!! $user->name !!} has not yet logged in for the first time.
                                 @endif
                             </td>
-                        </tr>
-
-
-
-
-                        @if ( isset($user) )
-                            <tr>
-                                <td>
-                                    {!! Form::label('created at', 'Created At: ') !!}
-                                </td>
-                                <td>
-                                    {!! $DatesHelper::convertDatetoFormattedDateString($user->created_at) !!} &nbsp;&nbsp; <a href="#" data-toggle="popover" data-content="The Created At date is automatically filled in."><i class="fa fa-info-circle"></i></a>
-                                </td>
-                            </tr>
 
                             <tr>
                                 <td>
-                                    {!! Form::label('updated at', 'Updated At: ') !!}
+                                    Last Login IP:
                                 </td>
                                 <td>
-                                    {!! $DatesHelper::convertDatetoFormattedDateString($user->updated_at) !!} &nbsp;&nbsp; <a href="#" data-toggle="popover" data-content="The Updated At date is automatically filled in"><i class="fa fa-info-circle"></i></a>
+                                    @if (isset($user->last_login))
+                                        {!! $user->last_login_ip !!}
+                                    @else
+                                        {!! $user->name !!} has not yet logged in for the first time.
+                                    @endif
                                 </td>
                             </tr>
                         @endif
+
 
 
                         <tr><td colspan="2"><hr></td></tr>
