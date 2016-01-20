@@ -159,7 +159,7 @@
                             {!! Form::label('two_factor_auth_enabled', 'Enabled for 2FA: ') !!}
                         </td>
                         <td>
-                            {!! Form::checkbox('two_factor_auth_enabled', '1', Input::old('two_factor_auth_enabled')) !!}
+                            {!! Form::checkbox('two_factor_auth_enabled', '1', Input::old('two_factor_auth_enabled')) !!}&nbsp;&nbsp; <a href="#" data-toggle="popover" data-content="Enable if 2FA is disabled, but you want this specific user to still go through the 2FA process when logging in to front-end and admin."><i class="fa fa-info-circle"></i></a>
                             {{{ $errors->first('two_factor_auth_enabled', '<span class="help-block">:message</span>') }}}
                         </td>
 
