@@ -87,14 +87,19 @@
 
                             @if ( $user->email != config('auth.administrator_first_among_equals_email') )
 
-                                {!! Form::open(array('url' => 'admin/users/' . $user->id)) !!}
-                                {!! Form::model($user, array('route' => array('admin.users.destroy', $user->id), 'method' => 'DELETE')) !!}
 
-                                <button type="submit" class="btn btn-danger btn-xs" data-confirm="Do you really want to DELETE the {!! strtoupper($user->name) !!} user?">
-                                    <i class="glyphicon glyphicon-remove"></i>
-                                </button>
+                                @if ( ($peoplesTableExists) && (!$repository->getPeopleIdForIndexListing($user->id)) )
 
-                                {!! Form::close() !!}
+                                    {!! Form::open(array('url' => 'admin/users/' . $user->id)) !!}
+                                    {!! Form::model($user, array('route' => array('admin.users.destroy', $user->id), 'method' => 'DELETE')) !!}
+
+                                    <button type="submit" class="btn btn-danger btn-xs" data-confirm="Do you really want to DELETE the {!! strtoupper($user->name) !!} user?">
+                                        <i class="glyphicon glyphicon-remove"></i>
+                                    </button>
+
+                                    {!! Form::close() !!}
+
+                                @endif
                             @endif
                         </td>
 
