@@ -88,18 +88,37 @@
                             @if ( $user->email != config('auth.administrator_first_among_equals_email') )
 
 
-                                @if ( ($peoplesTableExists) && (!$repository->getPeopleIdForIndexListing($user->id)) )
+                                {{-- If LaSalleCRM is installed --}}
+                                @if ($peoplesTableExists)
+
+                                    {{-- If this user does *NOT* have a record in the "peoples" db table --}}
+                                    {{-- then this user id deletable. Otherwise, foreign key constraint --}}
+                                    @if ($repository->getPeopleIdForIndexListing($user->id) == "Not in LaSalleCRM")
+
+                                        {!! Form::open(array('url' => 'admin/users/' . $user->id)) !!}
+                                        {!! Form::model($user, array('route' => array('admin.users.destroy', $user->id), 'method' => 'DELETE')) !!}
+
+                                            <button type="submit" class="btn btn-danger btn-xs" data-confirm="Do you really want to DELETE the {!! strtoupper($user->name) !!} user?">
+                                                <i class="glyphicon glyphicon-remove"></i>
+                                            </button>
+
+                                        {!! Form::close() !!}
+                                    @endif
+
+                                @else
+                                    {{-- Yes, I am repeating the delete form.  --}}
+                                    {{-- If LaSalleCRM is installed, then display the delete form --}}
 
                                     {!! Form::open(array('url' => 'admin/users/' . $user->id)) !!}
                                     {!! Form::model($user, array('route' => array('admin.users.destroy', $user->id), 'method' => 'DELETE')) !!}
 
-                                    <button type="submit" class="btn btn-danger btn-xs" data-confirm="Do you really want to DELETE the {!! strtoupper($user->name) !!} user?">
-                                        <i class="glyphicon glyphicon-remove"></i>
-                                    </button>
+                                        <button type="submit" class="btn btn-danger btn-xs" data-confirm="Do you really want to DELETE the {!! strtoupper($user->name) !!} user?">
+                                            <i class="glyphicon glyphicon-remove"></i>
+                                        </button>
 
                                     {!! Form::close() !!}
-
                                 @endif
+
                             @endif
                         </td>
 
