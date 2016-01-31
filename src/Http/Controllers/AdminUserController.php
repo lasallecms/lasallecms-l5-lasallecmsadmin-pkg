@@ -311,6 +311,32 @@ class AdminUserController extends AdminFormBaseController
 
 
     /**
+     * Confirm the deletion
+     *
+     * The javascript that I use works everywhere except for posts. I thought, well,
+     * I tend to be distracted when I do deletions; plus, I have a funny type of
+     * muscle memory when it comes to gray system-ish model pop-up message boxes.
+     * When a system confirm pops-up, 99% I click "ok". I should have a confirmation
+     * that actually gets my attention -- and to use the trick where "cancel" on the right
+     * due to "ok" muscle memory tendency.
+     *
+     * @param  int      $id     NOTE: *NOT* passing the REQUEST object
+     * @return Response
+     */
+    public function confirmDeletion($id)
+    {
+        return view('lasallecmsadmin::' . config('lasallecmsadmin.admin_template_name') . '.users.delete_confirm',
+            [
+                'logged_in_user'               => Auth::user(),
+                'user'                         => $this->repository->getFind($id),
+                'HTMLHelper'                   => HTMLHelper::class,
+                'Config'                       => Config::class,
+                'Form'                         => Form::class,
+            ]);
+    }
+
+
+    /**
      * Remove the specific user from the db
      * DELETE /users/{id}
      *

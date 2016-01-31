@@ -94,29 +94,27 @@
                                     {{-- If this user does *NOT* have a record in the "peoples" db table --}}
                                     {{-- then this user id deletable. Otherwise, foreign key constraint --}}
                                     @if ($repository->getPeopleIdForIndexListing($user->id) == "Not in LaSalleCRM")
+                                        <form method="POST" action="{{{ Config::get('app.url') }}}/index.php/admin/users/confirmDeletion/{{ $user->id }}" accept-charset="UTF-8">
+                                            {{{ csrf_field() }}}
 
-                                        {!! Form::open(array('url' => 'admin/users/' . $user->id)) !!}
-                                        {!! Form::model($user, array('route' => array('admin.users.destroy', $user->id), 'method' => 'DELETE')) !!}
-
-                                            <button type="submit" class="btn btn-danger btn-xs" data-confirm="Do you really want to DELETE the {!! strtoupper($user->name) !!} user?">
-                                                <i class="glyphicon glyphicon-remove"></i>
+                                            <button type="submit" class="btn btn-danger btn-xs">
+                                                <i class="fa fa-times icon-4x"></i>
                                             </button>
 
-                                        {!! Form::close() !!}
+                                        </form>
                                     @endif
 
                                 @else
                                     {{-- Yes, I am repeating the delete form.  --}}
                                     {{-- If LaSalleCRM is installed, then display the delete form --}}
+                                    <form method="POST" action="{{{ Config::get('app.url') }}}/index.php/admin/users/confirmDeletion/{{ $user->id }}" accept-charset="UTF-8">
+                                        {{{ csrf_field() }}}
 
-                                    {!! Form::open(array('url' => 'admin/users/' . $user->id)) !!}
-                                    {!! Form::model($user, array('route' => array('admin.users.destroy', $user->id), 'method' => 'DELETE')) !!}
-
-                                        <button type="submit" class="btn btn-danger btn-xs" data-confirm="Do you really want to DELETE the {!! strtoupper($user->name) !!} user?">
-                                            <i class="glyphicon glyphicon-remove"></i>
+                                        <button type="submit" class="btn btn-danger btn-xs">
+                                            <i class="fa fa-times icon-4x"></i>
                                         </button>
 
-                                    {!! Form::close() !!}
+                                    </form>
                                 @endif
 
                             @endif
