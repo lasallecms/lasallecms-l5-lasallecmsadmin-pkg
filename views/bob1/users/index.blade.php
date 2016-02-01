@@ -85,7 +85,7 @@
                             {{-- If one user, it should be the "first among equals user" --}}
 
 
-                            @if ( $user->email != config('auth.administrator_first_among_equals_email') )
+                            @if ( $user->email != config('lasallecmsusermanagement.administrator_first_among_equals_email') )
 
 
                                 {{-- If LaSalleCRM is installed --}}
