@@ -41,20 +41,32 @@ Route::group(array('prefix' => 'admin'), function()
 {
     Route::resource('posts', 'AdminPostController');
     Route::post('posts/confirmDeletion/{id}', 'AdminPostController@confirmDeletion');
+    Route::post('posts/confirmDeletionMultipleRows', 'AdminPostController@confirmDeletionMultipleRows');
+    Route::post('posts/destroyMultipleRecords', 'AdminPostController@destroyMultipleRecords');
 
     Route::resource('categories', 'AdminCategoryController');
     Route::post('categories/confirmDeletion/{id}', 'AdminCategoryController@confirmDeletion');
+    Route::post('categories/confirmDeletionMultipleRows', 'AdminCategoryController@confirmDeletionMultipleRows');
+    Route::post('categories/destroyMultipleRecords', 'AdminCategoryController@destroyMultipleRecords');
 
     Route::resource('tags', 'AdminTagController');
     Route::post('tags/confirmDeletion/{id}', 'AdminTagController@confirmDeletion');
+    Route::post('tags/confirmDeletionMultipleRows', 'AdminTagController@confirmDeletionMultipleRows');
+    Route::post('tags/destroyMultipleRecords', 'AdminTagController@destroyMultipleRecords');
 
     Route::resource('postupdates', 'AdminPostupdateController');
     Route::post('postupdates/confirmDeletion/{id}', 'AdminPostupdateController@confirmDeletion');
+    Route::post('postupdates/confirmDeletionMultipleRows', 'AdminPostupdateController@confirmDeletionMultipleRows');
+    Route::post('postupdates/destroyMultipleRecords', 'AdminPostupdateController@destroyMultipleRecords');
 
     Route::resource('users', 'AdminUserController');
     Route::post('users/confirmDeletion/{id}', 'AdminUserController@confirmDeletion');
+    Route::post('users/confirmDeletionMultipleRows', 'AdminUserController@confirmDeletionMultipleRows');
+    Route::post('users/destroyMultipleRecords', 'AdminUserController@destroyMultipleRecords');
 
     Route::resource('usergroups', 'AdminUsergroupController');
     Route::post('usergroups/confirmDeletion/{id}', 'AdminUsergroupController@confirmDeletion');
+    Route::post('usergroups/confirmDeletionMultipleRows', 'AdminUsergroupController@confirmDeletionMultipleRows');
+    Route::post('usergroups/destroyMultipleRecords', 'AdminUsergroupController@destroyMultipleRecords');
 });
 
