@@ -76,7 +76,7 @@
 
                         <td align="center">
                             <a href="{{{ URL::route('admin.users.edit', $user->id) }}}" class="btn btn-success  btn-xs" role="button">
-                                <i class="glyphicon glyphicon-edit"></i>
+                                <i class="fa fa-edit"></i>
                             </a>
                         </td>
 
