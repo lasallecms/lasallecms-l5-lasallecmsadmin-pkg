@@ -9,7 +9,7 @@ My Flagship CMS app so depends on this package that it has the composer and serv
 ```
 {
     "require": {
-        "lasallecms/lasallecmsadmin": "0.1.*",
+        "lasallecms/lasallecmsadmin": "1.*",
     }
 }
 ```
