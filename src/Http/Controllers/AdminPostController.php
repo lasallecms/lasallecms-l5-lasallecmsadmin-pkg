@@ -88,13 +88,10 @@ class AdminPostController extends AdminFormBaseController
      */
     public function sendPostToLaSalleCRMList(Request $request) {
 
-        $postID = $request->input('postID');
-        $post   = $this->model->FindOrFail($postID);
-
-        $post->listID = $request->input('listID');
-
-        $post->eventDescription = $request->input('eventDescription');
-
+        // Laravel's Mail::send second "data" param must be an array, not an object.
+        $post                     = $this->model->FindOrFail($request->input('postID'))->toArray();
+        $post['listID']           = $request->input('listID');
+        $post['eventDescription'] = $request->input('eventDescription');
 
         event(new SendPostToLaSalleCRMemailList($post));
 
