@@ -33,6 +33,14 @@ namespace Lasallecms\Lasallecmsadmin\Http\Controllers;
 // LaSalle Software
 use Lasallecms\Formhandling\AdminFormhandling\AdminFormBaseController;
 use Lasallecms\Lasallecmsapi\Repositories\BaseRepository;
+use Lasallecms\Lasallecmsapi\Events\SendPostToLaSalleCRMemailList;
+
+// Laravel facades
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
+
+// Laravel classes
+use Illuminate\Http\Request;
 
 
 
@@ -68,5 +76,26 @@ class AdminPostController extends AdminFormBaseController
 
         // Inject the relevant model into the repository
         $this->repository->injectModelIntoRepository($this->model->model_namespace."\\".$this->model->model_class);
+    }
+
+
+
+    public function sendPostToLaSalleCRMList(Request $request) {
+
+        $postID = $request->input('postID');
+        $post   = $this->model->FindOrFail($postID);
+
+        $post->listID = $request->input('listID');
+
+        $post->eventDescription = $request->input('eventDescription');
+
+
+        event(new SendPostToLaSalleCRMemailList($post));
+
+        $message =  "You successfully ".$post['eventDescription']."!";
+        Session::flash('message', $message);
+        Session::flash('status_code', 200 );
+
+        return Redirect::route('admin.'.$this->model->resource_route_name.'.index');
     }
 }
