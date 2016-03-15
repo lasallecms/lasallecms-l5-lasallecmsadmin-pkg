@@ -63,8 +63,7 @@ class AdminPostController extends AdminFormBaseController
      * @param  Lasallecms\Lasallecmsapi\Repositories\BaseRepository
      * @return void
      */
-    public function __construct(Model $model, BaseRepository $repository)
-    {
+    public function __construct(Model $model, BaseRepository $repository) {
         // execute AdminController's construct method first in order to run the middleware
         parent::__construct();
 
@@ -79,7 +78,14 @@ class AdminPostController extends AdminFormBaseController
     }
 
 
-
+    /**
+     * Fire the SendPostToLaSalleCRMemailList event.
+     *
+     * This method is called from the confirmation view in the LaSalle List Management package.
+     *
+     * @param   Request $request
+     * @return  mixed
+     */
     public function sendPostToLaSalleCRMList(Request $request) {
 
         $postID = $request->input('postID');
