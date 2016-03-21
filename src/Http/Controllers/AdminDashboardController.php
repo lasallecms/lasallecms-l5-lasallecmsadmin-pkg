@@ -1,4 +1,5 @@
 <?php
+
 namespace Lasallecms\Lasallecmsadmin\Http\Controllers;
 
 /**
@@ -37,11 +38,20 @@ use Lasallecms\Formhandling\AdminFormhandling\AdminFormBaseController;
 // Laravel facades
 use Illuminate\Support\Facades\Redirect;
 
+
+/**
+ * Class AdminDashboardController
+ * @package Lasallecms\Lasallecmsadmin\Http\Controllers
+ */
 class AdminDashboardController extends AdminFormBaseController
 {
-
-    public function index()
-    {
+    /**
+     * Display a listing per config setting
+     * GET
+     *
+     * @return Response
+     */
+    public function index() {
         return Redirect::route(config('lasallecmsadmin.admin_route_dashboard'));
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace Lasallecms\Lasallecmsadmin\Http\Controllers;
 
 /**
@@ -51,8 +52,9 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
 
-/*
- * Resource controller for administration of post updates
+/**
+ * Class AdminPostupdateController
+ * @package Lasallecms\Lasallecmsadmin\Http\Controllers
  */
 class AdminPostupdateController extends AdminFormBaseController
 {
@@ -61,8 +63,7 @@ class AdminPostupdateController extends AdminFormBaseController
      * @param  Lasallecms\Lasallecmsapi\Repositories\BaseRepository
      * @return void
      */
-    public function __construct(Model $model, BaseRepository $repository)
-    {
+    public function __construct(Model $model, BaseRepository $repository) {
         // execute AdminController's construct method first in order to run the middleware
         parent::__construct();
 

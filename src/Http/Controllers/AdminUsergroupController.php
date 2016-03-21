@@ -39,8 +39,10 @@ use Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
-/*
- * Resource controller for administration of user groups (groups table)
+
+/**
+ * Class AdminUsergroupController
+ * @package Lasallecms\Lasallecmsadmin\Http\Controllers
  */
 class AdminUsergroupController extends AdminLookupTableBaseController
 {
@@ -103,8 +105,7 @@ class AdminUsergroupController extends AdminLookupTableBaseController
      * @param  Lasallecms\Lasallecmsapi\Repositories\BaseRepository
      * @return void
      */
-    public function __construct(BaseRepository $repository)
-    {
+    public function __construct(BaseRepository $repository) {
         // execute AdminController's construct method first in order to run the middleware
         parent::__construct() ;
 

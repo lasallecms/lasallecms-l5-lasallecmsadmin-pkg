@@ -1,4 +1,5 @@
 <?php
+
 namespace Lasallecms\Lasallecmsadmin\Http\Controllers;
 
 /**
@@ -44,8 +45,7 @@ use Lasallecms\Lasallecmsapi\Repositories\CategoryRepository;
 use Lasallecms\Helpers\Dates\DatesHelper;
 use Lasallecms\Helpers\HTML\HTMLHelper;
 
-use Lasallecms\Formhandling\AdminFormhandling\CreateCommand;
-use Lasallecms\Formhandling\AdminFormhandling\UpdateCommand;
+use Lasallecms\Formhandling\CommandBus\BaseCommands\CreateBaseCommand;
 
 // Laravel facades
 use Illuminate\Support\Facades\Config;
@@ -68,20 +68,19 @@ use Collective\Html\FormFacade as Form;
 use Lasallecms\Lasallecmsapi\Models\Category as Model;
 
 
-
-/*
- * Resource controller for administration of categories
+/**
+ * Class AdminCategoryController
+ * @package Lasallecms\Lasallecmsadmin\Http\Controllers
  */
 class AdminCategoryController extends AdminFormBaseController
 {
 
-    /*
+    /**
      * @param  Model, as specified above
      * @param  Lasallecms\Lasallecmsapi\Repositories\BaseRepository
      * @return void
      */
-    public function __construct(Model $model, BaseRepository $repository)
-    {
+    public function __construct(Model $model, BaseRepository $repository) {
         // execute AdminController's construct method first in order to run the middleware
         parent::__construct();
 
@@ -96,16 +95,13 @@ class AdminCategoryController extends AdminFormBaseController
     }
 
 
-
-
     /**
      * Display a listing of categories
      * GET /categories/index
      *
      * @return Response
      */
-    public function index()
-    {
+    public function index() {
         // If this user has locked records for this table, then unlock 'em
         $this->repository->unlockMyRecords('categories');
 
@@ -113,10 +109,10 @@ class AdminCategoryController extends AdminFormBaseController
         $categories = $this->repository->getAll();
 
         return view('lasallecmsadmin::'.config('lasallecmsadmin.admin_template_name').'/categories/index',[
-            'Form' => Form::class,
-            'categories' => $categories,
+            'Form'               => Form::class,
+            'categories'         => $categories,
             'categoryRepository' => $this->repository,
-            'HTMLHelper'  => HTMLHelper::class,
+            'HTMLHelper'         => HTMLHelper::class,
         ]);
     }
 
@@ -127,8 +123,7 @@ class AdminCategoryController extends AdminFormBaseController
      *
      * @return Response
      */
-    public function create()
-    {
+    public function create() {
         $categories = $this->repository->getAll();
 
         return view('lasallecmsadmin::'.config('lasallecmsadmin.admin_template_name').'/categories/create',[
@@ -152,9 +147,8 @@ class AdminCategoryController extends AdminFormBaseController
      * @param  Request   $request
      * @return Response
      */
-    public function store(Request $request)
-    {
-        $response = $this->dispatchFrom(CreateCommand::class, $request);
+    public function store(Request $request) {
+        $response = $this->dispatchFrom(CreateBaseCommand::class, $request);
 
         Session::flash('status_code', $response['status_code'] );
 
@@ -193,8 +187,7 @@ class AdminCategoryController extends AdminFormBaseController
      * @param  int  $id
      * @return Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         // Is this record locked?
         if ($this->repository->isLocked($id))
         {

@@ -42,9 +42,9 @@ namespace Lasallecms\Lasallecmsadmin\Http\Controllers;
 use Lasallecms\Formhandling\AdminFormhandling\AdminFormBaseController;
 use Lasallecms\Lasallecmsapi\Repositories\UserRepository;
 
-use Lasallecms\Lasallecmsadmin\Jobs\Users\CreateUserCommand;
-use Lasallecms\Lasallecmsadmin\Jobs\Users\DeleteUserCommand;
-use Lasallecms\Lasallecmsadmin\Jobs\Users\UpdateUserCommand;
+use Lasallecms\Formhandling\CommandBus\UserCommands\CreateUserCommand;
+use Lasallecms\Formhandling\CommandBus\UserCommands\DeleteUserCommand;
+use Lasallecms\Formhandling\CommandBus\UserCommands\UpdateUserCommand;
 
 use Lasallecms\Helpers\Dates\DatesHelper;
 use Lasallecms\Helpers\HTML\HTMLHelper;
@@ -65,8 +65,9 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 
 
-/*
- * Resource controller for administration of users
+/**
+ * Class AdminUserController
+ * @package Lasallecms\Lasallecmsadmin\Http\Controllers
  */
 class AdminUserController extends AdminFormBaseController
 {
@@ -78,15 +79,14 @@ class AdminUserController extends AdminFormBaseController
     protected $repository;
 
 
-
     /*
      * Create a new repository instance
      *
      * @param  Lasallecms\Lasallecmsapi\Contracts\UserRepository $UserRepository
      * @return void
      */
-    public function __construct(UserRepository $repository)
-    {
+    public function __construct(UserRepository $repository) {
+
         // execute AdminController's construct method first in order to run the middleware
         parent::__construct() ;
 
@@ -102,8 +102,8 @@ class AdminUserController extends AdminFormBaseController
      *
      * @return Response
      */
-    public function index()
-    {
+    public function index() {
+
         // If this user has locked records for this table, then unlock 'em
         $this->repository->unlockMyRecords('users');
 
@@ -149,8 +149,7 @@ class AdminUserController extends AdminFormBaseController
      *
      * @return Response
      */
-    public function create()
-    {
+    public function create() {
         $field = [
             'name'                => 'groups',
             'related_table_name'  => 'groups',
@@ -175,8 +174,7 @@ class AdminUserController extends AdminFormBaseController
      * @param  Request   $request
      * @return Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         $response = $this->dispatchFrom(CreateUserCommand::class, $request);
 
         Session::flash('status_code', $response['status_code'] );
@@ -216,8 +214,7 @@ class AdminUserController extends AdminFormBaseController
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         // Do not use show(). Redir to index just in case
         return Redirect::route('admin.users.index');
     }
@@ -230,8 +227,7 @@ class AdminUserController extends AdminFormBaseController
      * @param  int  $id
      * @return Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         // Is this record locked?
         if ($this->repository->isLocked($id))
         {
@@ -275,8 +271,7 @@ class AdminUserController extends AdminFormBaseController
      * @param  Request   $request
      * @return Response
      */
-    public function update(Request $request)
-    {
+    public function update(Request $request) {
         $response = $this->dispatchFrom(UpdateUserCommand::class, $request);
 
         Session::flash('status_code', $response['status_code'] );
@@ -323,8 +318,7 @@ class AdminUserController extends AdminFormBaseController
      * @param  int      $id     NOTE: *NOT* passing the REQUEST object
      * @return Response
      */
-    public function confirmDeletion($id)
-    {
+    public function confirmDeletion($id) {
         return view('lasallecmsadmin::' . config('lasallecmsadmin.admin_template_name') . '.users.delete_confirm',
             [
                 'logged_in_user'               => Auth::user(),
@@ -348,8 +342,8 @@ class AdminUserController extends AdminFormBaseController
      * @param  int      $id
      * @return Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
+
         // Is this record locked?
         if ($this->repository->isLocked($id))
         {

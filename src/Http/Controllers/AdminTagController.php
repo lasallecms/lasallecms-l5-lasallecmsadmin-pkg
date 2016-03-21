@@ -1,4 +1,5 @@
 <?php
+
 namespace Lasallecms\Lasallecmsadmin\Http\Controllers;
 
 /**
@@ -35,8 +36,9 @@ use Lasallecms\Formhandling\Lookuptables\AdminLookupTableBaseController;
 use Lasallecms\Lasallecmsapi\Repositories\BaseRepository;
 
 
-/*
- * Resource controller for administration of tags
+/**
+ * Class AdminTagController
+ * @package Lasallecms\Lasallecmsadmin\Http\Controllers
  */
 class AdminTagController extends AdminLookupTableBaseController
 {
@@ -99,8 +101,7 @@ class AdminTagController extends AdminLookupTableBaseController
      * @param  Lasallecms\Lasallecmsapi\Repositories\BaseRepository
      * @return void
      */
-    public function __construct(BaseRepository $repository)
-    {
+    public function __construct(BaseRepository $repository) {
         // execute AdminController's construct method first in order to run the middleware
         parent::__construct() ;
 

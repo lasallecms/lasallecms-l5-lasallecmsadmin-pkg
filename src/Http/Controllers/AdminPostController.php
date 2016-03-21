@@ -1,4 +1,5 @@
 <?php
+
 namespace Lasallecms\Lasallecmsadmin\Http\Controllers;
 
 /**
@@ -52,9 +53,9 @@ use Illuminate\Http\Request;
 use Lasallecms\Lasallecmsapi\Models\Post as Model;
 
 
-
-/*
- * Resource controller for administration of posts
+/**
+ * Class AdminPostController
+ * @package Lasallecms\Lasallecmsadmin\Http\Controllers
  */
 class AdminPostController extends AdminFormBaseController
 {

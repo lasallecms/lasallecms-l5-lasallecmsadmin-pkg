@@ -64,7 +64,7 @@
                             </td>
                             <td>
                                 {!! Form::input('text', 'name', Input::old('name', isset($user) ? $user->name : '')) !!}
-                                {{{ $errors->first('name', '<span class="help-block">:message</span>') }}}
+                                {{{ $errors->first('name', ':message') }}}
                             </td>
                         </tr>
 
@@ -74,7 +74,7 @@
                             </td>
                             <td>
                                 {!! Form::email('email', Input::old('email', isset($user) ? $user->email : '')) !!}&nbsp;&nbsp; <a href="#" data-toggle="popover" data-content="Email must be unique."><i class="fa fa-info-circle"></i></a>
-                                {{{ $errors->first('email', '<span class="help-block">:message</span>') }}}
+                                {{{ $errors->first('email', ':message') }}}
                             </td>
                         </tr>
 
@@ -84,7 +84,7 @@
                             </td>
                             <td>
                                 {!! Form::password('password') !!}&nbsp;&nbsp; <a href="#" data-toggle="popover" data-content="The At least six characters."><i class="fa fa-info-circle"></i></a>
-                                {!! $errors->first('password', '<span class="help-block">:message</span>') !!}
+                                {!! $errors->first('password', ':message') !!}
                             </td>
                         </tr>
 
@@ -94,7 +94,7 @@
                             </td>
                             <td>
                                 {!! Form::password('password_confirmation') !!}
-                                {!! $errors->first('password_confirmation', '<span class="help-block">:message</span>') !!}
+                                {!! $errors->first('password_confirmation', ':message') !!}
                             </td>
                         </tr>
 
@@ -104,7 +104,7 @@
                             </td>
                             <td>
                                 {!! Form::checkbox('activated', '1', Input::old('activated')) !!}
-                                {{{ $errors->first('activated', '<span class="help-block">:message</span>') }}}
+                                {{{ $errors->first('activated', ':message') }}}
                             </td>
                         </tr>
 
@@ -114,7 +114,7 @@
                             </td>
                             <td>
                                 {!! Form::checkbox('enabled', '1', Input::old('enabled')) !!}
-                                {{{ $errors->first('enabled', '<span class="help-block">:message</span>') }}}
+                                {{{ $errors->first('enabled', ':message') }}}
                             </td>
                         </tr>
 
@@ -160,7 +160,7 @@
                         </td>
                         <td>
                             {!! Form::checkbox('two_factor_auth_enabled', '1', Input::old('two_factor_auth_enabled')) !!}&nbsp;&nbsp; <a href="#" data-toggle="popover" data-content="Enable if 2FA is disabled, but you want this specific user to still go through the 2FA process when logging in to front-end and admin."><i class="fa fa-info-circle"></i></a>
-                            {{{ $errors->first('two_factor_auth_enabled', '<span class="help-block">:message</span>') }}}
+                            {{{ $errors->first('two_factor_auth_enabled', ':message') }}}
                         </td>
 
                         <tr>
@@ -169,7 +169,7 @@
                             </td>
                             <td>
                                 {!! Form::input('text', 'phone_country_code', Input::old('phone_country_code', isset($user) ? $user->phone_country_code : '')) !!}&nbsp;&nbsp; <a href="#" data-toggle="popover" data-content="Canada = 1, USA = 1"><i class="fa fa-info-circle"></i></a>
-                                {{{ $errors->first('phone_country_code', '<span class="help-block">:message</span>') }}}
+                                {{{ $errors->first('phone_country_code', ':message') }}}
                             </td>
                         </tr>
 
@@ -179,7 +179,7 @@
                             </td>
                             <td>
                                 {!! Form::input('text', 'phone_number', Input::old('phone_number', isset($user) ? $user->phone_number : '')) !!}&nbsp;&nbsp; <a href="#" data-toggle="popover" data-content="No spaces, no dashes, no country code. eg: 647-123-4567"><i class="fa fa-info-circle"></i></a>
-                                {{{ $errors->first('phone_number', '<span class="help-block">:message</span>') }}}
+                                {{{ $errors->first('phone_number', ':message If no cell number exists but you get this error anyways, then please enter 9999999999 -- thank you!') }}}
                             </td>
                         </tr>
 
