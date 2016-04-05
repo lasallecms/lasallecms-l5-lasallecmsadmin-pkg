@@ -93,12 +93,12 @@
 
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-list"></i> <span>Email Message</span>
+                        <i class="fa fa-envelope-o"></i> <span>Email Messages</span>
                         <i class="fa fa-angle-right pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
 
-                        <li><a href="{{{ route('admin.emailhandling.index') }}}"><i class="fa fa-list"></i> Email Messages</a></li>
+                        <li><a href="{{{ route('admin.emailhandling.index') }}}"><i class="fa fa-envelope-o"></i> Email Messages</a></li>
                     </ul>
                 </li>
 
