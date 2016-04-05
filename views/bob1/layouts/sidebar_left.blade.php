@@ -89,6 +89,22 @@
                 <li class="treeview"><hr></li>
             @endif
 
+            @if ( class_exists(\Lasallecrm\Lasallecrmemail\Version::class) )
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-list"></i> <span>Email Message</span>
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+
+                        <li><a href="{{{ route('admin.emailhandling.index') }}}"><i class="fa fa-list"></i> Email Messages</a></li>
+                    </ul>
+                </li>
+
+                <li class="treeview"><hr></li>
+            @endif
+
 
             @if ( class_exists(\Lasallecrm\Listmanagement\Version::class) )
 
