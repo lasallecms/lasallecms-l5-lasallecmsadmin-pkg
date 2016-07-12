@@ -227,13 +227,13 @@ class UpdatePostFormProcessing extends BaseFormProcessing
                 // and not a confirmation that is already set up specifically for this particular event firing
 
                 $data['modelName']          = "post";
-                $data['nameOfEventToFire']  = "SendPostToLaSalleCRMemailList";
+                $data['nameOfEventToFire']  = "Fire the Publish Event";
                 $data['tableName']          = "posts";
                 $data['resourceRouteName']  = "posts";
                 $data['RouteToController']  = "admin.post";
                 $data['packageName']        = "LaSalleCMS";
-                $data['formActionRoute']    = "posts/sendPostToLaSalleCRMList";
-                $data['eventDescription']   = "send this article to a LaSalleCRM email list";
+                $data['formActionRoute']    = "posts/PublishPostEvent";
+                $data['eventDescription']   = "Send to a LaSalleCRM email list, post a Tweet, etc.";
                 $data                       = $data;
 
                 // I created a new "response array" (not a real response, just a var I use in my LaSalle Software)

@@ -34,7 +34,7 @@ namespace Lasallecms\Lasallecmsadmin\Http\Controllers;
 // LaSalle Software
 use Lasallecms\Formhandling\AdminFormhandling\AdminFormBaseController;
 use Lasallecms\Lasallecmsapi\Repositories\BaseRepository;
-use Lasallecms\Lasallecmsapi\Events\SendPostToLaSalleCRMemailList;
+use Lasallecms\Lasallecmsapi\Events\PublishThePost;
 
 // Laravel facades
 use Illuminate\Support\Facades\Redirect;
@@ -87,14 +87,14 @@ class AdminPostController extends AdminFormBaseController
      * @param   Request $request
      * @return  mixed
      */
-    public function sendPostToLaSalleCRMList(Request $request) {
+    public function publishPostEvent(Request $request) {
 
         // Laravel's Mail::send second "data" param must be an array, not an object.
         $post                     = $this->model->FindOrFail($request->input('postID'))->toArray();
         $post['listID']           = $request->input('listID');
         $post['eventDescription'] = $request->input('eventDescription');
 
-        event(new SendPostToLaSalleCRMemailList($post));
+        event(new PublishThePost($post));
 
         $message =  "You successfully ".$post['eventDescription']."!";
         Session::flash('message', $message);

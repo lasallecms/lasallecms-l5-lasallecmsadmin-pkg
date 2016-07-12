@@ -44,7 +44,7 @@ Route::group(array('prefix' => 'admin'), function()
     Route::post('posts/confirmDeletionMultipleRows', 'AdminPostController@confirmDeletionMultipleRows');
     Route::post('posts/destroyMultipleRecords', 'AdminPostController@destroyMultipleRecords');
 
-    Route::post('posts/sendPostToLaSalleCRMList', 'AdminPostController@sendPostToLaSalleCRMList');
+    Route::post('posts/PublishPostEvent', 'AdminPostController@publishPostEvent');
 
     Route::resource('categories', 'AdminCategoryController');
     Route::post('categories/confirmDeletion/{id}', 'AdminCategoryController@confirmDeletion');
